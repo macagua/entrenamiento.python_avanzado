@@ -1,7 +1,7 @@
 .. _python_leccion3:
 
-json - Codificador y decodificador JSON
-.......................................
+json - Serialización en la web
+==============================
 
 .. note::
     **Propósito:** es una libraría para codificar y decodificar JSON (JavaScript Object Notation).
@@ -17,7 +17,7 @@ la comunicación entre el servidor web y el cliente en una API REST, pero tambi�
 para otras necesidades de comunicación entre aplicaciones.
 
 Escribir y leer JSON
-^^^^^^^^^^^^^^^^^^^^
+--------------------
 
 A continuación, un ejemplo de un programa de Python para leer y escribir un archivo JSON
 basado en un tipo :ref:`diccionario <python_dict>`:
