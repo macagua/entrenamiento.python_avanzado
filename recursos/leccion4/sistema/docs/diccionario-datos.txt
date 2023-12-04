@@ -1,0 +1,45 @@
+#===============================================================================
+#==   Data Dictionary File for Database : sistema (Build 48)
+#==
+#== Format: table, field
+#===============================================================================
+
+#== clientes ===================================================================
+
+'clientes',    'id'
+'clientes',    'nombre'
+'clientes',    'apellido'
+'clientes',    'codigo_postal'
+'clientes',    'telefono'
+
+#== pedidos ====================================================================
+
+'pedidos',     'id'
+'pedidos',     'cliente_id'
+'pedidos',     'fecha'
+'pedidos',     'producto_id'
+'pedidos',     'status'
+
+#== productos ==================================================================
+
+'productos',   'id'
+'productos',   'nombre'
+'productos',   'descripcion'
+'productos',   'categoria'
+'productos',   'precio'
+'productos',   'status'
+
+#== estados ====================================================================
+
+'estados',     'id'
+'estados',     'nombre'
+'estados',     'codigo'
+
+#== ciudades ===================================================================
+
+'ciudades',    'id'
+'ciudades',    'id_estado'
+'ciudades',    'nombre'
+'ciudades',    'capital'
+
+#===============================================================================
