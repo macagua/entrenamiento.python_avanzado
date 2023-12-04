@@ -13,8 +13,8 @@ aprendida están asociadas entre si mismas.
 
 .. _esquema_entrenamiento_leccion1:
 
-Lección 1 - Introducción a la Persistencia de datos en Python
--------------------------------------------------------------
+Lección 1 - Persistencia de datos en Python
+-------------------------------------------
 
 **Descripción:**
     Presentar los diversos módulos para la persistencia de datos, tantos para
@@ -30,8 +30,8 @@ Lección 2 - Serialización de objetos
 ------------------------------------
 
 **Descripción:**
-    Conocer las capacidades de para implementa protocolos binarios para serializar y
-    deserializar una estructura de objetos Python con el módulo pickle.
+    Conocer las capacidades para implementa protocolos binarios para serializar y
+    deserializar una estructura de objetos Python con el módulo ``pickle``.
 
 **Práctica:**
     Ejemplo de uso del módulo ``pickle`` para serializar y deserializar objetos Python
@@ -122,8 +122,8 @@ Lección 8 - Autogenerar modelos ORM
 
 **Descripción:**
     Comprender el uso de la herramienta ``sqlacodegen`` lee la estructura de una base de
-    datos existente y genera el código de modelos SQLAlchemy.
+    datos existente y genera el código de modelos ``SQLAlchemy``.
 
 **Práctica:**
-    Ejemplo de la herramienta ``sqlacodegen`` y generar el código de modelos ``SQLAlchemy``
+    Ejemplo de la herramienta ``sqlacodegen`` para generar el código de modelos ``SQLAlchemy``
     y explorar el resultado en un módulo y paquete en el sistema de archivos.
