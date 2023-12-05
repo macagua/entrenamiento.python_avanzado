@@ -5,7 +5,8 @@ pickle - Serialización de objetos
 
 .. note::
     **Propósito:** es una libraría para implementa protocolos binarios para serializar
-    y deserializar una estructura de objetos Python.
+    y deserializar una estructura de objetos Python, es decir, convertirlos en un flujo
+    de bytes que se puede almacenar o transmitir por una red.
 
 La *serialización* es el proceso de convertir un objeto en una secuencia de bytes
 para almacenarlo o transmitirlo a la memoria, a una base de datos o a un archivo.
@@ -17,8 +18,19 @@ y luego cargarlo cuando sea necesario, para ser tratado con su tipo de datos.
 
 Formatos comunes entre los distintos lenguajes de programación incluyen XML y JSON.
 
-.. todo::
-    TODO Terminar de escribir esta sección.
+Python ofrece tres módulos diferentes en la biblioteca estándar que le permiten serializar y deserializar objetos:
+
+CRUD con archivo pickle
+-----------------------
+
+.. literalinclude:: ../../recursos/leccion2/inventarios/main.py
+    :language: python
+    :linenos:
+    :lines: 1-191
+
+Asi de esta forma puede ingresar, consultar, actualizar y eliminar
+registro en un archivo serializado de objetos python ``pickle``.
+
 
 ----
 
