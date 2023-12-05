@@ -20,9 +20,6 @@ para ayudar a incrementar tanto la profundidad y amplitud en su conocimiento.
 
 Las lecturas están organizada como las lecciones y sus temas.
 
-.. todo::
-    TODO terminar de escribir esta sección.
-
 
 .. _lecturas_extras_leccion1:
 
@@ -41,9 +38,9 @@ Lección 2 - Serialización de objetos
 
 - `pickle - Serialización de objetos Python <https://docs.python.org/es/3.11/library/pickle.html>`_.
 
+- `Python - simple crud usando pickle <https://www.lawebdelprogramador.com/foros/Python/1556555-simple-crud-usando-pickle.html>`_.
 
-.. todo::
-    TODO terminar de escribir esta sección
+- `Python: Serialización de objetos <http://mundogeek.net/archivos/2008/05/20/python-serializacion-de-objetos/>`_.
 
 
 .. _lecturas_extras_leccion3:
@@ -65,9 +62,11 @@ Lección 3 - Codificador y decodificador JSON
 Lección 4 - Base de datos relacional
 ------------------------------------
 
+- `Base de datos relacional <https://es.wikipedia.org/wiki/Base_de_datos_relacional>`_.
 
-.. todo::
-    TODO terminar de escribir esta sección
+- `¿Qué es una base de datos relacional? - IBM <https://www.ibm.com/mx-es/topics/relational-databases>`_.
+
+- `¿Qué es un sistema de administración de bases de datos relacionales? <https://azure.microsoft.com/es-es/resources/cloud-computing-dictionary/what-is-a-relational-database>`_.
 
 
 .. _lecturas_extras_leccion5:
@@ -84,6 +83,8 @@ Lección 5 - Interfaz DB-API
 
 - `Python Database API <https://medium.com/@er.26yashiagarwal/python-database-api-beb8e61109cf>`_.
 
+- `Bases de datos en Python <http://mundogeek.net/archivos/2008/06/25/bases-de-datos-en-python/>`_.
+
 
 .. _lecturas_extras_leccion6:
 
@@ -93,8 +94,9 @@ Lección 6 - SQLite
 
 - `sqlite3 — DB-API 2.0 interfaz para bases de datos SQLite <https://docs.python.org/es/3.11/library/sqlite3.html>`_.
 
-.. todo::
-    TODO terminar de escribir esta sección
+- `SQLite Home Page <https://www.sqlite.org/index.html>`_.
+
+- `SQLite <https://es.wikipedia.org/wiki/SQLite>`_.
 
 
 .. _lecturas_extras_leccion7:
