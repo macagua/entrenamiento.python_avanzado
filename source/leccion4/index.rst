@@ -32,7 +32,7 @@ Si requiere crear una tabla, a continuación tiene un ejemplo:
 .. literalinclude:: ../../recursos/leccion4/sistema/sistema.sql
     :language: sql
     :linenos:
-    :lines: 47-58
+    :lines: 48-59
 
 
 .. _python_base_ingresar_registro:
