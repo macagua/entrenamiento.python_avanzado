@@ -1,7 +1,7 @@
 .. _python_leccion3:
 
-json - Serialización en la web
-==============================
+Serialización en la web
+=======================
 
 .. note::
     **Propósito:** es una libraría para codificar y decodificar JSON (JavaScript Object Notation).
@@ -16,8 +16,8 @@ implementaciones en muchos lenguajes (especialmente JavaScript). Se usa más amp
 la comunicación entre el servidor web y el cliente en una API REST, pero también es útil
 para otras necesidades de comunicación entre aplicaciones.
 
-Escribir y leer JSON
---------------------
+json
+----
 
 A continuación, un ejemplo de un programa de Python para leer y escribir un archivo JSON
 basado en un tipo :ref:`diccionario <python_dict>`:
