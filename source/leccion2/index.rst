@@ -39,6 +39,28 @@ registro en un archivo serializado de objetos python ``pickle``.
 
 ----
 
+.. important::
+    Usted puede descargar el código usado en esta sección haciendo clic en el
+    siguiente enlace: :download:`main.py <../../recursos/leccion2/inventarios/main.py>`.
+
+
+.. tip::
+    Para ejecutar el código :file:`main.py`, abra una consola de comando,
+    acceda al directorio donde se encuentra ambos programas:
+
+    ::
+
+        leccion2/
+        └── inventarios/
+            └── main.py
+
+    Si tiene la estructura de archivo previa, entonces ejecute el siguiente comando:
+
+    .. code-block:: console
+
+        $ python main.py
+
+
 .. seealso::
 
     Consulte la sección de :ref:`lecturas suplementarias <lecturas_extras_leccion2>`
