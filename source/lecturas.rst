@@ -85,6 +85,8 @@ Lección 5 - Interfaz DB-API
 
 - `Bases de datos en Python <http://mundogeek.net/archivos/2008/06/25/bases-de-datos-en-python/>`_.
 
+- `Databases - The Hitchhiker's Guide to Python <https://docs.python-guide.org/scenarios/db/>`_.
+
 
 .. _lecturas_extras_leccion6:
 
@@ -96,7 +98,9 @@ Lección 6 - SQLite
 
 - `SQLite Home Page <https://www.sqlite.org/index.html>`_.
 
-- `SQLite <https://es.wikipedia.org/wiki/SQLite>`_.
+- `SQLite - Wikipedia <https://es.wikipedia.org/wiki/SQLite>`_.
+
+- `How To Use the sqlite3 Module in Python 3 <https://www.digitalocean.com/community/tutorials/how-to-use-the-sqlite3-module-in-python-3>`_.
 
 
 .. _lecturas_extras_leccion7:
