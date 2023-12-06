@@ -29,10 +29,19 @@ Crear tablas
 
 Si requiere crear una tabla, a continuación tiene un ejemplo:
 
-.. literalinclude:: ../../recursos/leccion4/sistema/sistema.sql
-    :language: sql
+.. code-block:: sql
     :linenos:
-    :lines: 48-59
+
+    CREATE TABLE clientes
+    (
+        id             int           unique not null,
+        nombre         varchar(25)   not null,
+        apellido       varchar(25)   not null,
+        codigo_postal  int           not null,
+        telefono       varchar(11)   not null,
+
+        primary key(id)
+    );
 
 
 .. _python_base_ingresar_registro:
