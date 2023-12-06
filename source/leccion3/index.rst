@@ -67,6 +67,29 @@ De esta forma se escribí y lee un archivo JSON.
 
 ----
 
+.. important::
+    Usted puede descargar el código usado en esta sección haciendo clic en los
+    siguientes enlaces: :download:`json_reading_writing.json <../../recursos/leccion3/json_reading_writing.json>`
+    y :download:`json_reading_writing.py <../../recursos/leccion3/json_reading_writing.py>`.
+
+
+.. tip::
+    Para ejecutar el código :file:`json_reading_writing.json` y :file:`json_reading_writing.py`,
+    abra una consola de comando, acceda al directorio donde se encuentra ambos programas:
+
+    ::
+
+        leccion3/
+        ├── json_reading_writing.json
+        └── json_reading_writing.py
+
+    Si tiene la estructura de archivo previa, entonces ejecute el siguiente comando:
+
+    .. code-block:: console
+
+        $ python json_reading_writing.py
+
+
 .. seealso::
 
     Consulte la sección de :ref:`lecturas suplementarias <lecturas_extras_leccion3>`
