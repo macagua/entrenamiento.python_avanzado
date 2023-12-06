@@ -297,7 +297,7 @@ añade el código que te muestro a continuación:
 .. literalinclude:: ../../recursos/leccion7/sqlalchemy/productos/models.py
     :language: python
     :linenos:
-    :lines: 1-31
+    :lines: 1-32
 
 Asi de esta forma tiene definido una clase modelo llamado ``Productos`` la cual mapea
 la tabla ``productos``.
