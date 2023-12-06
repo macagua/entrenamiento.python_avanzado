@@ -101,10 +101,24 @@ registro a dicha tabla.
 
 ----
 
-
 .. important::
-    Usted puede descargar el código usado en esta sección haciendo clic
-    :download:`aquí <../../recursos/leccion4/sistema/sistema_data.sql>`.
+    Usted puede descargar el código usado en esta sección haciendo clic en los
+    siguientes enlaces: :download:`sistema.sql <../../recursos/leccion4/sistema/sistema.sql>`
+    y :download:`sistema_data.sql <../../recursos/leccion4/sistema/sistema_data.sql>`.
+
+
+.. tip::
+    Para ejecutar el código SQL de la base de datos debe tener una copia local de los scripts
+    :file:`sistema.sql` y :file:`sistema_data.sql`.
+
+    ::
+
+        leccion4/
+        └── sistema/
+            ├── sistema.sql
+            └── sistema_data.sql
+
+    Si tiene la estructura de archivo previa, solo queda correr esos SQL en la vista de Query DATA.
 
 
 .. seealso::
