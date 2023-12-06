@@ -20,8 +20,13 @@ Formatos comunes entre los distintos lenguajes de programación incluyen XML y J
 
 Python ofrece tres módulos diferentes en la biblioteca estándar que le permiten serializar y deserializar objetos:
 
+pickle
+------
+
 CRUD con archivo pickle
------------------------
+^^^^^^^^^^^^^^^^^^^^^^^
+
+Ejemplo de CRUD con archivo pickle
 
 .. literalinclude:: ../../recursos/leccion2/inventarios/main.py
     :language: python
