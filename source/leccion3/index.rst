@@ -19,13 +19,63 @@ para otras necesidades de comunicación entre aplicaciones.
 json
 ----
 
-A continuación, un ejemplo de un programa de Python para leer y escribir un archivo JSON
-basado en un tipo :ref:`diccionario <python_dict>`:
+.. todo::
+    TODO terminar de escribir esta sección.
+
+
+.. _python_json_serializar:
+
+Serializar
+^^^^^^^^^^
+
+.. todo::
+    TODO terminar de escribir esta sección.
+
+
+.. _python_json_deserializar:
+
+Deserializar
+^^^^^^^^^^^^
+
+.. todo::
+    TODO terminar de escribir esta sección.
+
+
+.. _python_json_scaffolding:
+
+Práctica - Caso real
+^^^^^^^^^^^^^^^^^^^^
+
+A continuación se presenta una práctica más real de implementar el uso de proyectos
+con ``pickle`` para leer y escribir un archivo JSON basado en un tipo :ref:`diccionario <python_dict>`:
 
 .. literalinclude:: ../../recursos/leccion3/json_reading_writing.py
     :language: python
     :linenos:
     :lines: 1-54
+
+
+.. important::
+    Usted puede descargar el código usado en esta sección haciendo clic en los
+    siguientes enlaces: :download:`json_reading_writing.json <../../recursos/leccion3/json_reading_writing.json>`
+    y :download:`json_reading_writing.py <../../recursos/leccion3/json_reading_writing.py>`.
+
+
+.. tip::
+    Para ejecutar el código :file:`json_reading_writing.json` y :file:`json_reading_writing.py`,
+    abra una consola de comando, acceda al directorio donde se encuentra ambos programas:
+
+    ::
+
+        leccion3/
+        ├── json_reading_writing.json
+        └── json_reading_writing.py
+
+    Si tiene la estructura de archivo previa, entonces ejecute el siguiente comando:
+
+    .. code-block:: console
+
+        $ python json_reading_writing.py
 
 El anterior código al ejecutar debe mostrar el siguiente mensaje:
 
@@ -66,28 +116,6 @@ El archivo JSON creado que incluye la información de los empleados:
 De esta forma se escribí y lee un archivo JSON.
 
 ----
-
-.. important::
-    Usted puede descargar el código usado en esta sección haciendo clic en los
-    siguientes enlaces: :download:`json_reading_writing.json <../../recursos/leccion3/json_reading_writing.json>`
-    y :download:`json_reading_writing.py <../../recursos/leccion3/json_reading_writing.py>`.
-
-
-.. tip::
-    Para ejecutar el código :file:`json_reading_writing.json` y :file:`json_reading_writing.py`,
-    abra una consola de comando, acceda al directorio donde se encuentra ambos programas:
-
-    ::
-
-        leccion3/
-        ├── json_reading_writing.json
-        └── json_reading_writing.py
-
-    Si tiene la estructura de archivo previa, entonces ejecute el siguiente comando:
-
-    .. code-block:: console
-
-        $ python json_reading_writing.py
 
 
 .. seealso::
