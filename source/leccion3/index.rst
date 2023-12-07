@@ -113,7 +113,7 @@ El archivo JSON creado que incluye la información de los empleados:
     :linenos:
     :lines: 1
 
-De esta forma se escribí y lee un archivo JSON.
+Asi de esta forma puede leer y escribir registros en un archivo JSON usando la librería ``json``.
 
 ----
 
