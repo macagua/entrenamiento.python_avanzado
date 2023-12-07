@@ -6,7 +6,7 @@ import os
 
 logging.basicConfig(level=logging.INFO)
 
-NOMBRE_ARCHIVO = "json_reading_writing.json"
+NOMBRE_ARCHIVO = "clientes.json"
 DIR_ARCHIVO = os.path.dirname(os.path.abspath(__file__)) + os.sep
 ARCHIVO = DIR_ARCHIVO + NOMBRE_ARCHIVO
 

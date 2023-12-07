@@ -49,7 +49,22 @@ Práctica - Caso real
 A continuación se presenta una práctica más real de implementar el uso de proyectos
 con ``pickle`` para leer y escribir un archivo JSON basado en un tipo :ref:`diccionario <python_dict>`:
 
-.. literalinclude:: ../../recursos/leccion3/json_reading_writing.py
+A continuación se presenta y explica el uso de cada archivo para este proyecto:
+
+*Archivo clientes.json*
+
+El archivo JSON creado que incluye la información de los clientes:
+
+.. literalinclude:: ../../recursos/leccion3/clientes.json
+    :language: json
+    :linenos:
+    :lines: 1
+
+*Archivo main.py*
+
+Modulo de principal del programa.
+
+.. literalinclude:: ../../recursos/leccion3/main.py
     :language: python
     :linenos:
     :lines: 1-54
@@ -57,25 +72,25 @@ con ``pickle`` para leer y escribir un archivo JSON basado en un tipo :ref:`dicc
 
 .. important::
     Usted puede descargar el código usado en esta sección haciendo clic en los
-    siguientes enlaces: :download:`json_reading_writing.json <../../recursos/leccion3/json_reading_writing.json>`
-    y :download:`json_reading_writing.py <../../recursos/leccion3/json_reading_writing.py>`.
+    siguientes enlaces: :download:`clientes.json <../../recursos/leccion3/clientes.json>`
+    y :download:`main.py <../../recursos/leccion3/main.py>`.
 
 
 .. tip::
-    Para ejecutar el código :file:`json_reading_writing.json` y :file:`json_reading_writing.py`,
+    Para ejecutar el código :file:`clientes.json` y :file:`main.py`,
     abra una consola de comando, acceda al directorio donde se encuentra ambos programas:
 
     ::
 
         leccion3/
-        ├── json_reading_writing.json
-        └── json_reading_writing.py
+        ├── clientes.json
+        └── main.py
 
     Si tiene la estructura de archivo previa, entonces ejecute el siguiente comando:
 
     .. code-block:: console
 
-        $ python json_reading_writing.py
+        $ python main.py
 
 El anterior código al ejecutar debe mostrar el siguiente mensaje:
 
@@ -104,14 +119,6 @@ El anterior código al ejecutar debe mostrar el siguiente mensaje:
     Código postal: 4001
     Teléfono: +58-414-2360943
     Datos detallados: {'nombre': 'Pedro', 'apellido': 'Lopez', 'codigo_postal': '4001', 'telefono': '+58-414-2360943'}
-
-
-El archivo JSON creado que incluye la información de los empleados:
-
-.. literalinclude:: ../../recursos/leccion3/json_reading_writing.json
-    :language: json
-    :linenos:
-    :lines: 1
 
 Asi de esta forma puede leer y escribir registros en un archivo JSON usando la librería ``json``.
 
