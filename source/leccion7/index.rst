@@ -590,7 +590,7 @@ con ``SQLAlchemy``, a continuación la estructura de proyecto llamado ``producto
     ├── productos.sqlite3
     └── requirements.txt
 
-A continuación se presenta y explica el uso de cada archivo para esta proyecto:
+A continuación se presenta y explica el uso de cada archivo para este proyecto:
 
 *Archivo .env.example*
 

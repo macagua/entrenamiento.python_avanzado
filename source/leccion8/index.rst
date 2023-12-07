@@ -319,7 +319,7 @@ en proyectos con ``SQLAlchemy``, a continuación la estructura de proyecto llama
     ├── requirements.txt
     └── sistema.db
 
-A continuación se presenta y explica el uso de cada archivo para esta proyecto:
+A continuación se presenta y explica el uso de cada archivo para este proyecto:
 
 *Archivo .env.example*
 

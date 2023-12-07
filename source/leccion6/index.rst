@@ -518,7 +518,7 @@ con ``sqlite3``, a continuación la estructura de proyecto llamado ``sqlite``:
 
 
 
-A continuación se presenta y explica el uso de cada archivo para esta proyecto:
+A continuación se presenta y explica el uso de cada archivo para este proyecto:
 
 *Archivo .env.example*
 
