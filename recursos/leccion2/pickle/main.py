@@ -23,7 +23,7 @@ class Producto:
 
 class Inventario:
     """Clase Inventario"""
- 
+
     def __init__(self):
         """Método constructor de clase de Inventario"""
         self.productos = []

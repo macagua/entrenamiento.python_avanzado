@@ -20,28 +20,49 @@ Formatos comunes entre los distintos lenguajes de programación incluyen XML y J
 
 Python ofrece tres módulos diferentes en la biblioteca estándar que le permiten serializar y deserializar objetos:
 
+.. _python_pickle:
+
 pickle
 ------
 
-CRUD con archivo pickle
-^^^^^^^^^^^^^^^^^^^^^^^
+.. todo::
+    TODO terminar de escribir esta sección.
 
-Ejemplo de CRUD con archivo pickle
 
-.. literalinclude:: ../../recursos/leccion2/inventarios/main.py
+.. _python_pickle_serializar:
+
+Serializar
+^^^^^^^^^^
+
+.. todo::
+    TODO terminar de escribir esta sección.
+
+
+.. _python_pickle_deserializar:
+
+deserializar
+^^^^^^^^^^^^
+
+.. todo::
+    TODO terminar de escribir esta sección.
+
+
+.. _python_pickle_scaffolding:
+
+Práctica - Caso real
+^^^^^^^^^^^^^^^^^^^^
+
+A continuación se presenta una práctica más real de implementar el uso de proyectos
+con ``pickle`` para operaciones CRUD en un archivo de registros serializados:
+
+.. literalinclude:: ../../recursos/leccion2/pickle/main.py
     :language: python
     :linenos:
     :lines: 1-191
 
-Asi de esta forma puede ingresar, consultar, actualizar y eliminar
-registro en un archivo serializado de objetos python ``pickle``.
-
-
-----
-
 .. important::
     Usted puede descargar el código usado en esta sección haciendo clic en el
-    siguiente enlace: :download:`main.py <../../recursos/leccion2/inventarios/main.py>`.
+    siguiente enlace: :download:`main.py <../../recursos/leccion2/pickle/main.py>`.
 
 
 .. tip::
@@ -51,7 +72,7 @@ registro en un archivo serializado de objetos python ``pickle``.
     ::
 
         leccion2/
-        └── inventarios/
+        └── pickle/
             └── main.py
 
     Si tiene la estructura de archivo previa, entonces ejecute el siguiente comando:
@@ -60,6 +81,8 @@ registro en un archivo serializado de objetos python ``pickle``.
 
         $ python main.py
 
+Asi de esta forma puede ingresar, consultar, actualizar y eliminar
+registro en un archivo serializado de objetos python ``pickle``.
 
 .. seealso::
 
