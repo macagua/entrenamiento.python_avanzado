@@ -1,8 +1,8 @@
 """Modulo de Main"""
 
 import os
+from pathlib import Path
 import pickle
-
 
 class Producto:
     """Clase Producto"""
@@ -26,8 +26,9 @@ class Inventario:
 
     def __init__(self):
         """Método constructor de clase de Inventario"""
+        self._DB_DIR = os.path.dirname(os.path.abspath(__file__)) + os.sep + 'filestorage/'
         self.productos = []
-        self.archivo = os.path.dirname(os.path.abspath(__file__)) + os.sep + "inventario.pkl"
+        self.archivo = self._DB_DIR + "inventario.pkl"
         self.leer_datos()
 
     def __str__(self):
@@ -37,6 +38,7 @@ class Inventario:
     def leer_datos(self):
         """Leer el archivo de almacenamiento"""
         try:
+            Path(self._DB_DIR).mkdir(parents=True, exist_ok=True)
             with open(self.archivo, 'rb') as bd:
                 self.productos = pickle.load(bd)
         except IOError:
