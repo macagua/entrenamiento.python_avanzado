@@ -18,7 +18,14 @@ class Producto:
         self.descripcion = descripcion
 
     def __str__(self):
+        """Método de representación de informal del objeto,
+        usado para crear la salida que se le mostrará al usuario"""
         return "Id: {0}\nDescripción: {1}".format(self.id, self.descripcion)
+
+    def __repr__(self):
+        """Método de representación de formal del objeto,
+        usado para depuración y desarrollo"""
+        return f'{self.__class__.__name__}:({repr(self.id)}, {repr(self.descripcion)})'
 
 
 class Inventario:
@@ -32,7 +39,14 @@ class Inventario:
         self.leer_datos()
 
     def __str__(self):
+        """Método de representación de informal del objeto,
+        usado para crear la salida que se le mostrará al usuario"""
         return "Ruta BD: {0}".format(self.archivo)
+
+    def __repr__(self):
+        """Método de representación de formal del objeto,
+        usado para depuración y desarrollo"""
+        return f'{self.__class__.__name__}:({repr(self.archivo)})'
 
 
     def leer_datos(self):
