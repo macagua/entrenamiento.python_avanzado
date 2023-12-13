@@ -7,7 +7,7 @@ En Python, ofrece el acceso a :ref:`bases de datos relacionales <python_base_dat
 estandarizado por la especificación Database API (DB-API), actualmente
 en la versión 2.0 *(PEP 249: Python Database API Specification v2.0)*.
 
-Gracias a esto, se puede acceder a cualquier base de datos utilizando la misma  
+Gracias a esto, se puede acceder a cualquier base de datos utilizando la misma
 interfaz (ya sea un motor remoto, local, `ODBC`_, etc.). Se puede comparar con DAO,
 ADO, ADO.NET en el mundo Microsoft, o a `JDBC`_ en el mundo Java.
 
