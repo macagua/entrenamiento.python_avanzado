@@ -480,7 +480,9 @@ epub_exclude_files = ["search.html"]
 intersphinx_mapping = {
     "python3": ("https://docs.python.org/3.11/", None),
     "entrenamiento-python-basico": ("https://entrenamiento-python-basico.readthedocs.io/es/3.7/", None),
+    "entrenamiento-python-intermedio": ("https://entrenamiento-python-intermedio.readthedocs.io/es/latest/", None),
     "entrenamiento-frameworks-web-python": ("https://entrenamiento-frameworks-web-python.readthedocs.io/es/latest/", None),
+    "entrenamiento-data-scientist-python": ("https://entrenamiento-data-scientist-python.readthedocs.io/", None),
 }
 intersphinx_timeout = 120
 
