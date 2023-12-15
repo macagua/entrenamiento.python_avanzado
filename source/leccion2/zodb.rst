@@ -242,6 +242,7 @@ El ejemplo anterior se describe a continuación:
 
 De esta forma se crea una cadena de conexión para ``ZODB`` para ser usada por el método ``open``.
 
+----
 
 Insertar registros
 ------------------
@@ -287,6 +288,8 @@ El anterior código al ejecutar debe mostrar el siguiente mensaje:
 
     INFO:root:¡La conexión ZODB a la base de datos productos.fs fue cerrada!
 
+
+----
 
 Consultar registros
 -------------------
@@ -349,6 +352,7 @@ El anterior código al ejecutar debe mostrar el siguiente mensaje:
 
     INFO:root:¡La conexión ZODB a la base de datos sistema.db fue cerrada!
 
+----
 
 Actualizar registros
 --------------------
@@ -393,6 +397,7 @@ El anterior código al ejecutar debe mostrar el siguiente mensaje:
 
     INFO:root:¡La conexión ZODB a la base de datos sistema.db fue cerrada!
 
+----
 
 Eliminar registros
 ------------------
