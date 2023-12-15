@@ -59,8 +59,8 @@ Librería ZODB
 .. _lecturas_extras_leccion3:
 
 
-Lección 3 - Codificador y decodificador JSON
---------------------------------------------
+Lección 3 - Serialización en la web
+-----------------------------------
 
 - `json - Codificador y decodificador JSON <https://docs.python.org/es/3.11/library/json.html>`_.
 
