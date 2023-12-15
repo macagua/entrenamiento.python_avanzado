@@ -36,6 +36,9 @@ Lección 1 - Persistencia de datos
 Lección 2 - Serialización de objetos
 ------------------------------------
 
+Librería pickle
+^^^^^^^^^^^^^^^
+
 - `pickle - Serialización de objetos Python <https://docs.python.org/es/3.11/library/pickle.html>`_.
 
 - `Python - simple crud usando pickle <https://www.lawebdelprogramador.com/foros/Python/1556555-simple-crud-usando-pickle.html>`_.
