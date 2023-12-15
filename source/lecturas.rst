@@ -106,6 +106,14 @@ Librería sqlite3
 - `How To Use the sqlite3 Module in Python 3 <https://www.digitalocean.com/community/tutorials/how-to-use-the-sqlite3-module-in-python-3>`_.
 
 
+Librería psycopg
+^^^^^^^^^^^^^^^^
+
+- `Psycopg - PostgreSQL database adapter for Python — Psycopg 2.9.9 documentation <https://www.psycopg.org/docs/index.html>`_.
+
+- `psycopg - PostgreSQL database adapter for Python - PyPI <https://pypi.org/project/psycopg/>`_.
+
+
 .. _lecturas_extras_leccion7:
 
 

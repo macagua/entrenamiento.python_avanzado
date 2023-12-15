@@ -12,6 +12,7 @@ la Web para tomar en cuenta. A continuación el temario de esta lección:
    :maxdepth: 2
 
    sqlite
+   postgresql
 
 
 .. seealso::
