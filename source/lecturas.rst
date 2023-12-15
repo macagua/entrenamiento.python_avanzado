@@ -46,6 +46,16 @@ Librería pickle
 - `Python: Serialización de objetos <http://mundogeek.net/archivos/2008/05/20/python-serializacion-de-objetos/>`_.
 
 
+Librería ZODB
+^^^^^^^^^^^^^
+
+- `ZODB - a native object database for Python — ZODB documentation <https://zodb.org/en/latest/>`_.
+
+- `ZODB, a Python object-oriented database - PyPI <https://pypi.org/project/ZODB/>`_.
+
+- `ZODB browser - PyPI <https://pypi.org/project/zodbbrowser/>`_.
+
+
 .. _lecturas_extras_leccion3:
 
 

@@ -1,0 +1,3 @@
+# Install the packages from PyPi repository.
+ZODB==5.8.1
+zodbbrowser==0.17.1
