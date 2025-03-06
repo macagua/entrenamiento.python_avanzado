@@ -346,7 +346,7 @@ Modulo de :ref:`modelos <python_sqlalchemy_modelos>` de :ref:`SQLAlchemy <python
 .. literalinclude:: ../../recursos/leccion8/sqlacodegen/sistema/models.py
     :language: python
     :linenos:
-    :lines: 1-147
+    :lines: 1-145
 
 *Archivo main.py*
 
