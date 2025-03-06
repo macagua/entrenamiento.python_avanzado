@@ -37,18 +37,21 @@ instalación existe, ejecutando el siguiente comando:
 
       .. code-block:: console
 
-          $ python -c "import sqlite3 ; print(sqlite3.__package__)"
+          python3 -c "import sqlite3 ; print(sqlite3.__package__)"
 
    .. group-tab:: Windows
 
       .. code-block:: console
 
-          > python -c "import sqlite3 ; print(sqlite3.__package__)"
+          python3 -c "import sqlite3 ; print(sqlite3.__package__)"
 
 Si muestra el nombre del paquete  ``sqlite3``, tiene instalado la librería.
 
 Adicionalmente puedes instalar administradores de base de datos SQLite nativos para sistemas
 operativos Linux y Windows, a continuación se presentan alternativas:
+
+
+.. _python_sqlite3_tools_instalar:
 
 SQLite Tools
 ^^^^^^^^^^^^
@@ -71,26 +74,32 @@ los modos de instalación:
 
       .. code-block:: console
 
-          $ sudo apt install sqlite3
+          sudo apt install -y sqlite3
 
       Puede probar si la instalación se realizo correctamente, ejecutando
       el siguiente comando:
 
       .. code-block:: console
 
-          $ sqlite3
-          SQLite version 3.31.1 2020-01-27 19:55:54
+          sqlite3
+
+      Si ejecuto el comando anterior, este da como resultado lo siguiente:
+
+      .. code-block:: console
+          :class: no-copy
+
+          SQLite version 3.40.1 2022-12-28 14:03:47
           Enter ".help" for usage hints.
           Connected to a transient in-memory database.
           Use ".open FILENAME" to reopen on a persistent database.
           sqlite>
 
-      Si muestra la consola sqlite ``sqlite>``, tiene correctamente instalada el administrador
-      de base de datos nativa ``sqlite3`` por linea de comando.
+      Si muestra la consola SQLite ``sqlite>``, tiene correctamente instalada el administrador
+      de base de datos nativa ``sqlite3`` por línea de comando.
 
       .. note::
 
-        Mas información consulte https://www.sqlite.org/cli.html
+        Más información consulte https://www.sqlite.org/cli.html
 
    .. group-tab:: Windows
 
@@ -102,8 +111,13 @@ los modos de instalación:
 
       .. code-block:: console
 
-          > mkdir %HOMEPATH%\sqlite
-          > cd %HOMEPATH%\sqlite
+          mkdir %HOMEPATH%\sqlite
+
+      Acceder al directorio ``sqlite`` con el siguiente comando:
+
+      .. code-block:: console
+
+          cd %HOMEPATH%\sqlite
 
       Seguidamente descargue el *SQLite Tools* para Windows desde la siguiente
 
@@ -118,7 +132,8 @@ los modos de instalación:
       Descomprima del archivo descargado para el ``SQLite Tools`` dentro
       del directorio previamente creado.
 
-      ::
+      .. code-block:: console
+          :class: no-copy
 
           sqlite/
           ├── sqldiff.exe
@@ -134,11 +149,11 @@ los modos de instalación:
 
       .. code-block:: console
 
-          > sqlite3.exe
+          sqlite3.exe
 
       .. note::
 
-        Mas información consulte https://www.sqlite.org/cli.html
+        Más información consulte https://www.sqlite.org/cli.html
 
       **Diferencias de contenido**, el proyecto SQLite proporciona un programa :command:`sqldiff.exe`
       de línea de comandos que muestra las diferencias de contenido entre las bases de datos SQLite.
@@ -146,11 +161,11 @@ los modos de instalación:
 
       .. code-block:: console
 
-          > sqldiff.exe database1.sqlite database2.sqlite
+          sqldiff.exe database1.sqlite database2.sqlite
 
       .. note::
 
-        Mas información consulte https://www.sqlite.org/sqldiff.html
+        Más información consulte https://www.sqlite.org/sqldiff.html
 
       **Analizador de base de datos**, el proyecto SQLite proporciona un programa :command:`sqlite3_analyzer.exe`
       de línea de comandos  que mide y muestra la cantidad y la eficiencia del espacio utilizado por tablas e
@@ -159,11 +174,14 @@ los modos de instalación:
 
       .. code-block:: console
 
-          > sqlite3_analyzer.exe database.sqlite
+          sqlite3_analyzer.exe database.sqlite
 
       .. note::
 
-        Mas información consulte https://www.sqlite.org/sqlanalyze.html
+        Más información consulte https://www.sqlite.org/sqlanalyze.html
+
+
+.. _python_sqlite3_sqlitebrowser_instalar:
 
 
 DB Browser for SQLite
@@ -207,7 +225,7 @@ Los controles y asistentes están disponibles para que los usuarios:
 * Trace gráficos simples basados en tablas o datos de consulta.
 
 .. note::
-    Mas información consulte https://sqlitebrowser.org/
+    Más información consulte https://sqlitebrowser.org/
 
 Para instalar el administrador de base de datos SQLite ``DB Browser for SQLite (DB4S)``
 de forma nativa para sistemas operativos Linux y Windows, a continuación se presentan
@@ -222,14 +240,14 @@ los modos de instalación:
 
       .. code-block:: console
 
-          $ sudo apt install sqlitebrowser
+          sudo apt install -y sqlitebrowser
 
       Puede probar si la instalación del el administrador de base de datos nativo de ``sqlite3``
       gráfico llamado ``sqlitebrowser`` se realizo correctamente, ejecutando el siguiente comando:
 
       .. code-block:: console
 
-          $ sqlitebrowser
+          sqlitebrowser
 
       El comando anterior debería mostrar la interfaz gráfica de ``sqlitebrowser``, como se muestra
       a continuación:
@@ -248,7 +266,7 @@ los modos de instalación:
       Para instalar el programa ``DB Browser for SQLite`` para administrador de base de datos nativos
       ``sqlite3`` para la plataforma Windows debe seguir los siguientes pasos:
 
-      Debe descargar el software desde la pagina https://sqlitebrowser.org/dl/
+      Debe descargar el software desde la página https://sqlitebrowser.org/dl/
 
       Instalar el software instalador de ``DB Browser for SQLite``.
 
@@ -263,6 +281,36 @@ los modos de instalación:
       Si muestra la interfaz gráfica de ``DB Browser for SQLite``, tiene
       correctamente instalada el administrador de base de datos nativo de
       ``sqlite3``.
+
+
+----
+
+
+Estructura de archivos
+^^^^^^^^^^^^^^^^^^^^^^
+
+Para crear la estructura de archivos del proyecto ``SQLite`` debe ejecutar los siguientes comandos:
+
+Crear el directorio ``~/proyectos/sqlite/crud`` con el siguiente comando:
+
+.. code-block:: console
+
+    mkdir -p ~/proyectos/sqlite/crud && cd $_
+
+
+El comando anterior crea la siguiente estructura de directorios:
+
+.. code-block:: console
+    :class: no-copy
+
+    proyectos/
+    └── sqlite/
+        └── crud/
+
+Si tiene la estructura de archivo previa, entonces puede continuar con la siguiente sección.
+
+
+----
 
 
 .. _python_sqlite3_conn_strs:
@@ -296,17 +344,20 @@ para una base de datos ``SQLite``:
 
 El ejemplo anterior se describe a continuación:
 
-    - En la linea 1, se importa la librería ``os`` de la librería estándar Python.
+- En la línea 1, se importa la librería ``os`` de la librería estándar Python.
 
-    - En la linea 2, se importa la librería ``sqlite3`` de la librería estándar Python.
+- En la línea 2, se importa la librería ``sqlite3`` de la librería estándar Python.
 
-    - En la linea 4, se define en la constante ``DB_PATH`` la ruta absoluta usada para guardar la base de datos.
+- En la línea 4, se define en la constante ``DB_PATH`` la ruta absoluta usada para guardar la base de datos.
 
-    - En la linea 5, se define en la constante ``DB_FILE`` el nombre de la base de datos.
+- En la línea 5, se define en la constante ``DB_FILE`` el nombre de la base de datos.
 
-    - En la linea 6, se define en la constante ``DB`` la ruta completa usada para leer la base de datos.
+- En la línea 6, se define en la constante ``DB`` la ruta completa usada para leer la base de datos.
 
 De esta forma se crea una cadena de conexión para ``SQLite`` para ser usada por el método ``connect``.
+
+
+----
 
 
 Insertar registros
@@ -317,23 +368,24 @@ Si requiere insertar registro en una tabla, a continuación tiene un ejemplo:
 .. literalinclude:: ../../recursos/leccion6/sqlite/crud/sqlite_record_insert.py
     :language: python
     :linenos:
-    :lines: 1-53
-
-----
+    :lines: 1-70
 
 
 .. important::
     Usted puede descargar el código usado en esta sección haciendo clic en el
-    siguiente enlace: :download:`sqlite3_record_insert.py <../../recursos/leccion6/sqlite/crud/sqlite_record_insert.py>`.
+    siguiente enlace:
+
+    - :download:`sqlite3_record_insert.py <../../recursos/leccion6/sqlite/crud/sqlite_record_insert.py>`.
 
 
 .. tip::
     Para ejecutar el código :file:`sqlite3_record_insert.py`
     abra una consola de comando, acceda al directorio donde se encuentra el programa:
 
-    ::
+    .. code-block:: console
+        :class: no-copy
 
-        leccion6/
+        proyectos/
         └── sqlite/
             └── crud/
                 └── sqlite_record_insert.py
@@ -342,17 +394,24 @@ Si requiere insertar registro en una tabla, a continuación tiene un ejemplo:
 
     .. code-block:: console
 
-        $ python sqlite_record_insert.py
+        python3 sqlite_record_insert.py
 
-El anterior código al ejecutar debe mostrar el siguiente mensaje:
+    El anterior código al ejecutar debe mostrar el siguiente mensaje:
 
-.. code-block:: console
+    .. code-block:: console
+        :class: no-copy
 
-    INFO:root:¡Conectado a la base de datos sistema.db!
+        INFO:root:¡Conectado a la base de datos 'sistema.db'!
 
-    INFO:root:¡Fueron insertado(s) 3 registro(s) correctamente en la tabla!
+        INFO:root:¡Fueron insertado(s) 3 registro(s) correctamente en la tabla!
 
-    INFO:root:¡La conexión SQLite a la base de datos sistema.db fue cerrada!
+        INFO:root:¡La conexión SQLite a la base de datos 'sistema.db' fue cerrada!
+
+
+De esta forma puede ingresar registros en una tabla dentro una base de datos ``SQLite``.
+
+
+----
 
 
 Consultar registros
@@ -363,23 +422,24 @@ Si requiere consultar registros de tabla, a continuación tiene un ejemplo:
 .. literalinclude:: ../../recursos/leccion6/sqlite/crud/sqlite_record_select.py
     :language: python
     :linenos:
-    :lines: 1-50
-
-----
+    :lines: 1-51
 
 
 .. important::
     Usted puede descargar el código usado en esta sección haciendo clic en el
-    siguiente enlace: :download:`sqlite3_record_select.py <../../recursos/leccion6/sqlite/crud/sqlite_record_select.py>`.
+    siguiente enlace:
+
+    - :download:`sqlite3_record_select.py <../../recursos/leccion6/sqlite/crud/sqlite_record_select.py>`.
 
 
 .. tip::
     Para ejecutar el código :file:`sqlite3_record_select.py`
     abra una consola de comando, acceda al directorio donde se encuentra el programa:
 
-    ::
+    .. code-block:: console
+        :class: no-copy
 
-        leccion6/
+        proyectos/
         └── sqlite/
             └── crud/
                 └── sqlite_record_select.py
@@ -388,34 +448,41 @@ Si requiere consultar registros de tabla, a continuación tiene un ejemplo:
 
     .. code-block:: console
 
-        $ python sqlite_record_select.py
+        python3 sqlite_record_select.py
 
-El anterior código al ejecutar debe mostrar el siguiente mensaje:
+    El anterior código al ejecutar debe mostrar el siguiente mensaje:
 
-.. code-block:: console
+    .. code-block:: console
+        :class: no-copy
 
-    INFO:root:¡Conectado a la base de datos sistema.db!
+        INFO:root:¡Conectado a la base de datos 'sistema.db'!
 
-    Total de filas son: 3
+        Total de filas son: 3
 
-    Mostrar cada fila:
+        Mostrar cada fila:
 
-            Id: 1
-            Nombre: Leonardo
-            Código postal: Caballero
-            Teléfono: 5001
+                Id: 1
+                Nombre: Leonardo Caballero
+                Código postal: 5001
+                Teléfono: +58-412-4734567
 
-            Id: 2
-            Nombre: Ana
-            Código postal: Poleo
-            Teléfono: 6302
+                Id: 2
+                Nombre: Ana Poleo
+                Código postal: 6302
+                Teléfono: +58-426-5831297
 
-            Id: 3
-            Nombre: Pedro
-            Código postal: Lopez
-            Teléfono: 4001
+                Id: 3
+                Nombre: Manuel Matos
+                Código postal: 4001
+                Teléfono: +58-414-2360943
 
-    INFO:root:¡La conexión SQLite a la base de datos sistema.db fue cerrada!
+        INFO:root:¡La conexión SQLite a la base de datos 'sistema.db' fue cerrada!
+
+
+De esta forma puede consultar registros en una tabla dentro una base de datos ``SQLite``.
+
+
+----
 
 
 Actualizar registros
@@ -426,22 +493,24 @@ Si requiere actualizar registro de tabla, a continuación tiene un ejemplo:
 .. literalinclude:: ../../recursos/leccion6/sqlite/crud/sqlite_record_update.py
     :language: python
     :linenos:
-    :lines: 1-54
+    :lines: 1-53
 
-----
 
 .. important::
     Usted puede descargar el código usado en esta sección haciendo clic en el
-    siguiente enlace: :download:`sqlite3_record_update.py <../../recursos/leccion6/sqlite/crud/sqlite_record_update.py>`.
+    siguiente enlace:
+
+    - :download:`sqlite3_record_update.py <../../recursos/leccion6/sqlite/crud/sqlite_record_update.py>`.
 
 
 .. tip::
     Para ejecutar el código :file:`sqlite3_record_update.py`
     abra una consola de comando, acceda al directorio donde se encuentra el programa:
 
-    ::
+    .. code-block:: console
+        :class: no-copy
 
-        leccion6/
+        proyectos/
         └── sqlite/
             └── crud/
                 └── sqlite_record_update.py
@@ -450,17 +519,24 @@ Si requiere actualizar registro de tabla, a continuación tiene un ejemplo:
 
     .. code-block:: console
 
-        $ python sqlite_record_update.py
+        python3 sqlite_record_update.py
 
-El anterior código al ejecutar debe mostrar el siguiente mensaje:
+    El anterior código al ejecutar debe mostrar el siguiente mensaje:
 
-.. code-block:: console
+    .. code-block:: console
+        :class: no-copy
 
-    INFO:root:¡Conectado a la base de datos sistema.db!
+        INFO:root:¡Conectado a la base de datos 'sistema.db'!
 
-    INFO:root:¡Fueron actualizado(s) 2 registro(s) correctamente en la tabla!
+        INFO:root:¡Fueron actualizado(s) 2 registro(s) correctamente en la tabla!
 
-    INFO:root:¡La conexión SQLite a la base de datos sistema.db fue cerrada!
+        INFO:root:¡La conexión SQLite a la base de datos 'sistema.db' fue cerrada!
+
+
+De esta forma puede actualizar registros en una tabla dentro una base de datos ``SQLite``.
+
+
+----
 
 
 Eliminar registros
@@ -473,21 +549,22 @@ Si requiere eliminar registro de tabla, a continuación tiene un ejemplo:
     :linenos:
     :lines: 1-44
 
-----
-
 
 .. important::
     Usted puede descargar el código usado en esta sección haciendo clic en el
-    siguiente enlace: :download:`sqlite3_record_delete.py <../../recursos/leccion6/sqlite/crud/sqlite_record_delete.py>`.
+    siguiente enlace:
+
+    - :download:`sqlite3_record_delete.py <../../recursos/leccion6/sqlite/crud/sqlite_record_delete.py>`.
 
 
 .. tip::
     Para ejecutar el código :file:`sqlite3_record_delete.py`
     abra una consola de comando, acceda al directorio donde se encuentra el programa:
 
-    ::
+    .. code-block:: console
+        :class: no-copy
 
-        leccion6/
+        proyectos/
         └── sqlite/
             └── crud/
                 └── sqlite_record_delete.py
@@ -496,21 +573,28 @@ Si requiere eliminar registro de tabla, a continuación tiene un ejemplo:
 
     .. code-block:: console
 
-        $ python sqlite_record_delete.py
+        python3 sqlite_record_delete.py
 
-El anterior código al ejecutar debe mostrar el siguiente mensaje:
+    El anterior código al ejecutar debe mostrar el siguiente mensaje:
 
-.. code-block:: console
+    .. code-block:: console
+        :class: no-copy
 
-    INFO:root:¡Conectado a la base de datos sistema.db!
+        INFO:root:¡Conectado a la base de datos 'sistema.db'!
 
-    INFO:root:¡Registro eliminado correctamente!
+        INFO:root:¡Registro eliminado correctamente!
 
-    INFO:root:¡La conexión SQLite a la base de datos sistema.db fue cerrada!
+        INFO:root:¡La conexión SQLite a la base de datos 'sistema.db' fue cerrada!
 
 
-Asi de esta forma puede ingresar, consultar, actualizar y eliminar
-registro en una tabla en una base de datos ``SQLite``.
+De esta forma puede eliminar registros en una tabla dentro una base de datos ``SQLite``.
+
+.. note::
+    Asi de esta forma puede realizar las operaciones de ingresar, consultar, actualizar
+    y eliminar registro en una tabla en una base de datos ``SQLite`` de forma separada
+    en programas Python, en la siguiente práctica se mostrara un caso real de uso de todos
+    estas operaciones en un solo programa Python.
+
 
 ----
 
@@ -524,7 +608,6 @@ A continuación se presenta una práctica más real de implementar el uso de pro
 con ``sqlite3``, a continuación la estructura de proyecto llamado ``sqlite``:
 
 
-
 A continuación se presenta y explica el uso de cada archivo para este proyecto:
 
 *Archivo .env.example*
@@ -535,15 +618,6 @@ Archivo plantilla `dotenv`_ del paquete adicional `python-dotenv`_.
     :language: text
     :linenos:
     :lines: 1-2
-
-*Archivo main.py*
-
-Modulo de configuraciones del programa.
-
-.. literalinclude:: ../../recursos/leccion6/sqlite/sistema/main.py
-    :language: python
-    :linenos:
-    :lines: 1-136
 
 *Archivo requirements.txt*
 
@@ -556,12 +630,22 @@ Archivo de `requirements.txt`_ de la herramienta de gestión de paquetes `pip`_.
 
 *Archivo settings.py*
 
-Modulo de principal del programa.
+Modulo de configuraciones del programa.
 
 .. literalinclude:: ../../recursos/leccion6/sqlite/sistema/settings.py
     :language: python
     :linenos:
     :lines: 1-32
+
+*Archivo main.py*
+
+Modulo de principal del programa.
+
+.. literalinclude:: ../../recursos/leccion6/sqlite/sistema/main.py
+    :language: python
+    :linenos:
+    :lines: 1-148
+
 
 *Archivo sistema.db*
 
@@ -569,7 +653,11 @@ Archivo de base de datos de :ref:`SQLite <python_modulo_sqlite3>` llamado :file:
 la cual no se incluye ya que cada vez que se inicia el programa :file:`main.py` se elimina y crea
 nuevamente, para cuidar la creación de los datos iniciales.
 
-Teniendo creada la anterior estructura de proyecto, vuelva a ejecutar ahora el modulo con
+
+----
+
+
+Teniendo creada la anterior estructura de proyecto, vuelva a ejecutar ahora el módulo con
 el siguiente comando, el cual a continuación se presentan el correspondiente comando de tu
 sistema operativo:
 
@@ -581,27 +669,80 @@ sistema operativo:
 
       .. code-block:: console
 
-          $ pip install -r requirements.txt
+          pip3 install -r requirements.txt
 
-      Ademas debe instalar y editar el archivo ``.env``, con el siguiente comando:
+      Ademas debe crear el archivo ``.env`` en base a la plantilla ``.env.example``
+      y editarlo, con el siguiente comando:
 
       .. code-block:: console
 
-          $ cp .env.example .env
-          $ nano .env
+          cp .env.example .env && nano .env
 
       .. tip::
         El archivo ``.env`` se definen las configuraciones de conexión a la base de datos,
         puede modificarlo cambiar valores de la conexión.
 
       .. tip::
-        Para ejecutar el código fuente de esta practica debe invocar al modulo :file:`main.py`,
+        Para ejecutar el código del proyecto llamado ``sistema`` abra una consola de comando,
+        acceda al directorio donde se encuentra el programa:
+
+        .. code-block:: console
+            :class: no-copy
+
+            proyectos/
+            └── sqlite/
+                └── sistema/
+                    ├── __init__.py
+                    ├── .env
+                    ├── .env.example
+                    ├── main.py
+                    ├── requirements.txt
+                    ├── settings.py
+                    └── sistema.db
+
+        Si tiene la estructura de archivo previa, entonces puede continuar con la ejecución del
+        código fuente.
+
+      .. tip::
+        Para ejecutar el código fuente de esta práctica debe invocar al módulo :file:`main.py`,
         abra una consola de comando, acceda al directorio donde se encuentra la estructura previa
         y ejecute el siguiente comando:
 
       .. code-block:: console
 
-          $ python main.py
+          python3 main.py
+
+      El anterior código al ejecutar debe mostrar el siguiente mensaje:
+
+      .. code-block:: console
+          :class: no-copy
+
+          INFO:root:¡Conexión a la base de datos 'sistema.db' fue exitosa!
+
+          INFO:root:¡Fueron insertado(s) 3 registro(s) correctamente en la tabla!
+
+          Total de filas son: 3
+
+          Mostrar cada fila:
+
+                  Id: 1
+                  Nombre: Leonardo Caballero
+                  Código postal: 5001
+                  Teléfono: +58-412-4734567
+
+                  Id: 2
+                  Nombre: Ana Poleo
+                  Código postal: 6302
+                  Teléfono: +58-426-5831297
+
+                  Id: 3
+                  Nombre: Manuel Matos
+                  Código postal: 4001
+                  Teléfono: +58-414-2360943
+
+          INFO:root:¡Fueron actualizado(s) 2 registro(s) correctamente en la tabla!
+
+          INFO:root:¡Registro eliminado correctamente!
 
    .. group-tab:: Windows
 
@@ -609,62 +750,90 @@ sistema operativo:
 
       .. code-block:: console
 
-          > pip install -r requirements.txt
+          pip3 install -r requirements.txt
 
-      Ademas debe instalar y editar el archivo ``.env``, con el siguiente comando:
+      Ademas debe crear el archivo ``.env`` en base a la plantilla ``env.example`` , con
+      el siguiente comando:
 
       .. code-block:: console
 
-          > copy .env.example .env
-          > notepad.exe .env &
+          copy .env.example .env
+
+      Editar el archivo ``.env``, con el siguiente comando:
+
+      .. code-block:: console
+
+          notepad.exe .env &
 
       .. tip::
         El archivo ``.env`` se definen las configuraciones de conexión a la base de datos,
         puede modificarlo cambiar valores de la conexión.
 
       .. tip::
-        Para ejecutar el código fuente de esta practica debe invocar al modulo :file:`main.py`,
+        Para ejecutar el código del proyecto llamado ``sistema`` abra una consola de comando,
+        acceda al directorio donde se encuentra el programa:
+
+        .. code-block:: console
+            :class: no-copy
+
+            proyectos/
+            └── sqlite/
+                └── sistema/
+                    ├── __init__.py
+                    ├── .env
+                    ├── .env.example
+                    ├── main.py
+                    ├── requirements.txt
+                    ├── settings.py
+                    └── sistema.db
+
+        Si tiene la estructura de archivo previa, entonces puede continuar con la ejecución del
+        código fuente.
+
+      .. tip::
+        Para ejecutar el código fuente de esta práctica debe invocar al módulo :file:`main.py`,
         abra una consola de comando, acceda al directorio donde se encuentra la estructura previa
         y ejecute el siguiente comando:
 
       .. code-block:: console
 
-          > python main.py
+          python3 main.py
 
-El anterior código al ejecutar debe mostrar el siguiente mensaje:
+      El anterior código al ejecutar debe mostrar el siguiente mensaje:
 
-.. code-block:: console
+      .. code-block:: console
+          :class: no-copy
 
-    INFO:root:¡Conexión a la base de datos 'sistema.db' fue exitosa!
+          INFO:root:¡Conexión a la base de datos 'sistema.db' fue exitosa!
 
-    INFO:root:¡Fueron insertado(s) 3 registro(s) correctamente en la tabla!
+          INFO:root:¡Fueron insertado(s) 3 registro(s) correctamente en la tabla!
 
-    Total de filas son: 3
+          Total de filas son: 3
 
-    Mostrar cada fila:
+          Mostrar cada fila:
 
-            Id: 1
-            Nombre: Leonardo
-            Código postal: Caballero
-            Teléfono: 5001
+                  Id: 1
+                  Nombre: Leonardo Caballero
+                  Código postal: 5001
+                  Teléfono: +58-412-4734567
 
-            Id: 2
-            Nombre: Ana
-            Código postal: Poleo
-            Teléfono: 6302
+                  Id: 2
+                  Nombre: Ana Poleo
+                  Código postal: 6302
+                  Teléfono: +58-426-5831297
 
-            Id: 3
-            Nombre: Pedro
-            Código postal: Lopez
-            Teléfono: 4001
+                  Id: 3
+                  Nombre: Manuel Matos
+                  Código postal: 4001
+                  Teléfono: +58-414-2360943
 
-    INFO:root:¡Fueron actualizado(s) 2 registro(s) correctamente en la tabla!
+          INFO:root:¡Fueron actualizado(s) 2 registro(s) correctamente en la tabla!
 
-    INFO:root:¡Registro eliminado correctamente!
+          INFO:root:¡Registro eliminado correctamente!
 
 
 Asi de esta forma puede ingresar, consultar, actualizar y eliminar registro en una
-tabla usando ``sqlite``.
+tabla usando ``SQLite``.
 
 
 .. important::
@@ -684,27 +853,12 @@ tabla usando ``sqlite``.
     - :download:`sistema.db <../../recursos/leccion6/sqlite/sistema/sistema.db>`.
 
 
-.. tip::
-    Para ejecutar el código del proyecto llamado ``sqlite`` abra una consola de comando,
-    acceda al directorio donde se encuentra el programa:
+Asi de esta forma puede replicar una práctica real de un proyecto para realizar operaciones
+en una base de datos ``SQLite``, aplicando buenas prácticas de código funcional.
 
-    ::
 
-        leccion6/
-        └── sqlite/
-            └── sistema/
-                ├── __init__.py
-                ├── .env.example
-                ├── main.py
-                ├── requirements.txt
-                ├── settings.py
-                └── sistema.db
+----
 
-    Si tiene la estructura de archivo previa, entonces ejecute el siguiente comando:
-
-    .. code-block:: console
-
-        $ python main.py
 
 .. seealso::
 
@@ -714,6 +868,10 @@ tabla usando ``sqlite``.
 
 .. raw:: html
    :file: ../_templates/partials/soporte_profesional.html
+
+
+..
+  .. disqus::
 
 
 .. _`SQLite`: https://www.sqlite.org/index.html
