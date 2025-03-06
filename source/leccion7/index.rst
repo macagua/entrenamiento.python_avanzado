@@ -779,7 +779,8 @@ tabla usando ``SQLAlchemy``.
 .. raw:: html
    :file: ../_templates/partials/soporte_profesional.html
 
-.. disqus::
+..
+    .. disqus::
 
 .. _`SQLAlchemy`: https://pypi.org/project/SQLAlchemy/
 .. _`MongoDB`: https://www.mongodb.com/

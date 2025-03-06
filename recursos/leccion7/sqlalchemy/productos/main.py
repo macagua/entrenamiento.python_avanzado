@@ -1,4 +1,7 @@
-from db import *
+"""Módulo principal del programa"""
+
+from sqlalchemy import insert, select, update, delete, exc
+from db import Base, engine, session
 from models import Productos
 
 
@@ -36,7 +39,7 @@ def consultar_data():
 def consultar_id_data(producto_id):
     print("\n¡Consulta de producto en base a su clave primaria!")
     # SELECT * FROM productos WHERE id == 1
-    producto = session.query(Productos).get(producto_id)
+    producto = session.get(Productos, producto_id)
     print(producto)
 
 
