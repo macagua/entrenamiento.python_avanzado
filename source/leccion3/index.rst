@@ -134,6 +134,7 @@ Asi de esta forma puede leer y escribir registros en un archivo JSON usando la l
 .. raw:: html
    :file: ../_templates/partials/soporte_profesional.html
 
-.. disqus::
+..
+    .. disqus::
 
 .. _`json`: https://docs.python.org/es/3.11/library/json.html

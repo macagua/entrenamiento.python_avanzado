@@ -1,9 +1,9 @@
-.. _python_zodb:
+.. _python_modulo_zodb:
 
 ZODB
 ====
 
-La ZODB es una base de datos de objetos. Hace que sea muy fácil almacenar diferentes tipos
+La `ZODB`_ es una base de datos de objetos. Hace que sea muy fácil almacenar diferentes tipos
 de datos de contenido en un gráfico, lo que admite subclases (algo que SQL a menudo hace mal).
 
 Dado que la base de datos almacena objetos y los objetos están definidos en código Python,
@@ -17,12 +17,193 @@ ejecutándose para leer lo que hay dentro de los archivos MySQL almacenados en s
     herramientas para manejar los datos sin procesar.
 
 
+``ZODB`` ofrece una base de datos orientada a objetos para Python que proporciona un alto grado de transparencia.
+
+- ✅ No hay lenguaje separado para las operaciones de base de datos
+
+- ✅ Muy poco impacto en su código para hacer objetos persistentes
+
+- ✅ Ningún mapeador de base de datos que oculte parcialmente la base de datos.
+
+- ✅ Utilizar un mapeo objeto-relacional no es como utilizar una base de datos orientada a objetos.
+
+- ✅ Casi ninguna costura entre el código y la base de datos.
+
+- ✅ Las relaciones entre objetos se gestionan de forma muy natural, lo que permite crear grafos de objetos complejos sin uniones.
+
+.. figure:: ../_static/images/zodb_logo.png
+    :align: center
+    :width: 100%
+
+    Logotipo de ZODB
+
+``ZODB`` es una base de datos transaccional ACID.
+
+``ZODB`` funciona con Python 3.7 y versiones superiores. También funciona con PyPy.
+
+
+📌 **Ventajas de ZODB**:
+
+- ✅ Fácil de usar, sin necesidad de instalar bases de datos.
+
+- ✅ Útil para almacenar estructuras de datos complejas (listas, diccionarios, objetos).
+
+📌 **Desventajas**:
+
+- ❌ No es ideal para grandes volúmenes de datos.
+
+- ❌ No permite consultas avanzadas como SQL.
+
+
+----
+
+
+¿Qué es la ZODB?
+-----------------
+
+``ZODB`` es un sistema de persistencia para objetos Python.  Los lenguajes de programación
+que escriben objetos automáticamente en el disco y los vuelven a leer cuando son requeridos
+por un programa en ejecución.  Al instalar el ``ZODB``, añades estas facilidades a Python.
+
+Es ciertamente posible construir tu propio sistema para hacer persistentes los objetos Python.
+Los puntos de partida habituales son el módulo :mod:`pickle`, para convertir objetos en una
+representación de cadena, y varios módulos de bases de datos, como los módulos :mod:`gdbm` o
+:mod:`bsddb`, que proporcionan formas de escribir cadenas en el disco y leerlas de vuelta.
+Es sencillo combinar el módulo :mod:`pickle` y un módulo de base de datos para almacenar y
+recuperar objetos, y de hecho el módulo :mod:`shelve`, incluido en la biblioteca estándar
+de Python, lo hace.
+
+El inconveniente es que el programador tiene que gestionar explícitamente los objetos, leyendo
+un objeto cuando se necesita y escribiéndolo en el disco cuando el objeto ya no es necesario.
+La ``ZODB`` gestiona los objetos por ti, manteniéndolos en una caché, escribiéndolos en disco cuando
+se modifican y eliminándolos de la caché si no se han utilizado durante un tiempo.
+
+
+----
+
+
+OODBs vs. BD relacionales
+^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Otra forma de verlo es que ZODB es una base de datos orientada a objetos (OODB) específica
+de Python. Las bases de datos de objetos comerciales para C++ o Java a menudo exigen pasar
+por el aro, como utilizar un preprocesador especial o evitar determinados tipos de datos.
+Como veremos, el ``ZODB`` tiene que pasar por algunos obstáculos, pero en comparación, la
+naturalidad del ``ZODB`` es asombrosa.
+
+Las bases de datos relacionales (RDB) son mucho más comunes que las OODB. Las bases de
+datos relacionales almacenan la información en tablas; una tabla consta de cualquier
+número de filas, cada una de las cuales contiene varias columnas de información. (Las
+filas se denominan más formalmente relaciones, de donde procede el término "base de
+datos relacional").
+
+Veamos un ejemplo concreto. El ejemplo procede de mi trabajo diario en la Bolsa de MEMS,
+en una versión muy simplificada. El trabajo consiste en hacer un seguimiento de los procesos,
+que son listas de pasos de fabricación que deben realizarse en una fábrica de semiconductores.
+Una ejecución pertenece a un usuario concreto, y tiene un nombre y un número de identificación
+asignados. Las ejecuciones constan de una serie de operaciones; una operación es un único paso
+a realizar, como depositar algo en una oblea o grabar algo en ella.
+
+Las operaciones pueden tener parámetros, que son información adicional necesaria para realizar
+una operación. Por ejemplo, si vas a depositar algo en una oblea, necesitas saber dos cosas:
+1) qué estás depositando, y 2) cuánto debe depositarse. Puede depositar 100 micras de óxido
+2) de silicio o 1 micra de cobre.
+
+El traslado de estas estructuras a una base de datos relacional es sencillo:
+
+::
+
+   CREATE TABLE runs (
+     int      run_id,
+     varchar  owner,
+     varchar  title,
+     int      acct_num,
+     primary key(run_id)
+   );
+
+   CREATE TABLE operations (
+     int      run_id,
+     int      step_num,
+     varchar  process_id,
+     PRIMARY KEY(run_id, step_num),
+     FOREIGN KEY(run_id) REFERENCES runs(run_id),
+   );
+
+   CREATE TABLE parameters (
+     int      run_id,
+     int      step_num,
+     varchar  param_name,
+     varchar  param_value,
+     PRIMARY KEY(run_id, step_num, param_name)
+     FOREIGN KEY(run_id, step_num)
+        REFERENCES operations(run_id, step_num),
+   );
+
+En Python, escribiría tres clases llamadas :class:`Run`, :class:`Operation`, y :class:`Parameter`.
+No presentaré código para definir estas clases, ya que ese código carece de interés en este momento.
+Cada clase contendría un único método para empezar, un método :meth:`__init__` que asigna valores
+por defecto, como 0 o ``None``, a cada atributo de la clase.
+
+No es difícil escribir código Python que cree una instancia :class:`Run` y la rellene con los datos
+de las tablas relacionales; con un poco más de esfuerzo, se puede construir una herramienta sencilla,
+normalmente llamada mapeador objeto-relacional, para hacerlo automáticamente.
+
+(Véase `<https://legacy.python.org/workshops/1997-10/proceedings/shprentz.html>`_
+para la implementación más exitosa de Joel Shprentz, el sistema de Shprentz se ha utilizado para trabajo real).
+
+Sin embargo, es difícil hacer que un mapeador objeto-relacional sea razonablemente rápido; una
+implementación simplona como la mía es bastante lenta porque tiene que hacer varias consultas
+para acceder a todos los datos de un objeto. Los mapeadores objeto-relacionales de mayor
+rendimiento almacenan en caché los objetos para mejorar el rendimiento, y sólo realizan
+consultas SQL cuando realmente lo necesitan.
+
+Eso ayuda si quieres acceder al número de ejecución 123 de repente. Pero, ¿qué ocurre si desea
+encontrar todas las ejecuciones en las que un paso tiene un parámetro denominado "grosor" con
+un valor de 2.0?  En la versión relacional, tiene dos opciones poco atractivas:
+
+#. Escriba una consulta SQL especializada para este caso: ``SELECT run_id FROM operations
+   WHERE param_name = 'thickness' AND param_value = 2.0``
+
+   Si este tipo de consultas son habituales, puede acabar teniendo muchas consultas especializadas.
+   Cuando se reorganicen las tablas de la base de datos, habrá que modificar todas estas consultas.
+
+#. Un mapeador objeto-relacional no ayuda mucho. Escanear a través de las ejecuciones significa que
+   el mapeador realizará las consultas SQL necesarias para leer la ejecución nº 1, y luego un simple
+   bucle de Python puede comprobar si alguno de sus pasos tiene el parámetro que estás buscando.
+   Repite para la carrera #2, 3, y así sucesivamente. Esto hace un gran número de consultas SQL, y
+   por lo tanto es increíblemente lento.
+
+Una base de datos de objetos como ``ZODB`` simplemente almacena punteros internos de objeto a objeto, por
+lo que leer un solo objeto es mucho más rápido que hacer un montón de consultas SQL y ensamblar los
+resultados. Por lo tanto, escanear todas las ejecuciones sigue siendo ineficiente, pero no extremadamente
+ineficiente.
+
+
+¿Qué es ZEO?
+^^^^^^^^^^^^^
+
+``ZODB`` incluye varias clases diferentes que implementan la interfaz :class:`Storage`. Tales clases
+manejan el trabajo de escribir objetos Python a un medio de almacenamiento físico, que puede ser
+un archivo de disco (la clase :class:`FileStorage`), un archivo BerkeleyDB (:class:`BDBFullStorage`),
+una base de datos relacional (:class:`DCOracleStorage`), o algún otro medio. `ZEO`_ añade :class:`ClientStorage`,
+una nueva :class:`Storage` que no escribe en soportes físicos, sino que simplemente reenvía todas
+las peticiones a través de una red a un servidor.
+
+El servidor, que está ejecutando una instancia de la clase :class:`StorageServer`, simplemente actúa
+como un front-end para alguna clase física :class:`Storage`. Es una idea bastante simple, pero como
+veremos más adelante en este documento, abre muchas posibilidades.
+
+
+----
+
+
 .. _python_pkg_zodb_instalar:
 
 Instalación
 -----------
 
-Para instalar el paquete `ZODB`_ ejecute el siguiente comando, el cual
+Para conectarte a una ``ZODB`` necesita el paquete `ZODB`_. Esto
+significa que debe instalar ``ZODB`` ejecutando el siguiente comando, el cual
 a continuación se presentan el correspondiente comando de tu sistema operativo:
 
 .. tabs::
@@ -31,14 +212,13 @@ a continuación se presentan el correspondiente comando de tu sistema operativo:
 
       .. code-block:: console
 
-          $ pip install ZODB
+          pip3 install ZODB==6.0
 
    .. group-tab:: Windows
 
       .. code-block:: console
 
-          > pip install ZODB
-
+          pip3 install ZODB==6.0
 
 Puede probar si la instalación se realizo correctamente, ejecutando
 el siguiente comando correspondiente a tu sistema operativo:
@@ -49,16 +229,16 @@ el siguiente comando correspondiente a tu sistema operativo:
 
       .. code-block:: console
 
-          $ python -c "import ZODB ; print(ZODB.__package__)"
+          python3 -c "import ZODB ; print(ZODB.__package__)"
 
    .. group-tab:: Windows
 
       .. code-block:: console
 
-          > python -c "import ZODB ; print(ZODB.__package__)"
+          python3 -c "import ZODB ; print(ZODB.__package__)"
 
 
-Si muestra el numero de la versión instalada de ``ZODB``, tiene
+Si muestra el nombre del paquete ``ZODB`` en la terminal, tiene
 correctamente instalada la paquete. Con esto, ya tiene todo listo para continuar.
 
 Adicionalmente puedes instalar un cliente de base de datos ZODB, a continuación se
@@ -84,13 +264,13 @@ los modos de instalación:
 
       .. code-block:: console
 
-          $ pip install zodbbrowser==0.17.1
+          pip install zodbbrowser==0.17.1
 
    .. group-tab:: Windows
 
       .. code-block:: console
 
-          > pip install zodbbrowser==0.17.1
+          pip install zodbbrowser==0.17.1
 
 Puede probar si la instalación se realizo correctamente, ejecutando
 el siguiente comando:
@@ -105,7 +285,13 @@ el siguiente comando:
 
       .. code-block:: console
 
-          > zodbbrowser --help
+          zodbbrowser --help
+
+      Si ejecuto el comando anterior, este da como resultado lo siguiente:
+
+      .. code-block:: console
+          :class: no-copy
+
           Usage: zodbbrowser [options] [FILENAME | --zeo ADDRESS]
 
           Open a ZODB database and start a web-based browser app.
@@ -124,7 +310,7 @@ el siguiente comando:
 
       .. note::
 
-        Mas información consulte https://pypi.org/project/zodbbrowser/
+        Más información consulte https://pypi.org/project/zodbbrowser/
 
    .. group-tab:: Windows
 
@@ -133,7 +319,13 @@ el siguiente comando:
 
       .. code-block:: console
 
-          > zodbbrowser.exe --help
+          zodbbrowser.exe --help
+
+      Si ejecuto el comando anterior, este da como resultado lo siguiente:
+
+      .. code-block:: console
+          :class: no-copy
+
           Usage: zodbbrowser [options] [FILENAME | --zeo ADDRESS]
 
           Open a ZODB database and start a web-based browser app.
@@ -152,7 +344,7 @@ el siguiente comando:
 
       .. note::
 
-        Mas información consulte https://pypi.org/project/zodbbrowser/
+        Más información consulte https://pypi.org/project/zodbbrowser/
 
 Ejecute el comando ``zodbrowser`` especificando un nombre de archivo ZODB, ejecutando el siguiente comando:
 
@@ -162,17 +354,18 @@ Ejecute el comando ``zodbrowser`` especificando un nombre de archivo ZODB, ejecu
 
       .. code-block:: console
 
-          $ zodbbrowser /ruta/al/archivo/Data.fs
+          zodbbrowser /ruta/al/archivo/Data.fs
 
    .. group-tab:: Windows
 
       .. code-block:: console
 
-          > zodbbrowser.exe C:\Ruta\al\archivo\Data.fs
+          zodbbrowser.exe C:\Ruta\al\archivo\Data.fs
 
 El comando anterior muestra el siguiente mensaje:
 
 .. code-block:: console
+    :class: no-copy
 
     Listening on http://localhost:8070/
 
@@ -192,6 +385,9 @@ a continuación:
 
 Si muestra la interfaz gráfica de ``zodbbrowser``, tiene correctamente instalada el cliente
 de base de datos ``ZODB``.
+
+
+----
 
 
 .. _python_zodb_conn_strs:
@@ -222,7 +418,7 @@ para una base de datos ``ZODB``:
 
     DB_PATH = os.path.dirname(os.path.abspath(__file__)) + os.sep + "filestorage/"
     Path(DB_PATH).mkdir(parents=True, exist_ok=True)
-    DB_FILE = ZODB.FileStorage.FileStorage(DB_PATH + "productos.fs")
+    DB_FILE = ZODB.FileStorage.FileStorage(DB_PATH + "Data.fs")
     DB = ZODB.DB(DB_FILE)
 
     connection = DB.open()
@@ -230,19 +426,21 @@ para una base de datos ``ZODB``:
 
 El ejemplo anterior se describe a continuación:
 
-    - En la linea 1, se importa la librería ``os`` de la librería estándar Python.
+- En la linea 1, se importa la librería ``os`` de la librería estándar Python.
 
-    - En la linea 2, se importa la librería ``ZODB`` de la librería estándar Python.
+- En la linea 2, se importa la librería ``ZODB`` de la librería estándar Python.
 
-    - En la linea 4, se define en la constante ``DB_PATH`` la ruta absoluta usada para guardar la base de datos.
+- En la linea 4, se define en la constante ``DB_PATH`` la ruta absoluta usada para guardar la base de datos.
 
-    - En la linea 5, se define en la constante ``DB_FILE`` el nombre de la base de datos.
+- En la linea 5, se define en la constante ``DB_FILE`` el nombre de la base de datos.
 
-    - En la linea 6, se define en la constante ``DB`` la ruta completa usada para leer la base de datos.
+- En la linea 6, se define en la constante ``DB`` la ruta completa usada para leer la base de datos.
 
 De esta forma se crea una cadena de conexión para ``ZODB`` para ser usada por el método ``open``.
 
+
 ----
+
 
 Insertar registros
 ------------------
@@ -252,44 +450,49 @@ Si requiere insertar registro en una tabla, a continuación tiene un ejemplo:
 .. literalinclude:: ../../recursos/leccion2/zodb/crud/zodb_record_insert.py
     :language: python
     :linenos:
-    :lines: 1-87
+    :lines: 1-83
+
 
 ----
 
 
 .. important::
     Usted puede descargar el código usado en esta sección haciendo clic en el
-    siguiente enlace: :download:`zodb_record_insert.py <../../recursos/leccion2/zodb/crud/zodb_record_insert.py>`.
+    siguiente enlace:
+
+    - :download:`zodb_record_insert.py <../../recursos/leccion2/zodb/crud/zodb_record_insert.py>`.
 
 
 .. tip::
     Para ejecutar el código :file:`zodb_record_insert.py`
     abra una consola de comando, acceda al directorio donde se encuentra el programa:
 
-    ::
+    .. code-block:: pycon
+        :class: no-copy
 
-        leccion2/
-            └── zodb/
-                └── zodb_record_insert.py
+        proyectos/
+        └── zodb/
+            └── zodb_record_insert.py
 
     Si tiene la estructura de archivo previa, entonces ejecute el siguiente comando:
 
     .. code-block:: console
 
-        $ python zodb_record_insert.py
+        python3 zodb_record_insert.py
 
 El anterior código al ejecutar debe mostrar el siguiente mensaje:
 
 .. code-block:: console
 
-    INFO:root:¡Conectado a la base de datos productos.fs!
+    INFO:root:✅ ¡Conectado a la base de datos 'Data.fs'!
 
-    INFO:root:¡Fueron insertado(s) los registro(s) correctamente en la ZODB!
+    INFO:root:✅ ¡Fueron insertado(s) los registro(s) correctamente en la ZODB!
 
-    INFO:root:¡La conexión ZODB a la base de datos productos.fs fue cerrada!
+    INFO:root:✅ ¡La conexión ZODB a la base de datos 'Data.fs' fue cerrada!
 
 
 ----
+
 
 Consultar registros
 -------------------
@@ -299,60 +502,71 @@ Si requiere consultar registros de tabla, a continuación tiene un ejemplo:
 .. literalinclude:: ../../recursos/leccion2/zodb/crud/zodb_record_read.py
     :language: python
     :linenos:
-    :lines: 1-56
+    :lines: 1-55
+
 
 ----
 
 
 .. important::
     Usted puede descargar el código usado en esta sección haciendo clic en el
-    siguiente enlace: :download:`zodb_record_read.py <../../recursos/leccion2/zodb/crud/zodb_record_read.py>`.
+    siguiente enlace:
+
+    - :download:`zodb_record_read.py <../../recursos/leccion2/zodb/crud/zodb_record_read.py>`.
 
 
 .. tip::
     Para ejecutar el código :file:`zodb_record_read.py`
     abra una consola de comando, acceda al directorio donde se encuentra el programa:
 
-    ::
+    .. code-block:: pycon
+        :class: no-copy
 
-        leccion2/
-            └── zodb/
-                └── zodb_record_read.py
+        proyectos/
+        └── zodb/
+            └── zodb_record_read.py
 
     Si tiene la estructura de archivo previa, entonces ejecute el siguiente comando:
 
     .. code-block:: console
 
-        $ python zodb_record_read.py
+        python3 zodb_record_read.py
 
 El anterior código al ejecutar debe mostrar el siguiente mensaje:
 
 .. code-block:: console
 
-    INFO:root:¡Conectado a la base de datos sistema.db!
+    INFO:root:✅ ¡Conectado a la base de datos 'Data.fs'!
 
-    Total de filas son: 3
+    Total de filas son: 4
 
     Mostrar cada fila:
 
             Id: 1
-            Nombre: Leonardo
-            Código postal: Caballero
-            Teléfono: 5001
+            Nombre: Leonardo Caballero
+            Código postal: 5001
+            Teléfono: +58-412-4734567
 
             Id: 2
-            Nombre: Ana
-            Código postal: Poleo
-            Teléfono: 6302
+            Nombre: Ana Poleo
+            Código postal: 6302
+            Teléfono: +58-426-5831297
 
             Id: 3
-            Nombre: Pedro
-            Código postal: Lopez
-            Teléfono: 4001
+            Nombre: Manuel Matos
+            Código postal: 4001
+            Teléfono: +58-414-2360943
 
-    INFO:root:¡La conexión ZODB a la base de datos sistema.db fue cerrada!
+            Id: 4
+            Nombre: Liliana Andradez
+            Código postal: 3105
+            Teléfono: +58-414-6782473
+
+    INFO:root:✅ ¡La conexión ZODB a la base de datos 'Data.fs' fue cerrada!
+
 
 ----
+
 
 Actualizar registros
 --------------------
@@ -362,42 +576,49 @@ Si requiere actualizar registro de tabla, a continuación tiene un ejemplo:
 .. literalinclude:: ../../recursos/leccion2/zodb/crud/zodb_record_update.py
     :language: python
     :linenos:
-    :lines: 1-58
+    :lines: 1-57
+
 
 ----
 
+
 .. important::
     Usted puede descargar el código usado en esta sección haciendo clic en el
-    siguiente enlace: :download:`zodb_record_update.py <../../recursos/leccion2/zodb/crud/zodb_record_update.py>`.
+    siguiente enlace:
+
+    - :download:`zodb_record_update.py <../../recursos/leccion2/zodb/crud/zodb_record_update.py>`.
 
 
 .. tip::
     Para ejecutar el código :file:`zodb_record_update.py`
     abra una consola de comando, acceda al directorio donde se encuentra el programa:
 
-    ::
+    .. code-block:: pycon
+        :class: no-copy
 
-        leccion2/
-            └── zodb/
-                └── zodb_record_update.py
+        proyectos/
+        └── zodb/
+            └── zodb_record_update.py
 
     Si tiene la estructura de archivo previa, entonces ejecute el siguiente comando:
 
     .. code-block:: console
 
-        $ python zodb_record_update.py
+        python3 zodb_record_update.py
 
 El anterior código al ejecutar debe mostrar el siguiente mensaje:
 
 .. code-block:: console
 
-    INFO:root:¡Conectado a la base de datos sistema.db!
+    INFO:root:✅ ¡Conectado a la base de datos 'Data.fs'!
 
-    INFO:root:¡Fueron actualizado(s) 2 registro(s) correctamente en la tabla!
+    INFO:root:✅ ¡Fueron actualizado(s) 2 registro(s) correctamente en la tabla!
 
-    INFO:root:¡La conexión ZODB a la base de datos sistema.db fue cerrada!
+    INFO:root:✅ ¡La conexión ZODB a la base de datos 'Data.fs' fue cerrada!
+
 
 ----
+
 
 Eliminar registros
 ------------------
@@ -407,47 +628,53 @@ Si requiere eliminar registro de tabla, a continuación tiene un ejemplo:
 .. literalinclude:: ../../recursos/leccion2/zodb/crud/zodb_record_delete.py
     :language: python
     :linenos:
-    :lines: 1-55
+    :lines: 1-53
+
 
 ----
 
 
 .. important::
     Usted puede descargar el código usado en esta sección haciendo clic en el
-    siguiente enlace: :download:`zodb_record_delete.py <../../recursos/leccion2/zodb/crud/zodb_record_delete.py>`.
+    siguiente enlace:
+
+    - :download:`zodb_record_delete.py <../../recursos/leccion2/zodb/crud/zodb_record_delete.py>`.
 
 
 .. tip::
     Para ejecutar el código :file:`zodb_record_delete.py`
     abra una consola de comando, acceda al directorio donde se encuentra el programa:
 
-    ::
+    .. code-block:: pycon
+        :class: no-copy
 
-        leccion2/
-            └── zodb/
-                └── zodb_record_delete.py
+        proyectos/
+        └── zodb/
+            └── zodb_record_delete.py
 
     Si tiene la estructura de archivo previa, entonces ejecute el siguiente comando:
 
     .. code-block:: console
 
-        $ python zodb_record_delete.py
+        python3 zodb_record_delete.py
 
 El anterior código al ejecutar debe mostrar el siguiente mensaje:
 
 .. code-block:: console
 
-    INFO:root:¡Conectado a la base de datos sistema.db!
+    INFO:root:✅ ¡Conectado a la base de datos 'Data.fs'!
 
-    INFO:root:¡Registro eliminado correctamente!
+    INFO:root:✅ ¡Registro eliminado correctamente!
 
-    INFO:root:¡La conexión ZODB a la base de datos sistema.db fue cerrada!
+    INFO:root:✅ ¡La conexión ZODB a la base de datos 'Data.fs' fue cerrada!
 
 
 Asi de esta forma puede ingresar, consultar, actualizar y eliminar
 registro en una tabla en una base de datos ``ZODB``.
 
+
 ----
+
 
 .. _python_zodb_scaffolding:
 
@@ -505,7 +732,7 @@ Modulo de configuraciones del programa.
 
 *Archivo inventario.fs*
 
-Archivo de base de datos de :ref:`ZODB <python_zodb>` llamado :file:`inventario.fs`
+Archivo de base de datos de :ref:`ZODB <python_modulo_zodb>` llamado :file:`inventario.fs`
 la cual no se incluye ya que cada vez que se inicia el programa :file:`main.py` se elimina y crea
 nuevamente, para cuidar la creación de los datos iniciales.
 
@@ -530,7 +757,7 @@ sistema operativo:
 
       .. code-block:: console
 
-          $ pip install -r requirements.txt
+          pip3 install -r requirements.txt
 
       .. tip::
         Para ejecutar el código fuente de esta practica debe invocar al modulo :file:`main.py`,
@@ -539,7 +766,7 @@ sistema operativo:
 
       .. code-block:: console
 
-          $ python main.py
+          python3 main.py
 
    .. group-tab:: Windows
 
@@ -547,7 +774,7 @@ sistema operativo:
 
       .. code-block:: console
 
-          > pip install -r requirements.txt
+          pip3 install -r requirements.txt
 
       .. tip::
         Para ejecutar el código fuente de esta practica debe invocar al modulo :file:`main.py`,
@@ -556,7 +783,7 @@ sistema operativo:
 
       .. code-block:: console
 
-          > python main.py
+          python3 main.py
 
 El anterior código al ejecutar debe mostrar el siguiente mensaje:
 
@@ -568,21 +795,27 @@ El anterior código al ejecutar debe mostrar el siguiente mensaje:
     Camioneta
 
 
-Asi de esta forma puede ingresar, consultar y actualizar registro en un archivo
-serializado de objetos python ``ZODB``.
+Asi de esta forma puede ingresar, consultar, actualizar y eliminar
+registro en un archivo serializado de objetos python ``ZODB``.
 
 
 ----
 
+
 .. seealso::
 
     Consulte la sección de :ref:`lecturas suplementarias <lecturas_extras_leccion2>`
+    del entrenamiento para ampliar su conocimiento en esta temática.
 
 
 .. raw:: html
    :file: ../_templates/partials/soporte_profesional.html
 
-.. _`pickle`: https://docs.python.org/es/3.11/library/pickle.html
+
+..
+  .. disqus::
+
 .. _`ZODB`: https://zodb.org/en/latest/
 .. _`requirements.txt`: https://pip.pypa.io/en/stable/reference/requirements-file-format/
+.. _`ZEO`: https://pypi.org/project/ZEO/
 .. _`pip`: https://pip.pypa.io/en/stable/

@@ -29,6 +29,7 @@ Python ofrece tres módulos diferentes en la biblioteca estándar que le permite
 
 ----
 
+
 .. seealso::
 
     Consulte la sección de :ref:`lecturas suplementarias <lecturas_extras_leccion2>`
@@ -36,5 +37,9 @@ Python ofrece tres módulos diferentes en la biblioteca estándar que le permite
 
 .. raw:: html
    :file: ../_templates/partials/soporte_profesional.html
+
+
+..
+  .. disqus::
 
 .. _`pickle`: https://docs.python.org/es/3.11/library/pickle.html

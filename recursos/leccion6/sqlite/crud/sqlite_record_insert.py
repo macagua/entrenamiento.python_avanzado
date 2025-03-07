@@ -14,38 +14,64 @@ DB = DB_PATH + DB_FILE
 MULTIPLE_COLUMNS = [
     (1, "Leonardo", "Caballero", "5001", "+58-412-4734567"),
     (2, "Ana", "Poleo", "6302", "+58-426-5831297"),
-    (3, "Pedro", "Lopez", "4001", "+58-414-2360943"),
+    (3, "Manuel", "Matos", "4001", "+58-414-2360943"),
 ]
 
-SQL_SCRIPTS = """INSERT INTO clientes VALUES (?, ?, ?, ?, ?);"""
+# Script CREATE TABLE SQL para crear tabla clientes
+CREATE_TABLE_SQL = """
+CREATE TABLE IF NOT EXISTS clientes (
+    id INTEGER UNIQUE NOT NULL,
+    nombre TEXT NOT NULL,
+    apellido TEXT NOT NULL,
+    codigo_postal INTEGER NOT NULL,
+    telefono TEXT NOT NULL,
+    PRIMARY KEY(id)
+);"""
+
+# Script INSERT SQL a usar al ingresar datos
+INSERT_SQL = """INSERT INTO clientes VALUES (?, ?, ?, ?, ?);"""
 
 
 def insertar_registro():
     """Función para la inserción de registro de la tabla"""
 
+    conexion = None
     try:
+        # Establecer la conexión con la base de datos
         conexion = sqlite3.connect(DB)
+        # Crear un objeto cursor para la base de datos
         cursor = conexion.cursor()
-        logging.info(f"¡Conectado a la base de datos {DB_FILE}!\n")
-
-        count = cursor.executemany(SQL_SCRIPTS, MULTIPLE_COLUMNS)
+        logging.info(f"¡Conectado a la base de datos '{DB_FILE}'!\n")
+        # Crear la tabla productos si no existe
+        cursor.execute(CREATE_TABLE_SQL)
+        # Confirmar la creación de la tabla
+        conexion.commit()
+        # Insertar nuevos registros en la tabla
+        cursor.executemany(INSERT_SQL, MULTIPLE_COLUMNS)
+        # Confirmar la inserción de los registros
         conexion.commit()
         logging.info(
-            "¡Fueron insertado(s) {} registro(s) correctamente en la tabla!\n".format(
-                cursor.rowcount
-            )
+            f"¡Fueron insertado(s) {cursor.rowcount} registro(s) correctamente en la tabla!\n"
         )
+        # Insertar un nuevo registro en la tabla
+        cursor.execute(
+            INSERT_SQL, (4, "Liliana", "Andradez", "4001", "+58-414-6782473")
+        )
+        # Confirmar la inserción del registro
+        conexion.commit()
+        logging.info(
+            f"¡Fueron insertado(s) {cursor.rowcount} registro(s) correctamente en la tabla!\n"
+        )
+        # Cerrar el cursor
         cursor.close()
-
     except sqlite3.Error as error:
-        print("¡Fallo la inserción de registro(s) en la tabla!", error)
+        logging.error(f"¡Fallo la inserción de registro(s) en la tabla!: {error}")
     finally:
         if conexion:
+            # Cerrar la conexión a la base de datos
             conexion.close()
             logging.info(
-                "¡La conexión SQLite a la base de datos {} fue cerrada!\n".format(
-                    DB_FILE
-                )
+                f"¡La conexión SQLite a la base de datos '{DB_FILE}' fue cerrada!\n"
             )
 
 

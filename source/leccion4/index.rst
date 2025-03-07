@@ -67,7 +67,7 @@ Si requiere consultar registros de tabla, a continuación tiene un ejemplo:
 .. literalinclude:: ../../recursos/leccion4/sistema/sistema_data.sql
     :language: sql
     :linenos:
-    :lines: 10-11
+    :lines: 10-12
 
 
 .. _python_base_actualizar_registro:
@@ -80,7 +80,7 @@ Si requiere actualizar registro de tabla, a continuación tiene un ejemplo:
 .. literalinclude:: ../../recursos/leccion4/sistema/sistema_data.sql
     :language: sql
     :linenos:
-    :lines: 14-15
+    :lines: 15-16
 
 
 .. _python_base_eliminar_registro:
@@ -93,27 +93,33 @@ Si requiere eliminar registro de tabla, a continuación tiene un ejemplo:
 .. literalinclude:: ../../recursos/leccion4/sistema/sistema_data.sql
     :language: sql
     :linenos:
-    :lines: 18
+    :lines: 21-22
 
 
 Asi de esta forma puede crear una tabla, ingresar, consultar, actualizar y eliminar
 registro a dicha tabla.
 
+
 ----
+
 
 .. important::
     Usted puede descargar el código usado en esta sección haciendo clic en los
-    siguientes enlaces: :download:`sistema.sql <../../recursos/leccion4/sistema/sistema.sql>`
-    y :download:`sistema_data.sql <../../recursos/leccion4/sistema/sistema_data.sql>`.
+    siguientes enlaces:
+
+    - :download:`sistema.sql <../../recursos/leccion4/sistema/sistema.sql>`.
+
+    - :download:`sistema_data.sql <../../recursos/leccion4/sistema/sistema_data.sql>`.
 
 
 .. tip::
     Para ejecutar el código SQL de la base de datos debe tener una copia local de los scripts
     :file:`sistema.sql` y :file:`sistema_data.sql`.
 
-    ::
+    .. code-block:: pycon
+        :class: no-copy
 
-        leccion4/
+        proyectos/
         └── sistema/
             ├── sistema.sql
             └── sistema_data.sql
@@ -130,6 +136,8 @@ registro a dicha tabla.
 .. raw:: html
    :file: ../_templates/partials/soporte_profesional.html
 
-.. disqus::
+
+..
+  .. disqus::
 
 .. _`base de datos`: https://es.wikipedia.org/wiki/Base_de_datos

@@ -1,6 +1,8 @@
+"""Módulo de modelos de SQLAlchemy"""
+
 from db import Base
 
-from sqlalchemy import Column, Integer, String, Float
+from sqlalchemy import Column, Float, Integer, String
 
 
 class Productos(Base):
@@ -18,7 +20,7 @@ class Productos(Base):
     id = Column(Integer, primary_key=True)
     nombre = Column(String, nullable=False)
     categoria = Column(String, nullable=False)
-    precio = Column(Float)
+    precio = Column(Float, nullable=False)
 
     def __init__(self, nombre, categoria, precio):
         self.nombre = nombre
@@ -26,7 +28,7 @@ class Productos(Base):
         self.precio = precio
 
     def __repr__(self):
-        return f"Productos({self.nombre}, {self.categoria}, {self.precio})"
+        return f"<Productos(nombre={self.nombre}, categoria={self.categoria}, precio={self.precio})>"
 
     def __str__(self):
-        return self.nombre
+        return f"Producto: {self.nombre} ({self.categoria}) - ${self.precio:.2f}"
