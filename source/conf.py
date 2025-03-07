@@ -330,7 +330,7 @@ html_css_files = [
     "stylesheets/soporte_profesional.css",
     "stylesheets/sphinx_contributors.css",
     "stylesheets/main/layout/_content.css",
-    "stylesheets/main/layout/_footer.css",
+    # "stylesheets/main/layout/_footer.css",
 ]
 
 # A list of JavaScript filename. The entry must be a filename string or a tuple containing
@@ -429,10 +429,10 @@ latex_elements = {
     "preamble": r"""
     \usepackage{pmboxdraw}
     \authoraddress{
-      \strong{Contactos:} \email{leonardocaballero@gmail.com} -
+      \strong{Email:} \email{leonardocaballero@gmail.com} -
       \url{https://github.com/macagua}\\
-      \strong{Ciudad de Mérida, Estado Mérida, Venezuela. 5101.}\\
-      \strong{Telf.} +58-412-473.53.76 (WhatsApp / Telegram)
+      \strong{Fuenlabrada, Madrid, España. 5101.}\\
+      \strong{Contactos} @leonardojcaballerog (Telegram)
     }
     \let\Verbatim=\OriginalVerbatim
     \let\endVerbatim=\endOriginalVerbatim
@@ -573,6 +573,10 @@ intersphinx_mapping = {
         "https://entrenamiento-python-intermedio.readthedocs.io/es/latest/",
         None,
     ),
+    "entrenamiento-python-avanzado": (
+        "https://entrenamiento-python-avanzado.readthedocs.io/es/latest/",
+        None,
+    ),
     "entrenamiento-frameworks-web-python": (
         "https://entrenamiento-frameworks-web-python.readthedocs.io/es/latest/",
         None,
@@ -638,7 +642,7 @@ feed_author = publisher
 # -- Options for disqus extension --------------------------------------------
 
 # Set disqus site short name.
-disqus_shortname = "frameworks-de-desarrollo-web-en-python"
+disqus_shortname = "entrenamiento-python-avanzado"
 
 # -- Options for main setup --------------------------------------------------
 
