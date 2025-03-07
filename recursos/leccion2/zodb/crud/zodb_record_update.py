@@ -1,4 +1,4 @@
-"""Modulo de actualizar registros en la ZODB"""
+"""Programa para la actualización de registros en la ZODB"""
 
 import logging
 import os
@@ -18,39 +18,38 @@ DB = ZODB.DB(DB_FILE)
 def actualizar_registro():
     """Función para la actualización de registro de la tabla"""
 
+    conexion = None
     try:
         # Crear la instancia de DB y pasar el nombre del archivo
         conexion = DB.open()
-
         # Crear la instancia de conexion y llamar al método open de db
         nodo = conexion.root()
-        logging.info(f"¡Conectado a la base de datos {os.path.basename(DB_FILE.getName())}!\n")
-
-        print(nodo['producto1'].descripcion)
-        nodo['producto1'].descripcion='Vehiculo'
-        print(nodo['producto1'].descripcion)
-
-        print(nodo['producto2'].descripcion)
-        nodo['producto2'].descripcion='Motocicleta'
-        print(nodo['producto2'].descripcion)
-
-        print(nodo['producto3'].descripcion)
-        nodo['producto3'].descripcion='Bici'
-        print(nodo['producto3'].descripcion)
-
+        logging.info(
+            f"¡Conectado a la base de datos {os.path.basename(DB_FILE.getName())}!\n"
+        )
+        # Mostrar atributo 'descripcion' del nodo "producto1"
+        print(nodo["producto1"].descripcion)
+        nodo["producto1"].descripcion = "Vehiculo"
+        print(nodo["producto1"].descripcion)
+        # Mostrar atributo 'descripcion' del nodo "producto2"
+        print(nodo["producto2"].descripcion)
+        nodo["producto2"].descripcion = "Motocicleta"
+        print(nodo["producto2"].descripcion)
+        # Mostrar atributo 'descripcion' del nodo "producto3"
+        print(nodo["producto3"].descripcion)
+        nodo["producto3"].descripcion = "Bici"
+        print(nodo["producto3"].descripcion)
         # Guardar los cambios en la base de datos
         transaction.commit()
-
+        logging.info(f"¡Fueron actualizados los nodos correctamente en la tabla!\n")
     except StorageError as error:
-        print("¡Fallo la actualización de registro(s) en la ZODB!", error)
+        logging.info(f"¡Fallo la actualización de registro(s) en la ZODB!: {error}")
     finally:
         if conexion:
             # Cerrar la conexión a la base de datos
             conexion.close()
             logging.info(
-                "¡La conexión ZODB a la base de datos {} fue cerrada!\n".format(
-                    os.path.basename(DB_FILE.getName())
-                )
+                f"¡La conexión ZODB a la base de datos {os.path.basename(DB_FILE.getName())} fue cerrada!\n"
             )
 
 
