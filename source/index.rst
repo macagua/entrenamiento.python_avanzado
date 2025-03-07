@@ -7,7 +7,7 @@
 Programación en Python 3 - Nivel avanzado
 =========================================
 
-Repositorio de manuales y recursos del entrenamiento **"Programación en** `Python 3`_ -
+Repositorio de manuales y recursos del entrenamiento **"Programación en** `Python 3.11`_ -
 **Nivel avanzado"**.
 
 
@@ -18,7 +18,7 @@ Repositorio de manuales y recursos del entrenamiento **"Programación en** `Pyth
     **Sobre este entrenamiento**
 
     Para dominar el lenguaje de programación con un nivel avanzado se tiene pensado
-    como un entrenamiento de 2 días para las personas que poseen un conocimiento de 
+    como un entrenamiento de 2 días para las personas que poseen un conocimiento de
     `nivel intermedio <https://entrenamiento-python-intermedio.readthedocs.io/es/latest/>`_
     o los que quieren aprender acerca de las mejores prácticas actuales del desarrollo en Python.
 
@@ -31,11 +31,18 @@ Repositorio de manuales y recursos del entrenamiento **"Programación en** `Pyth
    `https://entrenamiento-python-avanzado.readthedocs.io/es/latest/ <https://entrenamiento-python-avanzado.readthedocs.io/es/latest/>`_.
 
 
-**Tabla de contenidos**
+.. warning::
+   Tenga en cuenta que este documento no está completo sin
+   la palabra hablada de un instructor a pesar de que tratamos
+   de incluir las partes más importantes de lo que enseñamos
+   en la narrativa no puede considerarse completa sin la
+   palabra hablada.
+
 
 .. toctree::
    :numbered:
    :maxdepth: 2
+   :caption: Tabla de contenidos
 
    leccion1/index
    leccion2/index
@@ -45,14 +52,6 @@ Repositorio de manuales y recursos del entrenamiento **"Programación en** `Pyth
    leccion6/index
    leccion7/index
    leccion8/index
-
-
-.. warning::
-   Tenga en cuenta que este documento no está completo sin
-   la palabra hablada de un instructor a pesar de que tratamos
-   de incluir las partes más importantes de lo que enseñamos
-   en la narrativa no puede considerarse completa sin la
-   palabra hablada.
 
 
 Apéndices
@@ -69,9 +68,10 @@ Apéndices
    por_mejorar
 
 
-Búsqueda
-========
+..
+   Búsqueda
+   ========
 
-* :ref:`search`
+   * :ref:`search`
 
-.. _`Python 3`: https://docs.python.org/es/3.11/
+.. _`Python 3.11`: https://docs.python.org/es/3.11/
