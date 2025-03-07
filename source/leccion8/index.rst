@@ -297,7 +297,7 @@ que contiene el siguiente código:
 
 
 Este es el código fuente de modelos ``SQLAlchemy`` generado en base a la base
-de datos ``sistema.db``. Mas adelante se mejorara esta código fuente para obtener
+de datos ``sistema.db``. Más adelante se mejorara esta código fuente para obtener
 una mejor representación de los objetos.
 
 .. _python_sqlacodegen_scaffolding:
