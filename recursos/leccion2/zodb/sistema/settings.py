@@ -1,27 +1,27 @@
-"""Modulo de configuraciones"""
+"""Módulo de configuraciones"""
 
 import os
 from pathlib import Path
 import ZODB, ZODB.FileStorage
 
-DB_FILE = "inventario.fs"
-DB_DIR = os.path.dirname(os.path.abspath(__file__)) + os.sep + "filestorage/"
-Path(DB_DIR).mkdir(parents=True, exist_ok=True)
-STORAGE = ZODB.FileStorage.FileStorage(DB_DIR + DB_FILE)
+DB_PATH = os.path.dirname(os.path.abspath(__file__)) + os.sep + "filestorage/"
+Path(DB_PATH).mkdir(parents=True, exist_ok=True)
+DB_FILE = ZODB.FileStorage.FileStorage(DB_PATH + "inventario.fs")
+DB_FILE_NAME = os.path.basename(DB_FILE.getName())
+DB = ZODB.DB(DB_FILE)
 
-DB = ZODB.DB(STORAGE)
-
-# Lista de filas a ingresar
+# Lista de nodos a ingresar
 INSERT_MULTIPLE_COLUMNS = [
     (1, "Carro"),
-    (2, "Moto"),
-    (3, "Bicicleta"),
+    (2, "Bici"),
+    (3, "Motocicleta"),
 ]
 
-#import pdb; pdb.set_trace()
-
-# Lista de filas a actualizar
+# Lista de nodos a actualizar
 UPDATE_MULTIPLE_COLUMNS = [
-    ("5051", 1),
-    ("6303", 2),
+    (1, "Vehiculo"),
+    (2, "Bicicleta"),
 ]
+
+# Lista de nodos a eliminar
+DELETE_MULTIPLE_COLUMNS = [1, 2]
