@@ -1,4 +1,4 @@
-.. _python_leccion7:
+.. _python_sqlalchemy:
 
 SQLAlchemy
 ==========
@@ -10,6 +10,12 @@ comunicación con las bases de datos relacionales más conocidas, como
 :ref:`PostgreSQL <python_pkg_postgresql>`, :ref:`MySQL <python_pkg_mysql>`,
 `cx_Oracle`_, bases de datos *NoSQL* como `MongoDB`_, etc. O en su lugar, puedes
 usar `SQLAlchemy`_.
+
+.. figure:: ../_static/images/sqlalchemy_logo.png
+    :align: center
+    :width: 60%
+
+    Logotipo de SQLAlchemy
 
 
 La librería ``SQLAlchemy`` es el kit de herramientas SQL de Python y el
@@ -107,13 +113,13 @@ a continuación se presentan el correspondiente comando de tu sistema operativo:
 
       .. code-block:: console
 
-          $ pip install SQLAlchemy==1.4.36
+          pip3 install SQLAlchemy==1.4.36
 
    .. group-tab:: Windows
 
       .. code-block:: console
 
-          > pip install SQLAlchemy==1.4.36
+          pip3 install SQLAlchemy==1.4.36
 
 
 Puede probar si la instalación se realizo correctamente, ejecutando
@@ -125,15 +131,15 @@ el siguiente comando correspondiente a tu sistema operativo:
 
       .. code-block:: console
 
-          $ python -c "import sqlalchemy ; print(sqlalchemy.__version__)"
+          python3 -c "import sqlalchemy ; print(sqlalchemy.__version__)"
 
    .. group-tab:: Windows
 
       .. code-block:: console
 
-          > python -c "import sqlalchemy ; print(sqlalchemy.__version__)"
+          python3 -c "import sqlalchemy ; print(sqlalchemy.__version__)"
 
-Si muestra el numero de la versión instalada de ``SQLAlchemy``, tiene
+Si muestra el número de la versión instalada de ``SQLAlchemy``, tiene
 correctamente instalada la librería. Con esto, ya tiene todo listo para continuar.
 
 .. _python_sqlalchemy_engine:
@@ -149,7 +155,7 @@ El motor se usa principalmente para manejar dos elementos: los pools de conexion
 y el dialecto a utilizar.
 
 Vamos a crear un ``engine``. Para ello, añade un nuevo módulo Python llamado
-``db.py`` al directorio ``productos`` con el siguiente contenido:
+:file:`db.py` al directorio ``productos`` con el siguiente contenido:
 
 .. code-block:: python
     :linenos:
@@ -218,7 +224,7 @@ creados, modificados o eliminados dentro de una misma transacción, de manera qu
 cuando se confirma la transacción, se reflejan en base de datos todas la
 operaciones involucradas (o ninguna si ocurre cualquier error).
 
-Va a crear una sesión en el proyecto. Abre el archivo ``db.py`` y añade lo siguiente:
+Va a crear una sesión en el proyecto. Abre el archivo :file:`db.py` y añade lo siguiente:
 
 .. code-block:: python
     :linenos:
@@ -256,7 +262,7 @@ Para que se pueda realizar el mapeo de forma automática de una clase a una tabl
 y viceversa, vamos a utilizar una clase base en los modelos que implementa toda
 esta lógica.
 
-De nuevo, abre el archivo ``db.py`` y modificarlo para que su contenido sea como
+De nuevo, abre el archivo :file:`db.py` y modificarlo para que su contenido sea como
 el que te muestro a continuación:
 
 .. code-block:: python
@@ -270,11 +276,12 @@ el que te muestro a continuación:
     DB_PATH = os.path.dirname(os.path.abspath(__file__)) + os.sep
     DB_FILE = "productos.sqlite3"
 
+    # Configurar conexiones entre SQLAlchemy y SQLite3 DB API
     engine = create_engine(f"sqlite:///{DB_PATH}{DB_FILE}")
-
+    # Crear sesión con el engine de base de datos
     Session = sessionmaker(bind=engine)
     session = Session()
-
+    # Crear base declarativa
     Base = declarative_base()
 
 Al final del mismo hemos creado una clase llamada ``Base`` con el método
@@ -283,7 +290,7 @@ la capacidad de realizar el mapeo correspondiente a partir de la
 meta información (atributos de clase, nombre de la clase, etc.) que encuentre,
 precisamente, en cada uno de los modelos.
 
-A continuación, le presento como debe quedar el archivo ``db.py``:
+A continuación, le presento como debe quedar el archivo :file:`db.py`:
 
 .. literalinclude:: ../../recursos/leccion7/sqlalchemy/productos/db.py
     :language: python
@@ -291,7 +298,7 @@ A continuación, le presento como debe quedar el archivo ``db.py``:
     :lines: 1-20
 
 Por tanto, lo siguiente que debe hacer es crear el modelo ``Productos``. Crea un
-nuevo archivo en el directorio ``productos`` llamado ``models.py`` y
+nuevo archivo en el directorio ``productos`` llamado :file:`models.py` y
 añade el código que te muestro a continuación:
 
 .. literalinclude:: ../../recursos/leccion7/sqlalchemy/productos/models.py
@@ -311,7 +318,7 @@ La clase ``Productos`` del código anterior representa la tabla ``productos``.
 
 Para que se pueda realizar el mapeo automático *clase-tabla*, la clase hereda
 de la clase ``Base`` que creo en la sección anterior y que se encuentra en el
-módulo ``db.py``. Además, hay que especificar el nombre de la tabla a través
+módulo :file:`db.py`. Además, hay que especificar el nombre de la tabla a través
 del atributo de clase ``__tablename__``.
 
 Por otro lado, cada una de las columnas de la tabla tienen su correspondiente
@@ -344,10 +351,10 @@ Crear tablas
 Una vez definidos los modelos, hay que crear las tablas correspondientes.
 
 Crea un nuevo archivo Python en el directorio ``productos`` llamado
-``main.py``. En este archivo será donde escribas el código de ejemplo del
+:file:`main.py`. En este archivo será donde escribas el código de ejemplo del
 programa.
 
-Añade el siguiente código fuente al archivo ``main.py``:
+Añade el siguiente código fuente al archivo :file:`main.py`:
 
 .. code-block:: python
     :linenos:
@@ -376,19 +383,28 @@ Ejecuta ahora el programa con el siguiente comando:
 
       .. code-block:: console
 
-          $ python main.py
+          python3 main.py
+
+      El anterior código al ejecutar debe mostrar el siguiente mensaje:
+
+      .. code-block:: console
+          :class: no-copy
+
+          ¡Creación exitosa de la tabla productos!
 
    .. group-tab:: Windows
 
       .. code-block:: console
 
-          > python main.py
+          python3 main.py
 
-El anterior código al ejecutar debe mostrar el siguiente mensaje:
+      El anterior código al ejecutar debe mostrar el siguiente mensaje:
 
-.. code-block:: console
+      .. code-block:: console
+          :class: no-copy
 
-    ¡Creación exitosa de la tabla productos!
+          ¡Creación exitosa de la tabla productos!
+
 
 Se ha creado la tabla ``productos`` en la base de datos ``productos.sqlite3``. Verás que aparece un
 archivo con dicho nombre en el directorio ``productos``.
@@ -404,7 +420,7 @@ una fila de una tabla se corresponde con un objeto Python. Por tanto, para crear
 fila debemos instanciar un objeto de la clase ``Productos``, añadirlo a la sesión y
 finalmente aplicar los cambios.
 
-Añade un método ``ingresar_data()`` del archivo ``main.py`` con el siguiente código:
+Añade un método ``ingresar_data()`` del archivo :file:`main.py` con el siguiente código:
 
 .. code-block:: python
     :linenos:
@@ -441,13 +457,39 @@ de datos y se muestra, de nuevo, el valor del atributo ``id`` del objeto ``arroz
 puedes observar que su valor es ``1`` y que coincide con el valor de la columna ``id``
 de la primera fila de la tabla ``productos``.
 
-El anterior código al ejecutar debe mostrar el siguiente mensaje:
+Ejecuta ahora el programa con el siguiente comando:
 
-.. code-block:: console
+.. tabs::
 
-    ¡Creación exitosa de la tabla productos!
+   .. group-tab:: Linux
 
-    ¡Inserción exitosa de los 4 productos!
+      .. code-block:: console
+
+          python3 main.py
+
+      El anterior código al ejecutar debe mostrar el siguiente mensaje:
+
+      .. code-block:: console
+          :class: no-copy
+
+          ¡Creación exitosa de la tabla productos!
+
+          ¡Inserción exitosa de los 4 productos!
+
+   .. group-tab:: Windows
+
+      .. code-block:: console
+
+          python3 main.py
+
+      El anterior código al ejecutar debe mostrar el siguiente mensaje:
+
+      .. code-block:: console
+          :class: no-copy
+
+          ¡Creación exitosa de la tabla productos!
+
+          ¡Inserción exitosa de los 4 productos!
 
 
 .. _python_sqlalchemy_consultas:
@@ -469,7 +511,6 @@ Siguiendo con el ejemplo, para realizar consultas sobre la clase ``Productos`` d
 ejecutar el siguiente código:
 
 .. code-block:: python
-    :linenos:
 
     productos = session.query(Productos)
 
@@ -484,7 +525,6 @@ Obtener un objeto a partir de su id
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. code-block:: python
-    :linenos:
 
     producto = session.query(Productos).get(1)
 
@@ -502,7 +542,6 @@ método ``all()``. Este método devuelve una lista con los objetos devueltos por
 consulta:
 
 .. code-block:: python
-    :linenos:
 
     productos = session.query(Productos).all()
 
@@ -518,7 +557,6 @@ Contar el número de elementos devueltos por una consulta
 Si quieres contar el número de elementos que devuelve una consulta, utiliza el método ``count()``:
 
 .. code-block:: python
-    :linenos:
 
     contar_productos = session.query(Productos).count()
 
@@ -580,6 +618,7 @@ A continuación se presenta una práctica más real de implementar el uso de pro
 con ``SQLAlchemy``, a continuación la estructura de proyecto llamado ``productos``:
 
 .. code-block:: console
+    :class: no-copy
 
     productos/
     ├── .env.example
@@ -592,7 +631,7 @@ con ``SQLAlchemy``, a continuación la estructura de proyecto llamado ``producto
 
 A continuación se presenta y explica el uso de cada archivo para este proyecto:
 
-*Archivo .env.example*
+*Archivo* :file:`.env.example`
 
 Archivo plantilla `dotenv`_ del paquete adicional `python-dotenv`_.
 
@@ -601,40 +640,40 @@ Archivo plantilla `dotenv`_ del paquete adicional `python-dotenv`_.
     :linenos:
     :lines: 1-2
 
-*Archivo db.py*
+*Archivo* :file:`db.py`
 
-Modulo de configuraciones del programa.
+Módulo de configuraciones del programa.
 
 .. literalinclude:: ../../recursos/leccion7/sqlalchemy/productos/db.py
     :language: python
     :linenos:
-    :lines: 1-21
+    :lines: 1-24
 
-*Archivo main.py*
+*Archivo* :file:`main.py`
 
-Modulo de principal del programa.
+Módulo de principal del programa.
 
 .. literalinclude:: ../../recursos/leccion7/sqlalchemy/productos/main.py
     :language: python
     :linenos:
-    :lines: 1-142
+    :lines: 1-145
 
-*Archivo models.py*
+*Archivo* :file:`models.py`
 
-Modulo de :ref:`modelos <python_sqlalchemy_modelos>` de :ref:`SQLAlchemy <python_sqlalchemy>`.
+Módulo de :ref:`modelos <python_sqlalchemy_modelos>` de :ref:`SQLAlchemy <python_sqlalchemy>`.
 
 .. literalinclude:: ../../recursos/leccion7/sqlalchemy/productos/models.py
     :language: python
     :linenos:
-    :lines: 1-32
+    :lines: 1-34
 
-*Archivo productos.sqlite3*
+*Archivo* :file:`productos.sqlite3`
 
 Archivo de base de datos de :ref:`SQLite <python_modulo_sqlite3>` llamado :file:`productos.sqlite3`
 la cual no se incluye ya que cada vez que se inicia el programa :file:`main.py` se elimina y crea
 nuevamente, para cuidar la creación de los datos iniciales.
 
-*Archivo requirements.txt*
+*Archivo* :file:`requirements.txt`
 
 Archivo de `requirements.txt`_ de la herramienta de gestión de paquetes `pip`_.
 
@@ -643,7 +682,7 @@ Archivo de `requirements.txt`_ de la herramienta de gestión de paquetes `pip`_.
     :linenos:
     :lines: 1-3
 
-Teniendo creada la anterior estructura de proyecto, vuelva a ejecutar ahora el modulo con
+Teniendo creada la anterior estructura de proyecto, vuelva a ejecutar ahora el módulo con
 el siguiente comando, el cual a continuación se presentan el correspondiente comando de tu
 sistema operativo:
 
@@ -655,17 +694,17 @@ sistema operativo:
 
       .. code-block:: console
 
-          $ pip install -r requirements.txt
+          pip3 install -r requirements.txt
 
-      Ademas debe instalar y editar el archivo ``.env``, con el siguiente comando:
+      Además debe crear el archivo :file:`.env` en base a la plantilla :file:`.env.example`
+      y editarlo, con el siguiente comando:
 
       .. code-block:: console
 
-          $ cp .env.example .env
-          $ nano .env
+          cp .env.example .env && nano .env
 
       .. tip::
-        El archivo ``.env`` se definen las configuraciones de conexión a la base de datos,
+        El archivo :file:`.env` se definen las configuraciones de conexión a la base de datos,
         puede modificarlo cambiar valores de la conexión.
 
       .. note::
@@ -673,13 +712,66 @@ sistema operativo:
         debe definir las variables que por defecto no están definidas.
 
       .. tip::
-        Para ejecutar el código fuente de esta practica debe invocar al modulo :file:`main.py`,
+        Para ejecutar el código fuente de esta práctica debe invocar al módulo :file:`main.py`,
         abra una consola de comando, acceda al directorio donde se encuentra la estructura previa
         y ejecute el siguiente comando:
 
       .. code-block:: console
 
-          $ python main.py
+          python3 main.py
+
+      El anterior código al ejecutar debe mostrar el siguiente mensaje:
+
+      .. code-block:: console
+          :class: no-copy
+
+          ¡Creación exitosa de la tabla productos!
+
+          ¡Inserción exitosa de los 4 productos!
+
+          ¡Consulta todos los productos!
+          Arroz
+          Agua
+          Mantequilla
+          Queso
+
+          ¡Consulta todos los productos con más atributos!
+          Arroz 1.25
+          Agua 0.3
+          Mantequilla 3.56
+          Queso 8.56
+
+          ¡Consulta de producto en base a su clave primaria!
+          Arroz
+
+          ¡Consulta de productos lácteos!
+          Mantequilla
+          Queso
+
+          ¡Otra consulta de productos lácteos!
+          3, Mantequilla, Lácteos
+          4, Queso, Lácteos
+
+          ¡Consulta del primer producto!
+          Mantequilla
+
+          ¡Consulta del único producto!
+          Agua
+
+          ¡Consulta los productos cuyos nombres coincidan con los suministrados!
+          Arroz
+          Agua
+
+          ¡Actualiza el producto suministrado!
+          Precio anterior: Arroz 1.25
+          Precio nuevo: Arroz 11.5
+          ¡Actualización exitosa de precio del producto!
+
+          ¡Actualiza el producto suministrado!
+          ¡Actualización exitosa de precio del producto!
+
+          ¡Elimina los productos suministrados!
+          ¡Eliminación exitosa del producto!
 
    .. group-tab:: Windows
 
@@ -687,17 +779,23 @@ sistema operativo:
 
       .. code-block:: console
 
-          > pip install -r requirements.txt
+          pip3 install -r requirements.txt
 
-      Ademas debe instalar y editar el archivo ``.env``, con el siguiente comando:
+      Además debe crear el archivo :file:`.env` en base a la plantilla :file:`env.example` , con
+      el siguiente comando:
 
       .. code-block:: console
 
-          > copy .env.example .env
-          > notepad.exe .env &
+          copy .env.example .env
+
+      Editar el archivo :file:`.env`, con el siguiente comando:
+
+      .. code-block:: console
+
+          notepad.exe .env &
 
       .. tip::
-        El archivo ``.env`` se definen las configuraciones de conexión a la base de datos,
+        El archivo :file:`.env` se definen las configuraciones de conexión a la base de datos,
         puede modificarlo cambiar valores de la conexión.
 
       .. note::
@@ -705,70 +803,74 @@ sistema operativo:
         debe definir las variables que por defecto no están definidas.
 
       .. tip::
-        Para ejecutar el código fuente de esta practica debe invocar al modulo :file:`main.py`,
+        Para ejecutar el código fuente de esta práctica debe invocar al módulo :file:`main.py`,
         abra una consola de comando, acceda al directorio donde se encuentra la estructura previa
         y ejecute el siguiente comando:
 
       .. code-block:: console
 
-          > python main.py
+          python3 main.py
 
-El anterior código al ejecutar debe mostrar el siguiente mensaje:
+      El anterior código al ejecutar debe mostrar el siguiente mensaje:
 
-.. code-block:: console
+      .. code-block:: console
+          :class: no-copy
 
-    ¡Creación exitosa de la tabla productos!
+          ¡Creación exitosa de la tabla productos!
 
-    ¡Inserción exitosa de los 4 productos!
+          ¡Inserción exitosa de los 4 productos!
 
-    ¡Consulta todos los productos!
-    Arroz
-    Agua
-    Mantequilla
-    Queso
+          ¡Consulta todos los productos!
+          Arroz
+          Agua
+          Mantequilla
+          Queso
 
-    ¡Consulta todos los productos con más atributos!
-    Arroz 1.25
-    Agua 0.3
-    Mantequilla 3.56
-    Queso 8.56
+          ¡Consulta todos los productos con más atributos!
+          Arroz 1.25
+          Agua 0.3
+          Mantequilla 3.56
+          Queso 8.56
 
-    ¡Consulta de producto en base a su clave primaria!
-    Arroz
+          ¡Consulta de producto en base a su clave primaria!
+          Arroz
 
-    ¡Consulta de productos lácteos!
-    Mantequilla
-    Queso
+          ¡Consulta de productos lácteos!
+          Mantequilla
+          Queso
 
-    ¡Otra consulta de productos lácteos!
-    3, Mantequilla, Lácteos
-    4, Queso, Lácteos
+          ¡Otra consulta de productos lácteos!
+          3, Mantequilla, Lácteos
+          4, Queso, Lácteos
 
-    ¡Consulta del primer producto!
-    Mantequilla
+          ¡Consulta del primer producto!
+          Mantequilla
 
-    ¡Consulta del único producto!
-    Agua
+          ¡Consulta del único producto!
+          Agua
 
-    ¡Consulta los productos cuyos nombres coincidan con los suministrados!
-    Arroz
-    Agua
+          ¡Consulta los productos cuyos nombres coincidan con los suministrados!
+          Arroz
+          Agua
 
-    ¡Actualiza el producto suministrado!
-    Precio anterior: Arroz 1.25
-    Precio nuevo: Arroz 11.5
-    ¡Actualización exitosa de precio del producto!
+          ¡Actualiza el producto suministrado!
+          Precio anterior: Arroz 1.25
+          Precio nuevo: Arroz 11.5
+          ¡Actualización exitosa de precio del producto!
 
-    ¡Actualiza el producto suministrado!
-    ¡Actualización exitosa de precio del producto!
+          ¡Actualiza el producto suministrado!
+          ¡Actualización exitosa de precio del producto!
 
-    ¡Elimina los productos suministrados!
-    ¡Eliminación exitosa del producto!
+          ¡Elimina los productos suministrados!
+          ¡Eliminación exitosa del producto!
+
 
 Asi de esta forma puede ingresar, consultar, actualizar y eliminar registro en una
 tabla usando ``SQLAlchemy``.
 
+
 ----
+
 
 .. seealso::
 
@@ -779,8 +881,9 @@ tabla usando ``SQLAlchemy``.
 .. raw:: html
    :file: ../_templates/partials/soporte_profesional.html
 
+
 ..
-    .. disqus::
+  .. disqus::
 
 .. _`SQLAlchemy`: https://pypi.org/project/SQLAlchemy/
 .. _`MongoDB`: https://www.mongodb.com/
