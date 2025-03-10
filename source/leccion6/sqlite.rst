@@ -5,10 +5,10 @@ SQLite
 
 .. note::
     **Propósito:** es una libraría proporciona una interfaz SQL compatible con
-    la especificación :ref:`DB-API 2.0 <python_dbapi>` requiere SQLite 3.7.15 o
+    la especificación :ref:`DB-API 2.0 <python_dbapi>` requiere `SQLite`_, 3.7.15 o
     posterior.
 
-`SQLite`_, es una libraría de C que provee una base de datos ligera basada en
+`sqlite3`_, es una libraría de C que provee una base de datos ligera basada en
 disco que no requiere un proceso de servidor separado y permite acceder a la base
 de datos usando una variación no estándar del lenguaje de consulta SQL.
 
@@ -481,10 +481,11 @@ Si requiere consultar registros de tabla, a continuación tiene un ejemplo:
 
                 Id: 4
                 Nombre: Liliana Andradez
-                Código postal: 4001
+                Código postal: 3105
                 Teléfono: +58-414-6782473
 
         INFO:root:✅ ¡La conexión SQLite a la base de datos 'sistema.db' fue cerrada!
+
 
 De esta forma puede consultar registros en una tabla dentro una base de datos ``SQLite``.
 
@@ -538,6 +539,7 @@ Si requiere actualizar registro de tabla, a continuación tiene un ejemplo:
         INFO:root:✅ ¡Fueron actualizado(s) 2 registro(s) correctamente en la tabla!
 
         INFO:root:✅ ¡La conexión SQLite a la base de datos 'sistema.db' fue cerrada!
+
 
 De esta forma puede actualizar registros en una tabla dentro una base de datos ``SQLite``.
 
@@ -721,7 +723,7 @@ sistema operativo:
 
           INFO:root:✅ ¡Fueron insertado(s) 1 registro(s) correctamente en la tabla!
 
-          📜 Total de filas son: 3
+          📜 Total de filas son: 4
 
           📜 Mostrar cada fila:
 
@@ -739,6 +741,11 @@ sistema operativo:
                   Nombre: Manuel Matos
                   Código postal: 4001
                   Teléfono: +58-414-2360943
+
+                  Id: 4
+                  Nombre: Liliana Andradez
+                  Código postal: 3105
+                  Teléfono: +58-414-6782473
 
           INFO:root:✅ ¡Fueron actualizado(s) 2 registro(s) correctamente en la tabla!
 
@@ -835,7 +842,7 @@ sistema operativo:
 
           INFO:root:✅ ¡Fueron insertado(s) 1 registro(s) correctamente en la tabla!
 
-          📜 Total de filas son: 3
+          📜 Total de filas son: 4
 
           📜 Mostrar cada fila:
 
@@ -853,6 +860,11 @@ sistema operativo:
                   Nombre: Manuel Matos
                   Código postal: 4001
                   Teléfono: +58-414-2360943
+
+                  Id: 4
+                  Nombre: Liliana Andradez
+                  Código postal: 3105
+                  Teléfono: +58-414-6782473
 
           INFO:root:✅ ¡Fueron actualizado(s) 2 registro(s) correctamente en la tabla!
 
