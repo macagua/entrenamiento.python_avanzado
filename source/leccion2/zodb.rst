@@ -305,8 +305,8 @@ el siguiente comando:
             --debug           enable debug logging
             --rw              open the database read-write (default: read-only)
 
-      Si tiene disponibles el comando ``zodbbrowser``, tiene correctamente instalada el cliente
-      de base de datos nativa ``ZODB`` por linea de comando.
+      Si tiene disponibles el comando :command:`zodbbrowser`, tiene correctamente instalada el cliente
+      de base de datos nativa ``ZODB`` por línea de comando.
 
       .. note::
 
@@ -339,14 +339,14 @@ el siguiente comando:
             --debug           enable debug logging
             --rw              open the database read-write (default: read-only)
 
-      Si tiene disponibles el comando ``zodbbrowser``, tiene correctamente instalada el cliente
-      de base de datos nativa ``ZODB`` por linea de comando.
+      Si tiene disponibles el comando :command:`zodbbrowser`, tiene correctamente instalada el cliente
+      de base de datos nativa ``ZODB`` por línea de comando.
 
       .. note::
 
         Más información consulte https://pypi.org/project/zodbbrowser/
 
-Ejecute el comando ``zodbrowser`` especificando un nombre de archivo ZODB, ejecutando el siguiente comando:
+Ejecute el comando :command:`zodbrowser` especificando un nombre de archivo ``ZODB``, ejecutando el siguiente comando:
 
 .. tabs::
 
@@ -426,15 +426,15 @@ para una base de datos ``ZODB``:
 
 El ejemplo anterior se describe a continuación:
 
-- En la linea 1, se importa la librería ``os`` de la librería estándar Python.
+- En la línea 1, se importa la librería ``os`` de la librería estándar Python.
 
-- En la linea 2, se importa la librería ``ZODB`` de la librería estándar Python.
+- En la línea 2, se importa la librería ``ZODB`` de la librería estándar Python.
 
-- En la linea 4, se define en la constante ``DB_PATH`` la ruta absoluta usada para guardar la base de datos.
+- En la línea 4, se define en la constante ``DB_PATH`` la ruta absoluta usada para guardar la base de datos.
 
-- En la linea 5, se define en la constante ``DB_FILE`` el nombre de la base de datos.
+- En la línea 5, se define en la constante ``DB_FILE`` el nombre de la base de datos.
 
-- En la linea 6, se define en la constante ``DB`` la ruta completa usada para leer la base de datos.
+- En la línea 6, se define en la constante ``DB`` la ruta completa usada para leer la base de datos.
 
 De esta forma se crea una cadena de conexión para ``ZODB`` para ser usada por el método ``open``.
 
@@ -800,7 +800,7 @@ sistema operativo:
           pip3 install -r requirements.txt
 
       .. tip::
-        Para ejecutar el código fuente de esta practica debe invocar al Módulo :file:`main.py`,
+        Para ejecutar el código fuente de esta práctica debe invocar al módulo :file:`main.py`,
         abra una consola de comando, acceda al directorio donde se encuentra la estructura previa
         y ejecute el siguiente comando:
 
@@ -875,7 +875,7 @@ sistema operativo:
           pip3 install -r requirements.txt
 
       .. tip::
-        Para ejecutar el código fuente de esta practica debe invocar al Módulo :file:`main.py`,
+        Para ejecutar el código fuente de esta práctica debe invocar al módulo :file:`main.py`,
         abra una consola de comando, acceda al directorio donde se encuentra la estructura previa
         y ejecute el siguiente comando:
 
