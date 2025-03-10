@@ -55,7 +55,7 @@ def consultar_registro(conn, nodo_raiz):
     if "productos" in nodo_raiz and nodo_raiz["productos"]:
         for i, producto in enumerate(nodo_raiz["productos"]):
             cantidad_nodo = i + 1
-            print(f"  Producto {i + 1}:")
+            print(f"📜 Producto {i + 1}:")
             print(f"    ID: {producto.id}")
             print(f"    Descripción: {producto.descripcion}")
     else:

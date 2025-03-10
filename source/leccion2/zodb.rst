@@ -728,17 +728,19 @@ A continuación se presenta una práctica más real de implementar el uso de pro
 con ``ZODB``, a continuación la estructura de proyecto llamado ``sistema``:
 
 .. code-block:: console
+    :class: no-copy
 
-    zodb/
-    └── sistema/
-        ├── classes/
-        │   ├── __init__.py
-        │   ├── cliente.py
-        │   └── producto.py
-        ├── __init__.py
-        ├── main.py
-        ├── requirements.txt
-        └── settings.py
+    proyectos/
+    └── zodb/
+        └── sistema/
+            ├── classes/
+            │   ├── __init__.py
+            │   ├── cliente.py
+            │   └── producto.py
+            ├── __init__.py
+            ├── main.py
+            ├── requirements.txt
+            └── settings.py
 
 
 A continuación se presenta y explica el uso de cada archivo para este proyecto:
@@ -849,22 +851,24 @@ sistema operativo:
       La ejecucion anterior generar la siguiente estructura:
 
       .. code-block:: console
+          :class: no-copy
 
-          zodb/
-          └── sistema/
-              ├── classes/
-              │   ├── __init__.py
-              │   ├── cliente.py
-              │   └── producto.py
-              ├── filestorage/
-              │   ├── inventario.fs
-              │   ├── inventario.fs.index
-              │   ├── inventario.fs.lock
-              │   └── inventario.fs.tmp
-              ├── __init__.py
-              ├── main.py
-              ├── requirements.txt
-              └── settings.py
+          proyectos/
+          └── zodb/
+              └── sistema/
+                  ├── classes/
+                  │   ├── __init__.py
+                  │   ├── cliente.py
+                  │   └── producto.py
+                  ├── filestorage/
+                  │   ├── inventario.fs
+                  │   ├── inventario.fs.index
+                  │   ├── inventario.fs.lock
+                  │   └── inventario.fs.tmp
+                  ├── __init__.py
+                  ├── main.py
+                  ├── requirements.txt
+                  └── settings.py
 
    .. group-tab:: Windows
 
@@ -916,22 +920,24 @@ sistema operativo:
       La ejecucion anterior generar la siguiente estructura:
 
       .. code-block:: console
+          :class: no-copy
 
-          zodb/
-          └── sistema/
-              ├── classes/
-              │   ├── __init__.py
-              │   ├── cliente.py
-              │   └── producto.py
-              ├── filestorage/
-              │   ├── inventario.fs
-              │   ├── inventario.fs.index
-              │   ├── inventario.fs.lock
-              │   └── inventario.fs.tmp
-              ├── __init__.py
-              ├── main.py
-              ├── requirements.txt
-              └── settings.py
+          proyectos/
+          └── zodb/
+              └── sistema/
+                  ├── classes/
+                  │   ├── __init__.py
+                  │   ├── cliente.py
+                  │   └── producto.py
+                  ├── filestorage/
+                  │   ├── inventario.fs
+                  │   ├── inventario.fs.index
+                  │   ├── inventario.fs.lock
+                  │   └── inventario.fs.tmp
+                  ├── __init__.py
+                  ├── main.py
+                  ├── requirements.txt
+                  └── settings.py
 
 Asi de esta forma puede ingresar, consultar, actualizar y eliminar
 registro en un archivo serializado de objetos python ``ZODB``.
