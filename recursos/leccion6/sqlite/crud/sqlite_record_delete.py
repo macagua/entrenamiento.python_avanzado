@@ -32,7 +32,9 @@ def eliminar_registro():
         # Cerrar el cursor
         cursor.close()
     except sqlite3.Error as error:
-        logging.error(f"❌ ¡Fallo la eliminación de registro(s) en la tabla!: {error}")
+        logging.error(
+            f"❌ ERROR: ¡Fallo la eliminación de registro(s) en la tabla!: {error}"
+        )
     finally:
         if conexion:
             # Cerrar la conexión a la base de datos

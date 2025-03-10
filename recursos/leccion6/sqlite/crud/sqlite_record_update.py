@@ -16,7 +16,8 @@ MULTIPLE_COLUMNS = [
     ("6303", 2),
 ]
 
-SQL_SCRIPTS = """UPDATE clientes SET codigo_postal = ? WHERE id = ?;"""
+# Script UPDATE SQL a usar al actualizar datos
+UPDATE_SCRIPTS = """UPDATE clientes SET codigo_postal = ? WHERE id = ?;"""
 
 
 def actualizar_registro():
@@ -24,22 +25,24 @@ def actualizar_registro():
 
     conexion = None
     try:
-        # Crear la instancia de DB y pasar el nombre del archivo
+        # Establecer la conexión con la base de datos
         conexion = sqlite3.connect(DB)
         # Crear un cursor para la base de datos
         cursor = conexion.cursor()
         logging.info(f"✅ ¡Conectado a la base de datos '{DB_FILE}'!\n")
-        # Ejecutar SQL
-        cursor.executemany(SQL_SCRIPTS, MULTIPLE_COLUMNS)
+        # Actualizar nuevos registros en la tabla
+        cursor.executemany(UPDATE_SCRIPTS, MULTIPLE_COLUMNS)
         # Guardar los cambios en la base de datos
         conexion.commit()
         logging.info(
             f"✅ ¡Fueron actualizado(s) {cursor.rowcount} registro(s) correctamente en la tabla!\n"
         )
-        # Cerrar cursor
+        # Cerrar el cursor
         cursor.close()
     except sqlite3.Error as error:
-        logging.error(f"❌ ¡Fallo la actualización de registro(s) en la tabla!: {error}")
+        logging.error(
+            f"❌ ERROR: ¡Fallo la actualización de registro(s) en la tabla!: {error}"
+        )
     finally:
         if conexion:
             # Cerrar la conexión a la base de datos

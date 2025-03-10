@@ -55,7 +55,7 @@ def crear_tablas(conexion_bd, create_table_sql):
         cursor = conexion_bd.cursor()
         # Crear la tabla(s) si no existe
         cursor.execute(create_table_sql)
-        # Confirmar la creación de la tabla
+        # Hacer persistentes los cambios en la base de datos
         conexion_bd.commit()
         if cursor.rowcount == -1:
             logging.info(f"✅ ¡Las tabla(s) ya existen en la base de datos!\n")
@@ -66,7 +66,9 @@ def crear_tablas(conexion_bd, create_table_sql):
         # Cerrar el cursor
         cursor.close()
     except Error as error:
-        logging.error(f"❌ ERROR: ¡Fallo la creación de tabla(s) en la base de datos!: {error}")
+        logging.error(
+            f"❌ ERROR: ¡Fallo la creación de tabla(s) en la base de datos!: {error}"
+        )
 
 
 def insertar_registro(conexion_bd, insert_values, insert_sql):
@@ -82,7 +84,14 @@ def insertar_registro(conexion_bd, insert_values, insert_sql):
         cursor = conexion_bd.cursor()
         # Insertar nuevos registros en la tabla
         cursor.executemany(insert_sql, insert_values)
-        # Confirmar la inserción de los registros
+        logging.info(
+            f"✅ ¡Fueron insertado(s) {cursor.rowcount} registro(s) correctamente en la tabla!\n"
+        )
+        # Insertar un nuevo registro en la tabla
+        cursor.execute(
+            INSERT_SQL_SCRIPTS, (4, "Liliana", "Andradez", "4001", "+58-414-6782473")
+        )
+        # Hacer persistentes los cambios en la base de datos
         conexion_bd.commit()
         logging.info(
             f"✅ ¡Fueron insertado(s) {cursor.rowcount} registro(s) correctamente en la tabla!"
@@ -90,7 +99,9 @@ def insertar_registro(conexion_bd, insert_values, insert_sql):
         # Cerrar el cursor
         cursor.close()
     except Error as error:
-        logging.error(f"❌ ERROR: ¡Fallo la inserción de registro(s) en la tabla!: {error}")
+        logging.error(
+            f"❌ ERROR: ¡Fallo la inserción de registro(s) en la tabla!: {error}\n"
+        )
 
 
 def consultar_registro(conexion_bd, select_sql):
@@ -118,7 +129,9 @@ def consultar_registro(conexion_bd, select_sql):
         # Cerrar el cursor
         cursor.close()
     except Error as error:
-        logging.error(f"❌ ERROR: ¡Fallo la consulta de registro(s) en la tabla!: {error}")
+        logging.error(
+            f"❌ ERROR: ¡Fallo la consulta de registro(s) en la tabla!: {error}"
+        )
 
 
 def actualizar_registro(conexion_bd, update_values, update_sql):
@@ -127,14 +140,14 @@ def actualizar_registro(conexion_bd, update_values, update_sql):
     Args:
         conexion_bd (Connection): Representación conexión a la base de datos SQLite
         update_values (list): Lista de filas a actualizar
-        update_sql (str): _description_
+        update_sql (str): Script UPDATE SQL a usar al actualizar datos
     """
     try:
         # Crear un objeto cursor para ejecutar script SQL
         cursor = conexion_bd.cursor()
         # Actualizar nuevos registros en la tabla
         cursor.executemany(update_sql, update_values)
-        # Guardar los cambios en la base de datos
+        # Hacer persistentes los cambios en la base de datos
         conexion_bd.commit()
         logging.info(
             f"✅ ¡Fueron actualizado(s) {cursor.rowcount} registro(s) correctamente en la tabla!\n"
@@ -142,7 +155,9 @@ def actualizar_registro(conexion_bd, update_values, update_sql):
         # Cerrar el cursor
         cursor.close()
     except Error as error:
-        logging.error(f"❌ ERROR: ¡Fallo la actualización de registro(s) en la tabla!: {error}")
+        logging.error(
+            f"❌ ERROR: ¡Fallo la actualización de registro(s) en la tabla!: {error}"
+        )
 
 
 def eliminar_registro(conexion_bd, delete_sql):
@@ -157,13 +172,15 @@ def eliminar_registro(conexion_bd, delete_sql):
         cursor = conexion_bd.cursor()
         # Eliminar un fila de registro simple
         cursor.execute(delete_sql)
-        # Guardar los cambios en la base de datos
+        # Hacer persistentes los cambios en la base de datos
         conexion_bd.commit()
         logging.info("✅ ¡Registro eliminado correctamente!\n")
         # Cerrar el cursor
         cursor.close()
     except Error as error:
-        logging.error(f"❌ ERROR: ¡Fallo la eliminación de registro(s) en la tabla!: {error}\n")
+        logging.error(
+            f"❌ ERROR: ¡Fallo la eliminación de registro(s) en la tabla!: {error}\n"
+        )
 
 
 if __name__ == "__main__":

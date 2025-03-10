@@ -6,7 +6,7 @@ load_dotenv()
 # Nombre del archivo de base de datos.
 DB_FILE = os.getenv("DB")
 
-# Script CREATE TABLE SQL para crear tabla clientes
+# Script CREATE TABLE SQL para crear tabla(s)
 CREATE_TABLE_SQL = """
 CREATE TABLE IF NOT EXISTS clientes (
     id INTEGER UNIQUE NOT NULL,

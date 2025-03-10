@@ -368,7 +368,7 @@ Si requiere insertar registro en una tabla, a continuación tiene un ejemplo:
 .. literalinclude:: ../../recursos/leccion6/sqlite/crud/sqlite_record_insert.py
     :language: python
     :linenos:
-    :lines: 1-79
+    :lines: 1-84
 
 
 .. important::
@@ -403,6 +403,8 @@ Si requiere insertar registro en una tabla, a continuación tiene un ejemplo:
 
         INFO:root:✅ ¡Conectado a la base de datos 'sistema.db'!
 
+        INFO:root:✅ ¡Fue creo una tabla correctamente en la base de datos 'sistema.db'!
+
         INFO:root:✅ ¡Fueron insertado(s) 3 registro(s) correctamente en la tabla!
 
         INFO:root:✅ ¡Fueron insertado(s) 1 registro(s) correctamente en la tabla!
@@ -423,7 +425,7 @@ Si requiere consultar registros de tabla, a continuación tiene un ejemplo:
 .. literalinclude:: ../../recursos/leccion6/sqlite/crud/sqlite_record_select.py
     :language: python
     :linenos:
-    :lines: 1-51
+    :lines: 1-55
 
 
 .. important::
@@ -498,7 +500,7 @@ Si requiere actualizar registro de tabla, a continuación tiene un ejemplo:
 .. literalinclude:: ../../recursos/leccion6/sqlite/crud/sqlite_record_update.py
     :language: python
     :linenos:
-    :lines: 1-53
+    :lines: 1-56
 
 
 .. important::
@@ -551,7 +553,7 @@ Si requiere eliminar registro de tabla, a continuación tiene un ejemplo:
 .. literalinclude:: ../../recursos/leccion6/sqlite/crud/sqlite_record_delete.py
     :language: python
     :linenos:
-    :lines: 1-46
+    :lines: 1-48
 
 
 .. important::
@@ -648,7 +650,7 @@ Módulo de principal del programa.
 .. literalinclude:: ../../recursos/leccion6/sqlite/sistema/main.py
     :language: python
     :linenos:
-    :lines: 1-190
+    :lines: 1-207
 
 
 ----
@@ -716,6 +718,8 @@ sistema operativo:
           INFO:root:✅ ¡Conexión a la base de datos 'sistema.db' fue exitosa!
 
           INFO:root:✅ ¡Fueron insertado(s) 3 registro(s) correctamente en la tabla!
+
+          INFO:root:✅ ¡Fueron insertado(s) 1 registro(s) correctamente en la tabla!
 
           📜 Total de filas son: 3
 
@@ -828,6 +832,8 @@ sistema operativo:
           INFO:root:✅ ¡Conexión a la base de datos 'sistema.db' fue exitosa!
 
           INFO:root:✅ ¡Fueron insertado(s) 3 registro(s) correctamente en la tabla!
+
+          INFO:root:✅ ¡Fueron insertado(s) 1 registro(s) correctamente en la tabla!
 
           📜 Total de filas son: 3
 

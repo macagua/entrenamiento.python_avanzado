@@ -39,7 +39,9 @@ def consultar_registro():
         # Cerrar el cursor
         cursor.close()
     except sqlite3.Error as error:
-        logging.error(f"❌ ¡Fallo la consulta de registro(s) en la tabla!: {error}")
+        logging.error(
+            f"❌ ERROR: ¡Fallo la consulta de registro(s) en la tabla!: {error}"
+        )
     finally:
         if conexion:
             # Cerrar la conexión a la base de datos

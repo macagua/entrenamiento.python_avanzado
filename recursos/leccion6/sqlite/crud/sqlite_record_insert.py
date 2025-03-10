@@ -46,6 +46,9 @@ def insertar_registro():
         cursor.execute(CREATE_TABLE_SQL)
         # Confirmar la creación de la tabla
         conexion.commit()
+        logging.info(
+            f"✅ ¡Fue creo una tabla correctamente en la base de datos '{DB_FILE}'!\n"
+        )
         # Insertar nuevos registros en la tabla
         cursor.executemany(INSERT_SQL, MULTIPLE_COLUMNS)
         # Confirmar la inserción de los registros
@@ -65,7 +68,9 @@ def insertar_registro():
         # Cerrar el cursor
         cursor.close()
     except sqlite3.Error as error:
-        logging.error(f"❌ ¡Fallo la inserción de registro(s) en la tabla!: {error}")
+        logging.error(
+            f"❌ ERROR: ¡Fallo la inserción de registro(s) en la tabla!: {error}\n"
+        )
     finally:
         if conexion:
             # Cerrar la conexión a la base de datos
