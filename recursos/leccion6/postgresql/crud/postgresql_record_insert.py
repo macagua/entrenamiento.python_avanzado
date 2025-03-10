@@ -79,7 +79,9 @@ def insertar_registro():
         # Cerrar el cursor
         cursor.close()
     except psycopg2.errors.Error as error:
-        logging.error(f"❌ ERROR: ¡Fallo la inserción de registro(s) en la tabla!: {error}")
+        logging.error(
+            f"❌ ERROR: ¡Fallo la inserción de registro(s) en la tabla!: {error}"
+        )
     finally:
         if conexion:
             # Cerrar la conexión a la base de datos
