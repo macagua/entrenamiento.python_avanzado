@@ -51,7 +51,7 @@ con ``pickle`` para leer y escribir un archivo JSON basado en un tipo :ref:`dicc
 
 A continuación se presenta y explica el uso de cada archivo para este proyecto:
 
-*Archivo clientes.json*
+*Archivo* :file:`clientes.json`
 
 El archivo JSON creado que incluye la información de los clientes:
 
@@ -60,9 +60,9 @@ El archivo JSON creado que incluye la información de los clientes:
     :linenos:
     :lines: 1
 
-*Archivo main.py*
+*Archivo* :file:`main.py`
 
-Modulo de principal del programa.
+Módulo de principal del programa.
 
 .. literalinclude:: ../../recursos/leccion3/main.py
     :language: python
@@ -71,9 +71,12 @@ Modulo de principal del programa.
 
 
 .. important::
-    Usted puede descargar el código usado en esta sección haciendo clic en los
-    siguientes enlaces: :download:`clientes.json <../../recursos/leccion3/clientes.json>`
-    y :download:`main.py <../../recursos/leccion3/main.py>`.
+    Usted puede descargar el código usado en esta sección haciendo clic  en los
+    siguientes enlaces:
+
+    - :download:`clientes.json <../../recursos/leccion3/clientes.json>`.
+
+    - :download:`main.py <../../recursos/leccion3/main.py>`.
 
 
 .. tip::
@@ -90,13 +93,13 @@ Modulo de principal del programa.
 
     .. code-block:: console
 
-        $ python main.py
+        python3 main.py
 
 El anterior código al ejecutar debe mostrar el siguiente mensaje:
 
 .. code-block:: console
 
-    {'clientes': [{'nombre': 'Leonardo', 'apellido': 'Caballero', 'codigo_postal': '5001', 'telefono': '+58-412-4734567'}, {'nombre': 'Ana', 'apellido': 'Poleo', 'codigo_postal': '6302', 'telefono': '+58-426-5831297'}, {'nombre': 'Pedro', 'apellido': 'Lopez', 'codigo_postal': '4001', 'telefono': '+58-414-2360943'}]} <class 'dict'>
+    {'clientes': [{'nombre': 'Leonardo', 'apellido': 'Caballero', 'codigo_postal': '5001', 'telefono': '+58-412-4734567'}, {'nombre': 'Ana', 'apellido': 'Poleo', 'codigo_postal': '6302', 'telefono': '+58-426-5831297'}, {'nombre': 'Manuel', 'apellido': 'Matos', 'codigo_postal': '4001', 'telefono': '+58-414-2360943'}]} <class 'dict'>
 
     INFO:root:Se escribió un tipo diccionario en archivo JSON
 
@@ -114,11 +117,11 @@ El anterior código al ejecutar debe mostrar el siguiente mensaje:
     Teléfono: +58-426-5831297
     Datos detallados: {'nombre': 'Ana', 'apellido': 'Poleo', 'codigo_postal': '6302', 'telefono': '+58-426-5831297'}
 
-    Nombre: Pedro
-    Apellido: Lopez
+    Nombre: Manuel
+    Apellido: Matos
     Código postal: 4001
     Teléfono: +58-414-2360943
-    Datos detallados: {'nombre': 'Pedro', 'apellido': 'Lopez', 'codigo_postal': '4001', 'telefono': '+58-414-2360943'}
+    Datos detallados: {'nombre': 'Manuel', 'apellido': 'Matos', 'codigo_postal': '4001', 'telefono': '+58-414-2360943'}
 
 Asi de esta forma puede leer y escribir registros en un archivo JSON usando la librería ``json``.
 

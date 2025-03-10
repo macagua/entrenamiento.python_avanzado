@@ -19,7 +19,7 @@ def ingresar_data():
     session.add_all([agua, mantequilla, queso])
 
     session.commit()
-    print("¡Inserción exitosa de los 4 productos!\n")
+    print("✅ ¡Inserción exitosa de los 4 productos!\n")
 
 
 def consultar_data():
@@ -107,7 +107,7 @@ def actualizar_data(producto_id):
 
     session.add(producto)
     session.commit()
-    print("¡Actualización exitosa de precio del producto!\n")
+    print("✅ ¡Actualización exitosa de precio del producto!\n")
 
 
 def actualizar_otra_data(producto_id, precio_nuevo):
@@ -117,7 +117,7 @@ def actualizar_otra_data(producto_id, precio_nuevo):
         {Productos.precio: precio_nuevo}
     )
     session.commit()
-    print("¡Actualización exitosa de precio del producto!\n")
+    print("✅ ¡Actualización exitosa de precio del producto!\n")
 
 
 def eliminar_data(producto_id):
@@ -125,13 +125,13 @@ def eliminar_data(producto_id):
     # DELETE FROM productos WHERE id = 1;
     session.query(Productos).filter(Productos.id == producto_id).delete()
     session.commit()
-    print("¡Eliminación exitosa del producto!\n")
+    print("✅ ¡Eliminación exitosa del producto!\n")
 
 
 if __name__ == "__main__":
     Base.metadata.drop_all(engine)
     Base.metadata.create_all(engine)
-    print("¡Creación exitosa de la tabla productos!\n")
+    print("✅ ¡Creación exitosa de la tabla productos!\n")
     ingresar_data()
     consultar_data()
     consultar_id_data(1)

@@ -610,7 +610,7 @@ con ``sqlite3``, a continuación la estructura de proyecto llamado ``sqlite``:
 
 A continuación se presenta y explica el uso de cada archivo para este proyecto:
 
-*Archivo .env.example*
+*Archivo* :file:`.env.example`
 
 Archivo plantilla `dotenv`_ del paquete adicional `python-dotenv`_.
 
@@ -619,7 +619,7 @@ Archivo plantilla `dotenv`_ del paquete adicional `python-dotenv`_.
     :linenos:
     :lines: 1-2
 
-*Archivo requirements.txt*
+*Archivo* :file:`requirements.txt`
 
 Archivo de `requirements.txt`_ de la herramienta de gestión de paquetes `pip`_.
 
@@ -628,18 +628,18 @@ Archivo de `requirements.txt`_ de la herramienta de gestión de paquetes `pip`_.
     :linenos:
     :lines: 1-2
 
-*Archivo settings.py*
+*Archivo* :file:`settings.py`
 
-Modulo de configuraciones del programa.
+Módulo de configuraciones del programa.
 
 .. literalinclude:: ../../recursos/leccion6/sqlite/sistema/settings.py
     :language: python
     :linenos:
     :lines: 1-32
 
-*Archivo main.py*
+*Archivo* :file:`main.py`
 
-Modulo de principal del programa.
+Módulo de principal del programa.
 
 .. literalinclude:: ../../recursos/leccion6/sqlite/sistema/main.py
     :language: python
@@ -647,7 +647,7 @@ Modulo de principal del programa.
     :lines: 1-148
 
 
-*Archivo sistema.db*
+*Archivo* :file:`sistema.db`
 
 Archivo de base de datos de :ref:`SQLite <python_modulo_sqlite3>` llamado :file:`sistema.db`
 la cual no se incluye ya que cada vez que se inicia el programa :file:`main.py` se elimina y crea
@@ -671,7 +671,7 @@ sistema operativo:
 
           pip3 install -r requirements.txt
 
-      Ademas debe crear el archivo ``.env`` en base a la plantilla ``.env.example``
+      Además debe crear el archivo :file:`.env` en base a la plantilla :file:`.env.example``
       y editarlo, con el siguiente comando:
 
       .. code-block:: console
@@ -679,7 +679,7 @@ sistema operativo:
           cp .env.example .env && nano .env
 
       .. tip::
-        El archivo ``.env`` se definen las configuraciones de conexión a la base de datos,
+        El archivo :file:`.env` se definen las configuraciones de conexión a la base de datos,
         puede modificarlo cambiar valores de la conexión.
 
       .. tip::
@@ -752,21 +752,21 @@ sistema operativo:
 
           pip3 install -r requirements.txt
 
-      Ademas debe crear el archivo ``.env`` en base a la plantilla ``env.example`` , con
+      Además debe crear el archivo :file:`.env` en base a la plantilla :file:`.env.example` , con
       el siguiente comando:
 
       .. code-block:: console
 
           copy .env.example .env
 
-      Editar el archivo ``.env``, con el siguiente comando:
+      Editar el archivo :file:`.env`, con el siguiente comando:
 
       .. code-block:: console
 
           notepad.exe .env &
 
       .. tip::
-        El archivo ``.env`` se definen las configuraciones de conexión a la base de datos,
+        El archivo :file:`.env` se definen las configuraciones de conexión a la base de datos,
         puede modificarlo cambiar valores de la conexión.
 
       .. tip::

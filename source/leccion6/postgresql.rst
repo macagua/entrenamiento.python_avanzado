@@ -106,7 +106,7 @@ el siguiente comando correspondiente a tu sistema operativo:
           python3 -c "import psycopg2 ; print(psycopg2.__version__)"
 
 
-Si muestra el numero de la versión instalada de ``psycopg2``, tiene correctamente instalada
+Si muestra el número de la versión instalada de ``psycopg2``, tiene correctamente instalada
 la paquete. Con esto, ya tiene todo listo para continuar.
 
 
@@ -333,7 +333,7 @@ el siguiente comando correspondiente a tu sistema operativo:
 
           docker exec -it postgresql psql -U postgres -c "SELECT usename, passwd FROM pg_shadow;"
 
-Puede probar si la tabla ``clientes`` en la base de datos ``sistema`` fue creada correctamente, ademas
+Puede probar si la tabla ``clientes`` en la base de datos ``sistema`` fue creada correctamente, además
 si sus registros fueron cargados en la tabla, ejecutando el siguiente comando correspondiente a tu sistema operativo:
 
 .. tabs::
@@ -558,10 +558,10 @@ con ``PostgreSQL``, a continuación la estructura de proyecto llamado ``PostgreS
 
 A continuación se presenta y explica el uso de cada archivo para este proyecto:
 
-*Archivo .env.example*
+*Archivo* :file:`.env.example`
 
 Archivo plantilla `dotenv`_, es un archivo de *configuración de variables de entorno*
-para el proyecto. Ademas, es usado para  `establecer variables de entorno`_ con
+para el proyecto. Además, es usado para `establecer variables de entorno`_ con
 ``Docker``, `Docker Compose`_ y del paquete adicional `python-dotenv`_.
 
 .. literalinclude:: ../../recursos/leccion6/postgresql/sistema/.env.example
@@ -569,7 +569,7 @@ para el proyecto. Ademas, es usado para  `establecer variables de entorno`_ con
     :linenos:
     :lines: 1-8
 
-*Archivo requirements.txt*
+*Archivo* :file:`requirements.txt`
 
 Archivo de `requirements.txt`_ de la herramienta de gestión de paquetes `pip`_.
 
@@ -578,25 +578,25 @@ Archivo de `requirements.txt`_ de la herramienta de gestión de paquetes `pip`_.
     :linenos:
     :lines: 1-3
 
-*Archivo settings.py*
+*Archivo* :file:`settings.py`
 
-Modulo de configuraciones del programa.
+Módulo de configuraciones del programa.
 
 .. literalinclude:: ../../recursos/leccion6/postgresql/sistema/settings.py
     :language: python
     :linenos:
     :lines: 1-58
 
-*Archivo main.py*
+*Archivo* :file:`main.py`
 
-Modulo de principal del programa.
+Módulo de principal del programa.
 
 .. literalinclude:: ../../recursos/leccion6/postgresql/sistema/main.py
     :language: python
     :linenos:
     :lines: 1-201
 
-*Archivo docker-compose.yml*
+*Archivo* :file:`docker-compose.yml`
 
 Para instalar el servidor ``PostgreSQL`` existen varias formas de realizarlo, para en este caso
 se realizara con la tecnología `Docker`_. Esto significa que debe instalar en tu sistema operativo:
@@ -604,10 +604,10 @@ se realizara con la tecnología `Docker`_. Esto significa que debe instalar en t
 - `Docker Compose`_.
 
 El primer paso para configurar un entorno de desarrollo con ``Docker Compose`` es crear el archivo
-de configuración ``docker-compose.yml``. Este archivo define los servicios, contenedores, redes y
+de configuración :file:`docker-compose.yml`. Este archivo define los servicios, contenedores, redes y
 volúmenes necesarios para tu aplicación.
 
-A continuación se presenta el archivo ``docker-compose.yml`` con la configuración necesaria:
+A continuación se presenta el archivo :file:`docker-compose.yml` con la configuración necesaria:
 
 .. literalinclude:: ../../recursos/leccion6/postgresql/sistema/docker-compose.yml
     :language: yaml
@@ -648,7 +648,7 @@ configuración y ejecución del código fuente.
 
           pip3 install -r requirements.txt
 
-      Ademas debe crear el archivo ``.env`` en base a la plantilla ``.env.example``
+      Además debe crear el archivo :file:`.env` en base a la plantilla :file:`.env.example``
       y editarlo, con el siguiente comando:
 
       .. code-block:: console
@@ -656,14 +656,14 @@ configuración y ejecución del código fuente.
           cp .env.example .env && nano .env
 
       .. tip::
-        El archivo ``.env`` se definen las configuraciones de conexión a la base de datos,
+        El archivo :file:`.env` se definen las configuraciones de conexión a la base de datos,
         puede modificarlo cambiar valores de la conexión.
 
-      Debe crear y editar el archivo ``docker-compose.yml``, con el siguiente comando:
+      Debe crear y editar el archivo :file:`docker-compose.yml`, con el siguiente comando:
 
       .. tip::
         Para ejecutar el comando del instalador del servidor ``PostgreSQL`` con `Docker`_ debe crear
-        un archivo llamado ``docker-compose.yml`` en el directorio ``sistema/`` con el contenido
+        un archivo llamado :file:`docker-compose.yml` en el directorio ``sistema/`` con el contenido
         anterior de dicho archivo, ejecutando el siguiente comando:
 
       .. code-block:: console
@@ -738,28 +738,28 @@ configuración y ejecución del código fuente.
 
           pip3 install -r requirements.txt
 
-      Ademas debe crear el archivo ``.env`` en base a la plantilla ``env.example`` , con
+      Además debe crear el archivo :file:`.env` en base a la plantilla :file:`.env.example` , con
       el siguiente comando:
 
       .. code-block:: console
 
           copy .env.example .env
 
-      Editar el archivo ``.env``, con el siguiente comando:
+      Editar el archivo :file:`.env`, con el siguiente comando:
 
       .. code-block:: console
 
           notepad.exe .env &
 
       .. tip::
-        El archivo ``.env`` se definen las configuraciones de conexión a la base de datos,
+        El archivo :file:`.env` se definen las configuraciones de conexión a la base de datos,
         puede modificarlo cambiar valores de la conexión.
 
-      Debe crear y editar el archivo ``docker-compose.yml``, con el siguiente comando:
+      Debe crear y editar el archivo :file:`docker-compose.yml`, con el siguiente comando:
 
       .. tip::
         Para ejecutar el comando del instalador del servidor ``PostgreSQL`` con `Docker`_ debe crear
-        un archivo llamado ``docker-compose.yml`` en el directorio ``sistema/`` con el contenido
+        un archivo llamado :file:`docker-compose.yml` en el directorio ``sistema/`` con el contenido
         anterior, ejecutando el siguiente comando:
 
       .. code-block:: console
@@ -848,7 +848,7 @@ tabla usando ``PostgreSQL``.
     - :download:`settings.py <../../recursos/leccion6/postgresql/sistema/settings.py>`.
 
 
-Asi de esta forma puede replicar una practica real de un proyecto para realizar operaciones
+Asi de esta forma puede replicar una práctica real de un proyecto para realizar operaciones
 en una base de datos ``PostgreSQL``, aplicando buenas prácticas de código funcional.
 
 

@@ -22,12 +22,12 @@ class Producto:
     def __str__(self):
         """Método de representación de informal del objeto,
         usado para crear la salida que se le mostrará al usuario"""
-        return f"Id: {self.id}\nDescripción: {self.descripcion}"
+        return f"({self.__class__.__name__}) Id: {self.id}, Descripción: {self.descripcion}."
 
     def __repr__(self):
         """Método de representación de formal del objeto,
         usado para depuración y desarrollo"""
-        return f"{self.__class__.__name__}:({repr(self.id)}, {repr(self.descripcion)})"
+        return f"<{self.__class__.__name__}:(id={repr(self.id)}, Descripción={repr(self.descripcion)})>"
 
 
 class Inventario:
@@ -45,12 +45,12 @@ class Inventario:
     def __str__(self):
         """Método de representación de informal del objeto,
         usado para crear la salida que se le mostrará al usuario"""
-        return f"Ruta BD: {self.archivo}"
+        return f"({self.__class__.__name__}) Ruta BD: '{self.archivo}'."
 
     def __repr__(self):
         """Método de representación de formal del objeto,
         usado para depuración y desarrollo"""
-        return f"{self.__class__.__name__}:({repr(self.archivo)})"
+        return f"<{self.__class__.__name__}:(BD={repr(self.archivo)})>"
 
     def leer_datos(self):
         """Leer el archivo de almacenamiento"""

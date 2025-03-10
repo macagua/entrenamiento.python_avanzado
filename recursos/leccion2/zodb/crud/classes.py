@@ -1,4 +1,4 @@
-"""Módulo de clase Producto"""
+"""Módulo de Clases"""
 
 import persistent
 

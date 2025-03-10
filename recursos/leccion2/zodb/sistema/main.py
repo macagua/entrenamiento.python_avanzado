@@ -1,109 +1,151 @@
-"""Modulo de Clase ZODB"""
+"""Programa para operaciones CRUD de registros de productos de un Inventario con ZODB"""
 
 import logging
 import transaction
-
-from settings import *
+from settings import (
+    DB,
+    DB_FILE,
+    DB_FILE_NAME,
+    INSERT_MULTIPLE_COLUMNS,
+    UPDATE_MULTIPLE_COLUMNS,
+    DELETE_MULTIPLE_COLUMNS,
+)
 from classes.producto import Producto
 from ZODB.POSException import StorageError
 
-def crear_conexion(ruta):
-    """Crear conexión con un servidor SQLite
+logging.basicConfig(level=logging.INFO)
+
+
+def insertar_registro(conn, nodo_raiz, registros):
+    """Función para la inserción dek nodo de la base de datos
 
     Args:
-        ruta (str): La ruta completa usada para leer la base de datos
-
-    Returns:
-        root (Connection): Representación conexión a la base de datos SQLite
-    """
-    try:
-        connection = DB.open()
-        root = connection.root()
-        logging.info(
-            f"¡Conexión a la base de datos '{os.path.basename(ruta)}' fue exitosa!\n"
-        )
-    except StorageError as e:
-        print(f"ERROR: ¡Se produjo una falla al almacenar: '{e}'!")
-
-    return root
-
-
-#def insertar_registro(bd, registros):
-def insertar_registro(bd, raiz, registros):
-    """Función para la inserción de registro de la tabla
-
-    Args:
-        bd (Connection): Representación conexión a la base de datos ZODB
+        conn (Connection): Representación conexión a la base de datos ZODB
+        nodo_raiz (list): Nodo raiz de la base de datos
         registros (list): Lista de filas a ingresar
     """
-
     try:
-        print("Listado de productos\n")
+        if "productos" not in nodo_raiz:
+            nodo_raiz["productos"] = []
         for registro in registros:
             producto = Producto(registro[0], registro[1])
-            #raiz['productos'] = producto
-            raiz['productos'].append(producto)
-            transaction.commit()
-            print(raiz['productos'])
-            print("Tipo de dato: {} ({})\n".format(
-                Producto.__name__, type(raiz['productos'])
-                )
-            )
+            nodo_raiz["productos"].append(producto)
+        # Guardar los cambios en la base de datos
+        transaction.commit()
+        # print(nodo_raiz["productos"])
         logging.info(
-            "¡Fueron insertado(s) {} registro(s) correctamente en la tabla!\n".format(
-                len(registros)
-            )
+            f"✅ ¡Fueron insertado(s) {len(registros)} registro(s) correctamente en la ZODB!\n"
         )
-        bd.close()
     except StorageError as error:
-        print("¡Fallo la inserción de registro(s) en la tabla!", error)
-
-def consultar_registro(bd, raiz):
-    print(raiz.items())
-    print(f"Total de productos en Inventario: {raiz.__len__()}")
-
-def actualizar_registro(raiz, registros):
-    print(raiz['productos'].descripcion)
-    raiz['productos'].descripcion='Camioneta'
-    transaction.commit()
-
-def eliminar_registro(raiz):
-    pass
+        logging.error(f"❌ ¡Fallo la inserción de registro(s) en la ZODB!: {error}")
 
 
-# connection = DB.open()
-# root = connection.root()
+def consultar_registro(conn, nodo_raiz):
+    """Muestra todos los productos de la base de datos
 
-# producto1 = Producto(1, "Carro")
-# root['producto1'] = producto1
+    Args:
+        conn (Connection): Representación conexión a la base de datos ZODB
+        nodo_raiz (list): Nodo raiz de la base de datos
+    """
+    # Mostrar los nodos de la DB
+    print("📜 Lista de registros:\n")
+    # Mostrar los elementos de nodos
+    cantidad_nodo = 0
+    # Si es el nodo 'productos' existe
+    if "productos" in nodo_raiz and nodo_raiz["productos"]:
+        for i, producto in enumerate(nodo_raiz["productos"]):
+            cantidad_nodo = i + 1
+            print(f"  Producto {i + 1}:")
+            print(f"    ID: {producto.id}")
+            print(f"    Descripción: {producto.descripcion}")
+    else:
+        print("❌ No hay productos registrados en el Inventario")
+    print(f"\n📜 Total de producto(s) en Inventario: {cantidad_nodo}.\n")
+    logging.info(
+        f"✅ ¡Fueron consultados {cantidad_nodo} registro(s) correctamente en la ZODB!\n"
+    )
 
-# producto2 = Producto(2, "Moto")
-# root['producto2'] = producto2
 
-# producto3 = Producto(3, "Bicicleta")
-# root['producto3'] = producto3
+def actualizar_registro(conn, nodo_raiz, registros):
+    """Función para la actualización dek nodo de la base de datos
 
-# root['productos'] = [producto1, producto2, producto3]
-# transaction.commit()
+    Args:
+        conn (Connection): Representación conexión a la base de datos ZODB
+        nodo_raiz (list): Nodo raiz de la base de datos
+        registros (list): Lista de filas a actualizar
+    """
+    try:
+        actualizados = 0
+        for i, registro in enumerate(registros):
+            if (
+                i < len(nodo_raiz["productos"])
+                and registro[0] == nodo_raiz["productos"][i].id
+            ):
+                descripcion_anterior = nodo_raiz["productos"][i].descripcion
+                nodo_raiz["productos"][i].descripcion = registro[1]
+                actualizados += 1
+                print(
+                    f"📜 El producto '{descripcion_anterior}' fue actualizado con '{registro[1]}'.\n"
+                )
+        # Guardar los cambios en la base de datos
+        transaction.commit()
+        # print(f"{nodo_raiz['productos']}\n")
+        logging.info(
+            f"✅ ¡Fueron actualizados {actualizados} registro(s) correctamente en la ZODB!\n"
+        )
+    except StorageError as error:
+        logging.error(f"❌ ¡Fallo la actualización de registro(s) en la ZODB!: {error}")
 
-# print(root.items())
-# root['producto1'].descripcion='Camioneta'
-# transaction.commit()
 
-# print(root['producto1'])
-# print(root['producto1'].descripcion)
+def eliminar_registro(conn, nodo_raiz, registros):
+    """Función para la eliminación dek nodo de la base de datos
 
-# connection.close()
+    Args:
+        conn (Connection): Representación conexión a la base de datos ZODB
+        nodo_raiz (list): Nodo raiz de la base de datos
+        registros (list): Lista de filas a eliminar
+    """
+    try:
+        eliminados = []
+        # Ordenar en reversa para eliminar desde el final
+        for id_eliminar in sorted(registros, reverse=True):
+            if "productos" in nodo_raiz and 0 <= id_eliminar - 1 < len(
+                nodo_raiz["productos"]
+            ):
+                producto_eliminado = nodo_raiz["productos"][id_eliminar - 1].descripcion
+                eliminados.append(nodo_raiz["productos"].pop(id_eliminar - 1))
+                print(
+                    f"📜 El producto '{producto_eliminado}' fue eliminado correctamente.\n"
+                )
+
+        # Guardar los cambios en la base de datos
+        transaction.commit()
+        logging.info(
+            f"✅ ¡Fueron eliminados {len(eliminados)} registro(s) correctamente en la ZODB!\n"
+        )
+    except StorageError as error:
+        logging.error(f"❌ ¡Fallo la eliminación de registro(s) en la ZODB!: {error}")
 
 
 if __name__ == "__main__":
-    conexion = DB.open()
-    root = conexion.root()
-    import pdb ; pdb.set_trace()
-    #conexion = crear_conexion(DB)
-    #insertar_registro(conexion, INSERT_MULTIPLE_COLUMNS)
-    insertar_registro(conexion, root, INSERT_MULTIPLE_COLUMNS)
-    consultar_registro(conexion, root)
-    #actualizar_registro(conexion, UPDATE_MULTIPLE_COLUMNS, UPDATE_SQL_SCRIPTS)
-    #eliminar_registro(conexion, DELETE_SQL_SCRIPTS)
-    #connection.close()
+    conexion = None
+    try:
+        conexion = DB.open()
+        nodo_principal = conexion.root()
+        logging.info(f"✅ ¡Conectado a la base de datos '{DB_FILE_NAME}!'\n")
+        # import pdb; pdb.set_trace()
+        insertar_registro(conexion, nodo_principal, INSERT_MULTIPLE_COLUMNS)
+        consultar_registro(conexion, nodo_principal)
+        actualizar_registro(conexion, nodo_principal, UPDATE_MULTIPLE_COLUMNS)
+        eliminar_registro(conexion, nodo_principal, DELETE_MULTIPLE_COLUMNS)
+    except StorageError as e:
+        logging.error(
+            f"❌ ERROR: ¡Se produjo un falla al establecer la conexión a la base de datos '{DB_FILE_NAME}': '{e}'!"
+        )
+    finally:
+        if conexion:
+            # Cerrar la conexión a la base de datos
+            conexion.close()
+            logging.info(
+                f"✅ ¡La conexión ZODB a la base de datos '{DB_FILE_NAME}' fue cerrada!"
+            )
