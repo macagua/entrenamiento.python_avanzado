@@ -28,24 +28,24 @@ def actualizar_registro():
         conexion = sqlite3.connect(DB)
         # Crear un cursor para la base de datos
         cursor = conexion.cursor()
-        logging.info(f"¡Conectado a la base de datos '{DB_FILE}'!\n")
+        logging.info(f"✅ ¡Conectado a la base de datos '{DB_FILE}'!\n")
         # Ejecutar SQL
         cursor.executemany(SQL_SCRIPTS, MULTIPLE_COLUMNS)
         # Guardar los cambios en la base de datos
         conexion.commit()
         logging.info(
-            f"¡Fueron actualizado(s) {cursor.rowcount} registro(s) correctamente en la tabla!\n"
+            f"✅ ¡Fueron actualizado(s) {cursor.rowcount} registro(s) correctamente en la tabla!\n"
         )
         # Cerrar cursor
         cursor.close()
     except sqlite3.Error as error:
-        logging.error(f"¡Fallo la actualización de registro(s) en la tabla!: {error}")
+        logging.error(f"❌ ¡Fallo la actualización de registro(s) en la tabla!: {error}")
     finally:
         if conexion:
             # Cerrar la conexión a la base de datos
             conexion.close()
             logging.info(
-                f"¡La conexión SQLite a la base de datos '{DB_FILE}' fue cerrada!\n"
+                f"✅ ¡La conexión SQLite a la base de datos '{DB_FILE}' fue cerrada!"
             )
 
 
