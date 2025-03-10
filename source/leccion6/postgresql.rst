@@ -113,7 +113,7 @@ la paquete. Con esto, ya tiene todo listo para continuar.
 .. _python_postgresql_instalar:
 
 Servidor PostgreSQL
-''''''''''''''''''''
+^^^^^^^^^^^^^^^^^^^
 
 Para instalar el servidor ``PostgreSQL`` existen varias formas de realizarlo, para en este caso
 se realizara con la tecnología `Docker`_. Esto significa que debe instalar en tu sistema operativo:
@@ -155,6 +155,10 @@ El comando anterior muestra las tablas creadas en la base de datos ``sistema``.
 
 De esta forma ha instalado y ejecutado el servidor ``PostgreSQL`` necesario para las próximas script
 Python a ejecutar. Con esto, ya tiene todo listo para continuar.
+
+
+----
+
 
 Estructura de archivos
 ''''''''''''''''''''''
@@ -287,15 +291,15 @@ Si requiere insertar registro en una tabla, a continuación tiene un ejemplo:
     .. code-block:: console
         :class: no-copy
 
-        INFO:root:¡Conectado a la base de datos 'sistema'!
+        INFO:root:✅ ¡Conectado a la base de datos 'sistema'!
 
-        INFO:root:¡Fue creo una tabla correctamente en la base de datos 'sistema'!
+        INFO:root:✅ ¡Fue creo una tabla correctamente en la base de datos 'sistema'!
 
-        INFO:root:¡Fueron insertado(s) 3 registro(s) correctamente en la tabla!
+        INFO:root:✅ ¡Fueron insertado(s) 3 registro(s) correctamente en la tabla!
 
-        INFO:root:¡Fueron insertado(s) 1 registro(s) correctamente en la tabla!
+        INFO:root:✅ ¡Fueron insertado(s) 1 registro(s) correctamente en la tabla!
 
-        INFO:root:¡La conexión PostgreSQL a la base de datos 'sistema' fue cerrada!
+        INFO:root:✅ ¡La conexión PostgreSQL a la base de datos 'sistema' fue cerrada!
 
 
 Puede probar si la base de datos ``sistema`` fue creada correctamente, ejecutando
@@ -365,7 +369,7 @@ Si requiere consultar registros de tabla, a continuación tiene un ejemplo:
 .. literalinclude:: ../../recursos/leccion6/postgresql/crud/postgresql_record_select.py
     :language: python
     :linenos:
-    :lines: 1-61
+    :lines: 1-63
 
 
 .. important::
@@ -398,11 +402,11 @@ Si requiere consultar registros de tabla, a continuación tiene un ejemplo:
     .. code-block:: console
         :class: no-copy
 
-        INFO:root:¡Conectado a la base de datos 'sistema'!
+        INFO:root:✅ ¡Conectado a la base de datos 'sistema'!
 
-        Total de filas son: 4
+        📜 Total de filas son: 4
 
-        Mostrar cada fila:
+        📜 Mostrar cada fila:
 
                 Id: 1
                 Nombre: Leonardo Caballero
@@ -424,7 +428,7 @@ Si requiere consultar registros de tabla, a continuación tiene un ejemplo:
                 Código postal: 3105
                 Teléfono: +58-414-6782473
 
-        INFO:root:¡La conexión PostgreSQL a la base de datos 'sistema' fue cerrada!
+        INFO:root:✅ ¡La conexión PostgreSQL a la base de datos 'sistema' fue cerrada!
 
 
 De esta forma puede consultar registros en una tabla dentro una base de datos ``PostgreSQL``.
@@ -441,7 +445,7 @@ Si requiere actualizar registro de tabla, a continuación tiene un ejemplo:
 .. literalinclude:: ../../recursos/leccion6/postgresql/crud/postgresql_record_update.py
     :language: python
     :linenos:
-    :lines: 1-62
+    :lines: 1-64
 
 
 .. important::
@@ -474,11 +478,11 @@ Si requiere actualizar registro de tabla, a continuación tiene un ejemplo:
     .. code-block:: console
         :class: no-copy
 
-        INFO:root:¡Conectado a la base de datos 'sistema'!
+        INFO:root:✅ ¡Conectado a la base de datos 'sistema'!
 
-        INFO:root:¡Fueron actualizado(s) 2 registro(s) correctamente en la tabla!
+        INFO:root:✅ ¡Fueron actualizado(s) 2 registro(s) correctamente en la tabla!
 
-        INFO:root:¡La conexión PostgreSQL a la base de datos 'sistema' fue cerrada!
+        INFO:root:✅ ¡La conexión PostgreSQL a la base de datos 'sistema' fue cerrada!
 
 
 De esta forma puede actualizar registros en una tabla dentro una base de datos ``PostgreSQL``.
@@ -495,7 +499,7 @@ Si requiere eliminar registro de tabla, a continuación tiene un ejemplo:
 .. literalinclude:: ../../recursos/leccion6/postgresql/crud/postgresql_record_delete.py
     :language: python
     :linenos:
-    :lines: 1-54
+    :lines: 1-56
 
 
 .. important::
@@ -528,11 +532,11 @@ Si requiere eliminar registro de tabla, a continuación tiene un ejemplo:
     .. code-block:: console
         :class: no-copy
 
-        INFO:root:¡Conectado a la base de datos 'sistema'!
+        INFO:root:✅ ¡Conectado a la base de datos 'sistema'!
 
-        INFO:root:¡Registro eliminado correctamente!
+        INFO:root:✅ ¡Registro eliminado correctamente!
 
-        INFO:root:¡La conexión PostgreSQL a la base de datos 'sistema' fue cerrada!
+        INFO:root:✅ ¡La conexión PostgreSQL a la base de datos 'sistema' fue cerrada!
 
 
 De esta forma puede eliminar registros en una tabla dentro una base de datos ``PostgreSQL``.
@@ -553,7 +557,7 @@ Práctica - Caso real
 --------------------
 
 A continuación se presenta una práctica más real de implementar el uso de proyectos
-con ``PostgreSQL``, a continuación la estructura de proyecto llamado ``PostgreSQL``:
+con ``PostgreSQL``, a continuación la estructura de proyecto llamado ``postgresql``:
 
 
 A continuación se presenta y explica el uso de cada archivo para este proyecto:
@@ -594,7 +598,7 @@ Módulo de principal del programa.
 .. literalinclude:: ../../recursos/leccion6/postgresql/sistema/main.py
     :language: python
     :linenos:
-    :lines: 1-201
+    :lines: 1-251
 
 *Archivo* :file:`docker-compose.yml`
 
@@ -694,17 +698,17 @@ configuración y ejecución del código fuente.
       .. code-block:: console
           :class: no-copy
 
-          INFO:root:¡Conexión a la base de datos 'sistema' fue exitosa!
+          INFO:root:✅ ¡Conexión a la base de datos 'sistema' fue exitosa!
 
-          INFO:root:¡Fueron creado(s) -1 tabla(s) correctamente en la base de datos!
+          INFO:root:✅ ¡Fueron creado(s) -1 tabla(s) correctamente en la base de datos!
 
-          INFO:root:¡Fueron insertado(s) 3 registro(s) correctamente en la tabla!
+          INFO:root:✅ ¡Fueron insertado(s) 3 registro(s) correctamente en la tabla!
 
-          INFO:root:¡Fueron insertado(s) 1 registro(s) correctamente en la tabla!
+          INFO:root:✅ ¡Fueron insertado(s) 1 registro(s) correctamente en la tabla!
 
-          Total de filas son: 4
+          📜 Total de filas son: 4
 
-          Mostrar cada fila:
+          📜 Mostrar cada fila:
 
                   Id: 1
                   Nombre: Leonardo Caballero
@@ -726,9 +730,11 @@ configuración y ejecución del código fuente.
                   Código postal: 3105
                   Teléfono: +58-414-6782473
 
-          INFO:root:¡Fueron actualizado(s) 2 registro(s) correctamente en la tabla!
+          INFO:root:✅ ¡Fueron actualizado(s) 2 registro(s) correctamente en la tabla!
 
-          INFO:root:¡Registro eliminado correctamente!
+          INFO:root:✅ ¡Registro eliminado correctamente!
+
+          INFO:root:✅ ¡La conexión PostgreSQL a la base de datos 'sistema' fue cerrada!
 
    .. group-tab:: Windows
 
@@ -790,17 +796,17 @@ configuración y ejecución del código fuente.
       .. code-block:: console
           :class: no-copy
 
-          INFO:root:¡Conexión a la base de datos 'sistema' fue exitosa!
+          INFO:root:✅ ¡Conexión a la base de datos 'sistema' fue exitosa!
 
-          INFO:root:¡Fueron creado(s) -1 tabla(s) correctamente en la base de datos!
+          INFO:root:✅ ¡Fueron creado(s) -1 tabla(s) correctamente en la base de datos!
 
-          INFO:root:¡Fueron insertado(s) 3 registro(s) correctamente en la tabla!
+          INFO:root:✅ ¡Fueron insertado(s) 3 registro(s) correctamente en la tabla!
 
-          INFO:root:¡Fueron insertado(s) 1 registro(s) correctamente en la tabla!
+          INFO:root:✅ ¡Fueron insertado(s) 1 registro(s) correctamente en la tabla!
 
-          Total de filas son: 4
+          📜 Total de filas son: 4
 
-          Mostrar cada fila:
+          📜 Mostrar cada fila:
 
                   Id: 1
                   Nombre: Leonardo Caballero
@@ -822,9 +828,26 @@ configuración y ejecución del código fuente.
                   Código postal: 3105
                   Teléfono: +58-414-6782473
 
-          INFO:root:¡Fueron actualizado(s) 2 registro(s) correctamente en la tabla!
+          INFO:root:✅ ¡Fueron actualizado(s) 2 registro(s) correctamente en la tabla!
 
-          INFO:root:¡Registro eliminado correctamente!
+          INFO:root:✅ ¡Registro eliminado correctamente!
+
+          INFO:root:✅ ¡La conexión SQLite a la base de datos 'sistema' fue cerrada!
+
+      La ejecucion anterior generar la siguiente estructura:
+
+      .. code-block:: console
+          :class: no-copy
+
+          proyectos/
+          └── sqlite/
+              └── sistema/
+                  ├── __init__.py
+                  ├── .env
+                  ├── .env.example
+                  ├── main.py
+                  ├── requirements.txt
+                  └── settings.py
 
 
 Asi de esta forma puede ingresar, consultar, actualizar y eliminar registro en una
