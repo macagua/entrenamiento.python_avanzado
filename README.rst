@@ -5,7 +5,7 @@ Entrenamiento "Programación en Python 3 - Nivel avanzado"
 =========================================================
 
 Repositorio de manuales y recursos del entrenamiento "Programación en `Python 3`_ - Nivel avanzado"
-realizado por `Leonardo J. Caballero G.`_
+realizado por `Leonardo J. Caballero G.`_.
 
 .. contents :: :local:
 
@@ -66,14 +66,14 @@ comando:
 ::
 
   $ cd ~/entrenamiento.python_avanzado
-  $ virtualenv --python=/usr/bin/python3 venv
+  $ virtualenv --python /usr/bin/python3 venv
   $ source ./venv/bin/activate
 
 Luego instale dependencias del paquete ``Sphinx``, ejecutando el siguiente comando:
 
 ::
 
-  (venv)$ pip install -r requirements-dev.txt
+  (venv)$ pip3 install -r requirements-dev.txt
 
 
 Recursos del entrenamiento
