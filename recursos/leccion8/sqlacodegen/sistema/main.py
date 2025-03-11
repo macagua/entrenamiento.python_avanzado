@@ -2,8 +2,7 @@
 
 import logging
 
-from sqlalchemy.orm.exc import MultipleResultsFound
-from sqlite3 import Error
+from sqlalchemy import exc
 from settings import DB_FILE, Base, engine, session
 from models import Estados, Ciudades, Clientes, Productos, Pedidos
 
@@ -104,7 +103,7 @@ if __name__ == "__main__":
         consulta_productos()
         # Consulta de pedidos
         consulta_pedidos()
-    except Error as e:
+    except exc.SQLAlchemyError as e:
         logging.error(
             f"❌ ERROR: ¡Se produjo un falla al establecer la conexión a la base de datos '{DB_FILE}': '{e}'!"
         )

@@ -43,13 +43,15 @@ a continuación se presentan el correspondiente comando de tu sistema operativo:
 
       .. code-block:: console
 
-          pip3 install git+https://github.com/agronholm/sqlacodegen.git@3.0.0rc1#egg=sqlacodegen
+          pip3 install sqlacodegen==3.0.0
+..
+  pip3 install git+https://github.com/agronholm/sqlacodegen.git@3.0.0rc1#egg=sqlacodegen
 
    .. group-tab:: Windows
 
       .. code-block:: console
 
-          pip3 install git+https://github.com/agronholm/sqlacodegen.git@3.0.0rc1#egg=sqlacodegen
+          pip3 install sqlacodegen==3.0.0
 
 
 Puede probar si la instalación se realizo correctamente, ejecutando el siguiente
@@ -359,7 +361,7 @@ Módulo principal del programa.
 .. literalinclude:: ../../recursos/leccion8/sqlacodegen/sistema/main.py
     :language: python
     :linenos:
-    :lines: 1-118
+    :lines: 1-117
 
 *Archivo* :file:`requirements.txt`
 
