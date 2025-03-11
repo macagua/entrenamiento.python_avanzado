@@ -3,9 +3,9 @@
 import logging
 
 from sqlalchemy import insert, select, update, delete, exc
-from db import DB_FILE, Base, engine, session
-from models import Productos
 from sqlite3 import Error
+from settings import DB_FILE, Base, engine, session
+from models import Productos
 
 logging.basicConfig(level=logging.INFO)
 
