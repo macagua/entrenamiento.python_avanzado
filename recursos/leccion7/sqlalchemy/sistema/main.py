@@ -157,7 +157,9 @@ if __name__ == "__main__":
         Base.metadata.drop_all(engine)
         # Crea la base de datos y tablas
         Base.metadata.create_all(engine)
-        logging.info(f"✅ ¡Creación exitosa de la tabla 'productos'!\n")
+        logging.info(
+            f"✅ ¡Creación exitosa de la tabla 'productos' en la base de datos '{DB_FILE}'!\n"
+        )
         ingresar_data()
         consultar_data()
         consultar_id_data(1)

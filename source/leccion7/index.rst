@@ -139,8 +139,9 @@ el siguiente comando correspondiente a tu sistema operativo:
 
           python3 -c "import sqlalchemy ; print(sqlalchemy.__version__)"
 
-Si muestra el número de la versión instalada de ``SQLAlchemy``, tiene
-correctamente instalada la librería. Con esto, ya tiene todo listo para continuar.
+
+Si muestra el número de la versión instalada de ``SQLAlchemy``, tiene correctamente instalada
+la librería. Con esto, ya tiene todo listo para continuar.
 
 
 ----
@@ -685,15 +686,6 @@ Módulo de configuraciones del programa.
     :linenos:
     :lines: 1-24
 
-*Archivo* :file:`main.py`
-
-Módulo de principal del programa.
-
-.. literalinclude:: ../../recursos/leccion7/sqlalchemy/sistema/main.py
-    :language: python
-    :linenos:
-    :lines: 1-183
-
 *Archivo* :file:`models.py`
 
 Módulo de :ref:`modelos <python_sqlalchemy_modelos>` de :ref:`SQLAlchemy <python_sqlalchemy>`.
@@ -703,11 +695,14 @@ Módulo de :ref:`modelos <python_sqlalchemy_modelos>` de :ref:`SQLAlchemy <pytho
     :linenos:
     :lines: 1-34
 
-*Archivo* :file:`sistema.db`
+*Archivo* :file:`main.py`
 
-Archivo de base de datos de :ref:`SQLite <python_modulo_sqlite3>` llamado :file:`sistema.db`
-la cual no se incluye ya que cada vez que se inicia el programa :file:`main.py` se elimina y crea
-nuevamente, para cuidar la creación de los datos iniciales.
+Módulo principal del programa.
+
+.. literalinclude:: ../../recursos/leccion7/sqlalchemy/sistema/main.py
+    :language: python
+    :linenos:
+    :lines: 1-185
 
 *Archivo* :file:`requirements.txt`
 
@@ -717,6 +712,7 @@ Archivo de `requirements.txt`_ de la herramienta de gestión de paquetes `pip`_.
     :language: python
     :linenos:
     :lines: 1-3
+
 
 Teniendo creada la anterior estructura de proyecto, vuelva a ejecutar ahora el módulo con
 el siguiente comando, el cual a continuación se presentan el correspondiente comando de tu
@@ -761,7 +757,7 @@ sistema operativo:
       .. code-block:: console
           :class: no-copy
 
-          INFO:root:✅ ¡Creación exitosa de la tabla 'productos'!
+          INFO:root:✅ ¡Creación exitosa de la tabla 'productos' en la base de datos 'sistema.db'!
 
           INFO:root:✅ ¡Inserción exitosa de los '4' productos!
 
@@ -847,8 +843,8 @@ sistema operativo:
 
           pip3 install -r requirements.txt
 
-      Además debe crear el archivo :file:`.env` en base a la plantilla :file:`env.example` , con
-      el siguiente comando:
+      Además debe crear el archivo :file:`.env` en base a la plantilla :file:`.env.example`
+      y editarlo, con el siguiente comando:
 
       .. code-block:: console
 
@@ -882,9 +878,7 @@ sistema operativo:
       .. code-block:: console
           :class: no-copy
 
-
-
-          INFO:root:✅ ¡Creación exitosa de la tabla 'productos'!
+          INFO:root:✅ ¡Creación exitosa de la tabla 'productos' en la base de datos 'sistema.db'!
 
           INFO:root:✅ ¡Inserción exitosa de los '4' productos!
 
