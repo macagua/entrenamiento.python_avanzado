@@ -1,7 +1,7 @@
 """Programa para la eliminación de registro de la tabla"""
 
 import logging
-import psycopg2
+import pymysql
 
 logging.basicConfig(level=logging.INFO)
 
@@ -14,20 +14,18 @@ def eliminar_registro():
 
     conexion = None
     credenciales = {
-        "host": "127.0.0.1",
-        "port": "5433",
+        "host": "localhost",
+        "user": "root",
+        "password": "root",
         "database": "sistema",
-        "user": "postgres",
-        "password": "postgres",
     }
     try:
         # Establecer la conexión con la base de datos
-        conexion = psycopg2.connect(
+        conexion = pymysql.connect(
             host=credenciales["host"],
-            port=credenciales["port"],
-            database=credenciales["database"],
             user=credenciales["user"],
             password=credenciales["password"],
+            database=credenciales["database"],
         )
         # Crear un objeto cursor para ejecutar las eliminaciones
         cursor = conexion.cursor()
@@ -39,7 +37,7 @@ def eliminar_registro():
         logging.info("✅ ¡Registro eliminado correctamente!\n")
         # Cerrar el cursor
         cursor.close()
-    except psycopg2.Error as error:
+    except pymysql.err.Error as error:
         logging.error(
             f"❌ ERROR: ¡Fallo la eliminación de registro(s) en la tabla!: {error}"
         )
@@ -48,7 +46,7 @@ def eliminar_registro():
             # Cerrar la conexión a la base de datos
             conexion.close()
             logging.info(
-                f"✅ ¡La conexión PostgreSQL a la base de datos '{credenciales['database']}' fue cerrada!\n"
+                f"✅ ¡La conexión MySQL a la base de datos '{credenciales['database']}' fue cerrada!"
             )
 
 

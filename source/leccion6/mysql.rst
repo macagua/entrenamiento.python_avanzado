@@ -1,51 +1,38 @@
-.. _python_pkg_postgresql:
+.. _python_pkg_mysql:
 
-PostgreSQL
-==========
+MySQL
+=====
 
 .. note::
-    **Propósito:** El motor de base de datos relacionales `PostgreSQL`_, tiene un adaptador Python e
+    **Propósito:** El motor de base de datos relacionales `MySQL`_, tiene un adaptador Python e
     implementa la especificación :ref:`DB API v2.0 (PEP-249) <python_dbapi>`, el objeto de esta
     guía es para explicar y demostrar como usarlo como desarrollador.
 
-.. figure:: ../_static/images/postgresql_logo.png
+.. figure:: ../_static/images/mysql_textlogo.png
     :align: center
     :width: 60%
 
-    Logotipo de PostgreSQL
+    Logotipo de MySQL
 
-`psycopg`_, es el adaptador de base de datos PostgreSQL más popular para el lenguaje
-de programación Python. Sus principales características son la implementación completa
-de la especificación Python :ref:`DB-API 2.0 <python_dbapi>` y la seguridad de
-sub-procesos (varios sub-procesos pueden compartir la misma conexión).
+`PyMySQL`_, es un paquete contiene una librería cliente MySQL puramente en Python,
+basada en la especificación :ref:`PEP 249 <python_dbapi>`.
 
-Al igual del paquete :ref:`PyMySQL <python_pkg_mysql>`, no hay un módulo Python SQL
+A diferencia de :ref:`SQLite <python_modulo_sqlite3>`, no hay un módulo Python SQL
 predeterminado en la librería estándar de Python, que pueda usar para conectarse a una
-base de datos ``PostgreSQL``. En su lugar, deberá instalar un controlador Python SQL
-para ``PostgreSQL`` para poder interactuar con base de datos desde aplicaciones de Python.
-
-Fue diseñado para aplicaciones con múltiples sub-procesos que crean y destruyen muchos
-cursores y hacen una gran cantidad de ":ref:`INSERT <python_base_ingresar_registro>`"
-o ":ref:`UPDATE <python_base_actualizar_registro>`" simultáneos.
-
-`psycopg`_ se implementa principalmente en C como un envoltorio de `libpq`_, lo que
-resulta en que sea eficiente y seguro. Cuenta con cursores del lado del cliente y del lado
-del servidor, comunicación asíncrona y notificaciones, compatibilidad con sentencias ``COPY``.
-Muchos tipos de Python son compatibles de forma inmediata y están adaptados para coincidir
-con los tipos de datos de ``PostgreSQL``; la adaptación se puede ampliar y personalizar gracias
-a un sistema flexible de adaptación de objetos.
+base de datos ``MySQL``. En su lugar, deberá instalar un controlador Python SQL
+para ``MySQL`` para poder interactuar con base de datos desde aplicaciones de Python.
 
 .. tip::
-    Es el adaptador de base de datos `PostgreSQL`_ más popular para el lenguaje de programación *Python*.
+    Es el adaptador de base de datos `MySQL`_ más popular para el lenguaje de programación *Python*.
 
 
-.. _python_psycopg2_instalar:
+.. _python_pymysql_instalar:
 
 Instalación
 -----------
 
-Para conectarte al servidor ``PostgreSQL`` necesita el paquete `psycopg2`_. Esto
-significa que debe instalar ``psycopg2`` ejecutando los siguientes comandos correspondiente
+Para conectarte al servidor ``MySQL`` necesita el paquete `PyMySQL`_. Esto
+significa que debe instalar ``PyMySQL`` ejecutando los siguientes comandos correspondiente
 a cada sistema operativo, los cuales se presentan a continuación:
 
 .. tabs::
@@ -62,31 +49,25 @@ a cada sistema operativo, los cuales se presentan a continuación:
 
       #. :ref:`Entorno virtual Python <python_entorno_desarrollo_venv>`.
 
-      #. Dependencias de desarrollo del paquete ``psycopg2``, ejecutando el siguiente comando:
+      #. Paquete ``PyMySQL``, ejecutando el siguiente comando:
 
          .. code-block:: console
 
-             sudo apt install -y libpq-dev postgresql-client-common postgresql-client
+             pip3 install PyMySQL
 
-      #. Instalar el paquete ``psycopg2``, ejecutando el siguiente comando:
-
-         .. code-block:: console
-
-             pip3 install psycopg2
-
-      #. Motor de base de datos :ref:`PostgreSQL <python_postgresql_instalar>`.
+      #. Motor de base de datos :ref:`MySQL <python_mysql_instalar>`.
 
    .. group-tab:: Windows
 
       #. :ref:`Entorno virtual Python <python_entorno_desarrollo_venv>`.
 
-      #. Instalar el paquete ``psycopg2``, ejecutando el siguiente comando:
+      #. Instalar el paquete ``PyMySQL``, ejecutando el siguiente comando:
 
          .. code-block:: console
 
-             pip3 install psycopg2
+             pip3 install PyMySQL
 
-      #. Motor de base de datos :ref:`PostgreSQL <python_postgresql_instalar>`.
+      #. Motor de base de datos :ref:`MySQL <python_mysql_instalar>`.
 
 Puede probar si la instalación se realizo correctamente, ejecutando
 el siguiente comando correspondiente a tu sistema operativo:
@@ -97,25 +78,25 @@ el siguiente comando correspondiente a tu sistema operativo:
 
       .. code-block:: console
 
-          python3 -c "import psycopg2 ; print(psycopg2.__version__)"
+          python3 -c "import pymysql ; print(pymysql.__version__)"
 
    .. group-tab:: Windows
 
       .. code-block:: console
 
-          python3 -c "import psycopg2 ; print(psycopg2.__version__)"
+          python3 -c "import pymysql ; print(pymysql.__version__)"
 
 
-Si muestra el número de la versión instalada de ``psycopg2``, tiene correctamente instalada
+Si muestra el numero de la versión instalada de ``PyMySQL``, tiene correctamente instalada
 la paquete. Con esto, ya tiene todo listo para continuar.
 
 
-.. _python_postgresql_instalar:
+.. _python_mysql_instalar:
 
-Servidor PostgreSQL
-^^^^^^^^^^^^^^^^^^^
+Servidor MySQL
+'''''''''''''''
 
-Para instalar el servidor ``PostgreSQL`` existen varias formas de realizarlo, para en este caso
+Para instalar el servidor ``MySQL`` existen varias formas de realizarlo, para en este caso
 se realizara con la tecnología `Docker`_. Esto significa que debe instalar en tu sistema operativo:
 
 - `Docker Engine`_.
@@ -126,34 +107,14 @@ Luego de instalar las herramientas necesarias, debe ejecutar el siguiente comand
 
 .. code-block:: console
 
-    docker run -d --name postgresql -p 5433:5432 -e POSTGRES_USER=postgres -e POSTGRES_PASSWORD=postgres -e POSTGRES_DB=sistema -v pg_data:/var/lib/postgresql/data --restart always postgres:latest
+    docker run -d --name mysql -e MYSQL_ROOT_PASSWORD=root -e MYSQL_DATABASE=sistema -p 3306:3306 -v my_data:/var/lib/mysql --restart always mysql:latest
 
 
-El comando anterior crea un contenedor Docker llamado ``postgresql`` con la version ``latest``,
-ejecutándose en el puerto ``5433`` con la base de datos llamada ``sistema`` e incluye un punto de montaje ``pg_data``.
+El comando anterior crea un contenedor Docker llamado ``mysql`` con la version ``latest``,
+ejecutándose en el puerto ``3306`` con la base de datos llamada ``sistema`` e incluye un punto de montaje ``my_data``.
 
-..
-    .. code-block:: console
 
-        docker exec -it postgresql psql -U postgres -c "CREATE DATABASE sistema;"
-        docker exec -it postgresql psql -U postgres -c "DROP DATABASE sistema;"
-
-    El comando anterior crea una base de datos llamada ``sistema`` en el servidor ``PostgreSQL``.
-
-    .. code-block:: console
-
-        docker exec -it postgresql psql -U postgres -c "SELECT datname FROM pg_database;"
-
-    El comando anterior muestra las bases de datos creadas en el servidor ``PostgreSQL``.
-
-    .. code-block:: console
-
-        docker exec -it postgresql psql -U postgres -d sistema -c "SELECT table_name FROM information_schema.tables WHERE table_schema = 'public';"
-        docker exec -it postgresql psql -U postgres -d sistema -c "\dt"
-
-    El comando anterior muestra las tablas creadas en la base de datos ``sistema``.
-
-De esta forma ha instalado y ejecutado el servidor ``PostgreSQL`` necesario para las próximas script
+De esta forma ha instalado y ejecutado el servidor ``MySQL`` necesario para las próximas script
 Python a ejecutar. Con esto, ya tiene todo listo para continuar.
 
 
@@ -163,13 +124,13 @@ Python a ejecutar. Con esto, ya tiene todo listo para continuar.
 Estructura de archivos
 ''''''''''''''''''''''
 
-Para crear la estructura de archivos del proyecto ``PostgreSQL`` debe ejecutar los siguientes comandos:
+Para crear la estructura de archivos del proyecto ``MySQL`` debe ejecutar los siguientes comandos:
 
-Crear el directorio ``~/proyectos/postgresql/crud`` con el siguiente comando:
+Crear el directorio ``~/proyectos/mysql/crud`` con el siguiente comando:
 
 .. code-block:: console
 
-    mkdir -p ~/proyectos/postgresql/crud && cd $_
+    mkdir -p ~/proyectos/mysql/crud && cd $_
 
 
 El comando anterior crea la siguiente estructura de directorios:
@@ -178,7 +139,7 @@ El comando anterior crea la siguiente estructura de directorios:
     :class: no-copy
 
     proyectos/
-    └── postgresql/
+    └── mysql/
         └── crud/
 
 Si tiene la estructura de archivo previa, entonces puede continuar con la siguiente sección.
@@ -187,12 +148,12 @@ Si tiene la estructura de archivo previa, entonces puede continuar con la siguie
 ----
 
 
-.. _python_psycopg2_conn_strs:
+.. _python_mysql_conn_strs:
 
 Cadenas de conexión
 -------------------
 
-Para definir el método ``connect`` debe definir las cadenas de conexión con ``PostgreSQL``
+Para definir el método ``connect`` debe definir las cadenas de conexión con ``MySQL``
 como se describe a continuación:
 
 ``USER``
@@ -205,32 +166,32 @@ como se describe a continuación:
     IP o dirección DNS de conexión al servidor de la base de datos.
 
 ``PORT``
-    Puerto de conexión al servidor de la base de datos, por defecto es **5492**.
+    Puerto de conexión al servidor de la base de datos, por defecto es **3306**.
 
 ``DB``
     Nombre de la base de datos a cual conectar.
 
 A continuación presento un ejemplo en Python implementando una cadena de conexión
-para una base de datos ``PostgreSQL``:
+para una base de datos ``MySQL``:
 
 .. code-block:: python
     :linenos:
 
-    import psycopg2
+    import pymysql
 
-    USER = "postgres"
-    PASSW = "postgres"
+    USER = "root"
+    PASSW = "root"
     HOST = "localhost"
-    PORT = 5432
+    PORT = 3306
     DB = "sistema"
 
-    conexion_bd = psycopg2.connect(
+    conexion_bd = pymysql.connect(
         user=USER, password=PASSW, host=HOST, port=PORT, database=DB
     )
 
 El ejemplo anterior se describe a continuación:
 
-- En la línea 1, se importa la librería ``psycopg2``.
+- En la línea 1, se importa la librería ``pymysql``.
 
 - En la línea 3, se define en la constante ``USER``, del usuario de conexión a la base de datos.
 
@@ -244,7 +205,7 @@ El ejemplo anterior se describe a continuación:
 
 - En la línea 8, se define en el método ``connect``, el cual establece la conexión a la base de datos.
 
-De esta forma se crea una cadena de conexión para ``PostgreSQL`` para ser usada por el método ``connect``.
+De esta forma se crea una cadena de conexión para ``MySQL`` para ser usada por el método ``connect``.
 
 
 ----
@@ -255,36 +216,36 @@ Insertar registros
 
 Si requiere insertar registro en una tabla, a continuación tiene un ejemplo:
 
-.. literalinclude:: ../../recursos/leccion6/postgresql/crud/postgresql_record_insert.py
+.. literalinclude:: ../../recursos/leccion6/mysql/crud/mysql_record_insert.py
     :language: python
     :linenos:
-    :lines: 1-95
+    :lines: 1-89
 
 
 .. important::
     Usted puede descargar el código usado en esta sección haciendo clic en el
     siguiente enlace:
 
-    - :download:`postgresql_record_insert.py <../../recursos/leccion6/postgresql/crud/postgresql_record_insert.py>`.
+    - :download:`mysql_record_insert.py <../../recursos/leccion6/mysql/crud/mysql_record_insert.py>`.
 
 
 .. tip::
-    Para ejecutar el código :file:`postgresql_record_insert.py`
+    Para ejecutar el código :file:`mysql_record_insert.py`
     abra una consola de comando, acceda al directorio donde se encuentra el programa:
 
     .. code-block:: console
         :class: no-copy
 
         proyectos/
-        └── postgresql/
+        └── mysql/
             └── crud/
-                └── postgresql_record_insert.py
+                └── mysql_record_insert.py
 
     Si tiene la estructura de archivo previa, entonces ejecute el siguiente comando:
 
     .. code-block:: console
 
-        python3 postgresql_record_insert.py
+        python3 mysql_record_insert.py
 
     El anterior código al ejecutar debe mostrar el siguiente mensaje:
 
@@ -299,7 +260,7 @@ Si requiere insertar registro en una tabla, a continuación tiene un ejemplo:
 
         INFO:root:✅ ¡Fueron insertado(s) 1 registro(s) correctamente en la tabla!
 
-        INFO:root:✅ ¡La conexión PostgreSQL a la base de datos 'sistema' fue cerrada!
+        INFO:root:✅ ¡La conexión MySQL a la base de datos 'sistema' fue cerrada!
 
 
 Puede probar si la base de datos ``sistema`` fue creada correctamente, ejecutando
@@ -311,16 +272,16 @@ el siguiente comando correspondiente a tu sistema operativo:
 
       .. code-block:: console
 
-          docker exec -it postgresql psql -U postgres -c "SELECT datname FROM pg_database;"
+          docker exec -i mysql mysql -u root -proot -e "SHOW DATABASES;" mysql
 
    .. group-tab:: Windows
 
       .. code-block:: console
 
-          docker exec -it postgresql psql -U postgres -c "SELECT datname FROM pg_database;"
+          docker exec -i mysql mysql -u root -proot -e "SHOW DATABASES;" mysql
 
 
-Puede probar si el usuario ``postgres`` de la base de datos ``sistema`` fue creada correctamente, ejecutando
+Puede probar si el usuario ``root`` de la base de datos ``sistema`` fue creada correctamente, ejecutando
 el siguiente comando correspondiente a tu sistema operativo:
 
 .. tabs::
@@ -329,15 +290,15 @@ el siguiente comando correspondiente a tu sistema operativo:
 
       .. code-block:: console
 
-          docker exec -it postgresql psql -U postgres -c "SELECT usename, passwd FROM pg_shadow;"
+          docker exec -i mysql mysql -u root -proot -e "SELECT user FROM mysql.user;" mysql
 
    .. group-tab:: Windows
 
       .. code-block:: console
 
-          docker exec -it postgresql psql -U postgres -c "SELECT usename, passwd FROM pg_shadow;"
+          docker exec -i mysql mysql -u root -proot -e "SELECT user FROM mysql.user;" mysql
 
-Puede probar si la tabla ``clientes`` en la base de datos ``sistema`` fue creada correctamente, además
+Puede probar si la tabla ``clientes`` en la base de datos ``sistema`` fue creada correctamente, ademas
 si sus registros fueron cargados en la tabla, ejecutando el siguiente comando correspondiente a tu sistema operativo:
 
 .. tabs::
@@ -346,16 +307,16 @@ si sus registros fueron cargados en la tabla, ejecutando el siguiente comando co
 
       .. code-block:: console
 
-          docker exec -it postgresql psql -U postgres -d sistema -c "SELECT table_name FROM information_schema.tables WHERE table_schema = 'public';"
+          docker exec -i mysql mysql -u root -proot -e "USE sistema; SHOW TABLES; SELECT * FROM clientes;" mysql
 
    .. group-tab:: Windows
 
       .. code-block:: console
 
-          docker exec -it postgresql psql -U postgres -d sistema -c "SELECT table_name FROM information_schema.tables WHERE table_schema = 'public'; SELECT * FROM clientes;"
+          docker exec -i mysql mysql -u root -proot -e "USE sistema; SHOW TABLES; SELECT * FROM clientes;" mysql
 
 
-De esta forma puede ingresar registros en una tabla dentro una base de datos ``PostgreSQL``.
+De esta forma puede ingresar registros en una tabla dentro una base de datos ``MySQL``.
 
 
 ----
@@ -366,36 +327,36 @@ Consultar registros
 
 Si requiere consultar registros de tabla, a continuación tiene un ejemplo:
 
-.. literalinclude:: ../../recursos/leccion6/postgresql/crud/postgresql_record_select.py
+.. literalinclude:: ../../recursos/leccion6/mysql/crud/mysql_record_select.py
     :language: python
     :linenos:
-    :lines: 1-63
+    :lines: 1-61
 
 
 .. important::
     Usted puede descargar el código usado en esta sección haciendo clic en el
     siguiente enlace:
 
-    - :download:`postgresql_record_select.py <../../recursos/leccion6/postgresql/crud/postgresql_record_select.py>`.
+    - :download:`mysql_record_select.py <../../recursos/leccion6/mysql/crud/mysql_record_select.py>`.
 
 
 .. tip::
-    Para ejecutar el código :file:`postgresql_record_select.py`
+    Para ejecutar el código :file:`mysql_record_select.py`
     abra una consola de comando, acceda al directorio donde se encuentra el programa:
 
     .. code-block:: console
         :class: no-copy
 
         proyectos/
-        └── postgresql/
+        └── mysql/
             └── crud/
-                └── postgresql_record_select.py
+                └── mysql_record_select.py
 
     Si tiene la estructura de archivo previa, entonces ejecute el siguiente comando:
 
     .. code-block:: console
 
-        python3 postgresql_record_select.py
+        python3 mysql_record_select.py
 
     El anterior código al ejecutar debe mostrar el siguiente mensaje:
 
@@ -428,10 +389,10 @@ Si requiere consultar registros de tabla, a continuación tiene un ejemplo:
                 Código postal: 3105
                 Teléfono: +58-414-6782473
 
-        INFO:root:✅ ¡La conexión PostgreSQL a la base de datos 'sistema' fue cerrada!
+        INFO:root:✅ ¡La conexión MySQL a la base de datos 'sistema' fue cerrada!
 
 
-De esta forma puede consultar registros en una tabla dentro una base de datos ``PostgreSQL``.
+De esta forma puede consultar registros en una tabla dentro una base de datos ``MySQL``.
 
 
 ----
@@ -442,36 +403,36 @@ Actualizar registros
 
 Si requiere actualizar registro de tabla, a continuación tiene un ejemplo:
 
-.. literalinclude:: ../../recursos/leccion6/postgresql/crud/postgresql_record_update.py
+.. literalinclude:: ../../recursos/leccion6/mysql/crud/mysql_record_update.py
     :language: python
     :linenos:
-    :lines: 1-64
+    :lines: 1-62
 
 
 .. important::
     Usted puede descargar el código usado en esta sección haciendo clic en el
     siguiente enlace:
 
-    - :download:`postgresql_record_update.py <../../recursos/leccion6/postgresql/crud/postgresql_record_update.py>`.
+    - :download:`mysql_record_update.py <../../recursos/leccion6/mysql/crud/mysql_record_update.py>`.
 
 
 .. tip::
-    Para ejecutar el código :file:`postgresql_record_update.py`
+    Para ejecutar el código :file:`mysql_record_update.py`
     abra una consola de comando, acceda al directorio donde se encuentra el programa:
 
     .. code-block:: console
         :class: no-copy
 
         proyectos/
-        └── postgresql/
+        └── mysql/
             └── crud/
-                └── postgresql_record_update.py
+                └── mysql_record_update.py
 
     Si tiene la estructura de archivo previa, entonces ejecute el siguiente comando:
 
     .. code-block:: console
 
-        python3 postgresql_record_update.py
+        python3 mysql_record_update.py
 
     El anterior código al ejecutar debe mostrar el siguiente mensaje:
 
@@ -482,10 +443,10 @@ Si requiere actualizar registro de tabla, a continuación tiene un ejemplo:
 
         INFO:root:✅ ¡Fueron actualizado(s) 2 registro(s) correctamente en la tabla!
 
-        INFO:root:✅ ¡La conexión PostgreSQL a la base de datos 'sistema' fue cerrada!
+        INFO:root:✅ ¡La conexión MySQL a la base de datos 'sistema' fue cerrada!
 
 
-De esta forma puede actualizar registros en una tabla dentro una base de datos ``PostgreSQL``.
+De esta forma puede actualizar registros en una tabla dentro una base de datos ``MySQL``.
 
 
 ----
@@ -496,36 +457,36 @@ Eliminar registros
 
 Si requiere eliminar registro de tabla, a continuación tiene un ejemplo:
 
-.. literalinclude:: ../../recursos/leccion6/postgresql/crud/postgresql_record_delete.py
+.. literalinclude:: ../../recursos/leccion6/mysql/crud/mysql_record_delete.py
     :language: python
     :linenos:
-    :lines: 1-56
+    :lines: 1-54
 
 
 .. important::
     Usted puede descargar el código usado en esta sección haciendo clic en el
     siguiente enlace:
 
-    - :download:`postgresql_record_delete.py <../../recursos/leccion6/postgresql/crud/postgresql_record_delete.py>`.
+    - :download:`mysql_record_delete.py <../../recursos/leccion6/mysql/crud/mysql_record_delete.py>`.
 
 
 .. tip::
-    Para ejecutar el código :file:`postgresql_record_delete.py`
+    Para ejecutar el código :file:`mysql_record_delete.py`
     abra una consola de comando, acceda al directorio donde se encuentra el programa:
 
     .. code-block:: console
         :class: no-copy
 
         proyectos/
-        └── postgresql/
+        └── mysql/
             └── crud/
-                └── postgresql_record_delete.py
+                └── mysql_record_delete.py
 
     Si tiene la estructura de archivo previa, entonces ejecute el siguiente comando:
 
     .. code-block:: console
 
-        python3 postgresql_record_delete.py
+        python3 mysql_record_delete.py
 
     El anterior código al ejecutar debe mostrar el siguiente mensaje:
 
@@ -536,14 +497,14 @@ Si requiere eliminar registro de tabla, a continuación tiene un ejemplo:
 
         INFO:root:✅ ¡Registro eliminado correctamente!
 
-        INFO:root:✅ ¡La conexión PostgreSQL a la base de datos 'sistema' fue cerrada!
+        INFO:root:✅ ¡La conexión MySQL a la base de datos 'sistema' fue cerrada!
 
 
-De esta forma puede eliminar registros en una tabla dentro una base de datos ``PostgreSQL``.
+De esta forma puede eliminar registros en una tabla dentro una base de datos ``MySQL``.
 
 .. note::
     Asi de esta forma puede realizar las operaciones de ingresar, consultar, actualizar
-    y eliminar registro en una tabla en una base de datos ``PostgreSQL`` de forma separada
+    y eliminar registro en una tabla en una base de datos ``MySQL`` de forma separada
     en programas Python, en la siguiente práctica se mostrara un caso real de uso de todos
     estas operaciones en un solo programa Python.
 
@@ -551,13 +512,13 @@ De esta forma puede eliminar registros en una tabla dentro una base de datos ``P
 ----
 
 
-.. _python_postgresql_scaffolding:
+.. _python_mysql_scaffolding:
 
 Práctica - Caso real
 --------------------
 
 A continuación se presenta una práctica más real de implementar el uso de proyectos
-con ``PostgreSQL``, a continuación la estructura de proyecto llamado ``postgresql``:
+con ``MySQL``, a continuación la estructura de proyecto llamado ``mysql``:
 
 
 A continuación se presenta y explica el uso de cada archivo para este proyecto:
@@ -568,7 +529,7 @@ Archivo plantilla `dotenv`_, es un archivo de *configuración de variables de en
 para el proyecto. Además, es usado para `establecer variables de entorno`_ con
 ``Docker``, `Docker Compose`_ y del paquete adicional `python-dotenv`_.
 
-.. literalinclude:: ../../recursos/leccion6/postgresql/sistema/.env.example
+.. literalinclude:: ../../recursos/leccion6/mysql/sistema/.env.example
     :language: text
     :linenos:
     :lines: 1-8
@@ -577,32 +538,32 @@ para el proyecto. Además, es usado para `establecer variables de entorno`_ con
 
 Archivo de `requirements.txt`_ de la herramienta de gestión de paquetes `pip`_.
 
-.. literalinclude:: ../../recursos/leccion6/postgresql/sistema/requirements.txt
+.. literalinclude:: ../../recursos/leccion6/mysql/sistema/requirements.txt
     :language: python
     :linenos:
-    :lines: 1-3
+    :lines: 1-4
 
 *Archivo* :file:`settings.py`
 
 Módulo de configuraciones del programa.
 
-.. literalinclude:: ../../recursos/leccion6/postgresql/sistema/settings.py
+.. literalinclude:: ../../recursos/leccion6/mysql/sistema/settings.py
     :language: python
     :linenos:
-    :lines: 1-58
+    :lines: 1-57
 
 *Archivo* :file:`main.py`
 
 Módulo principal del programa.
 
-.. literalinclude:: ../../recursos/leccion6/postgresql/sistema/main.py
+.. literalinclude:: ../../recursos/leccion6/mysql/sistema/main.py
     :language: python
     :linenos:
-    :lines: 1-251
+    :lines: 1-261
 
 *Archivo* :file:`docker-compose.yml`
 
-Para instalar el servidor ``PostgreSQL`` existen varias formas de realizarlo, para en este caso
+Para instalar el servidor ``MySQL`` existen varias formas de realizarlo, para en este caso
 se realizara con la tecnología `Docker`_. Esto significa que debe instalar en tu sistema operativo:
 
 - `Docker Compose`_.
@@ -613,10 +574,10 @@ volúmenes necesarios para tu aplicación.
 
 A continuación se presenta el archivo :file:`docker-compose.yml` con la configuración necesaria:
 
-.. literalinclude:: ../../recursos/leccion6/postgresql/sistema/docker-compose.yml
+.. literalinclude:: ../../recursos/leccion6/mysql/sistema/docker-compose.yml
     :language: yaml
     :linenos:
-    :lines: 1-24
+    :lines: 1-25
 
 
 ----
@@ -629,7 +590,7 @@ siguiente estructura de directorio y acceda al mismo donde se encuentra el progr
     :class: no-copy
 
     proyectos/
-    └── postgresql/
+    └── mysql/
         └── sistema/
             ├── docker-compose.yml
             ├── __init__.py
@@ -666,7 +627,7 @@ configuración y ejecución del código fuente.
       Debe crear y editar el archivo :file:`docker-compose.yml`, con el siguiente comando:
 
       .. tip::
-        Para ejecutar el comando del instalador del servidor ``PostgreSQL`` con `Docker`_ debe crear
+        Para ejecutar el comando del instalador del servidor ``MySQL`` con `Docker`_ debe crear
         un archivo llamado :file:`docker-compose.yml` en el directorio ``sistema/`` con el contenido
         anterior de dicho archivo, ejecutando el siguiente comando:
 
@@ -676,13 +637,13 @@ configuración y ejecución del código fuente.
 
       .. tip::
         Si tiene creado el archivo con el contenido, entonces puede ejecutar la instalación un
-        servidor ``PostgreSQL``, ejecutando el siguiente comando:
+        servidor ``MySQL``, ejecutando el siguiente comando:
 
       .. code-block:: console
 
           docker-compose up -d
 
-      De esta forma crea el contenedor Docker llamado ``postgresql``, necesario para ejecutar el script Python.
+      De esta forma crea el contenedor Docker llamado ``mysql``, necesario para ejecutar el script Python.
 
       .. tip::
         Para ejecutar el código fuente de esta práctica debe invocar al módulo :file:`main.py`,
@@ -700,7 +661,7 @@ configuración y ejecución del código fuente.
 
           INFO:root:✅ ¡Conexión a la base de datos 'sistema' fue exitosa!
 
-          INFO:root:✅ ¡Fueron creado(s) -1 tabla(s) correctamente en la base de datos!
+          INFO:root:✅ ¡Fueron creado(s) 0 tabla(s) correctamente en la base de datos!
 
           INFO:root:✅ ¡Fueron insertado(s) 3 registro(s) correctamente en la tabla!
 
@@ -734,7 +695,7 @@ configuración y ejecución del código fuente.
 
           INFO:root:✅ ¡Registro eliminado correctamente!
 
-          INFO:root:✅ ¡La conexión PostgreSQL a la base de datos 'sistema' fue cerrada!
+          INFO:root:✅ ¡La conexión MySQL a la base de datos 'sistema' fue cerrada!
 
    .. group-tab:: Windows
 
@@ -764,7 +725,7 @@ configuración y ejecución del código fuente.
       Debe crear y editar el archivo :file:`docker-compose.yml`, con el siguiente comando:
 
       .. tip::
-        Para ejecutar el comando del instalador del servidor ``PostgreSQL`` con `Docker`_ debe crear
+        Para ejecutar el comando del instalador del servidor ``MySQL`` con `Docker`_ debe crear
         un archivo llamado :file:`docker-compose.yml` en el directorio ``sistema/`` con el contenido
         anterior, ejecutando el siguiente comando:
 
@@ -774,13 +735,13 @@ configuración y ejecución del código fuente.
 
       .. tip::
         Si tiene creado el archivo con el contenido, entonces puede ejecutar la instalación un
-        servidor ``PostgreSQL``, ejecutando el siguiente comando:
+        servidor ``MySQL``, ejecutando el siguiente comando:
 
       .. code-block:: console
 
           docker-compose up -d
 
-      De esta forma crea el contenedor Docker llamado ``postgresql``, necesario para ejecutar el script Python.
+      De esta forma crea el contenedor Docker llamado ``mysql``, necesario para ejecutar el script Python.
 
       .. tip::
         Para ejecutar el código fuente de esta práctica debe invocar al módulo :file:`main.py`,
@@ -798,7 +759,7 @@ configuración y ejecución del código fuente.
 
           INFO:root:✅ ¡Conexión a la base de datos 'sistema' fue exitosa!
 
-          INFO:root:✅ ¡Fueron creado(s) -1 tabla(s) correctamente en la base de datos!
+          INFO:root:✅ ¡Fueron creado(s) 0 tabla(s) correctamente en la base de datos!
 
           INFO:root:✅ ¡Fueron insertado(s) 3 registro(s) correctamente en la tabla!
 
@@ -832,7 +793,7 @@ configuración y ejecución del código fuente.
 
           INFO:root:✅ ¡Registro eliminado correctamente!
 
-          INFO:root:✅ ¡La conexión PostgreSQL a la base de datos 'sistema' fue cerrada!
+          INFO:root:✅ ¡La conexión MySQL a la base de datos 'sistema' fue cerrada!
 
       La ejecucion anterior generar la siguiente estructura:
 
@@ -840,7 +801,7 @@ configuración y ejecución del código fuente.
           :class: no-copy
 
           proyectos/
-          └── postgresql/
+          └── mysql/
               └── sistema/
                   ├── __init__.py
                   ├── .env
@@ -851,28 +812,28 @@ configuración y ejecución del código fuente.
 
 
 Asi de esta forma puede ingresar, consultar, actualizar y eliminar registro en una
-tabla usando ``PostgreSQL``.
+tabla usando ``MySQL``.
 
 
 .. important::
     Usted puede descargar el código usado en esta sección haciendo clic en los
     siguientes enlaces:
 
-    - :download:`docker-compose.yml <../../recursos/leccion6/postgresql/sistema/docker-compose.yml>`.
+    - :download:`docker-compose.yml <../../recursos/leccion6/mysql/sistema/docker-compose.yml>`.
 
-    - :download:`__init__.py <../../recursos/leccion6/postgresql/sistema/__init__.py>`.
+    - :download:`__init__.py <../../recursos/leccion6/mysql/sistema/__init__.py>`.
 
-    - :download:`.env.example <../../recursos/leccion6/postgresql/sistema/.env.example>`.
+    - :download:`.env.example <../../recursos/leccion6/mysql/sistema/.env.example>`.
 
-    - :download:`main.py <../../recursos/leccion6/postgresql/sistema/main.py>`.
+    - :download:`main.py <../../recursos/leccion6/mysql/sistema/main.py>`.
 
-    - :download:`requirements.txt <../../recursos/leccion6/postgresql/sistema/requirements.txt>`.
+    - :download:`requirements.txt <../../recursos/leccion6/mysql/sistema/requirements.txt>`.
 
-    - :download:`settings.py <../../recursos/leccion6/postgresql/sistema/settings.py>`.
+    - :download:`settings.py <../../recursos/leccion6/mysql/sistema/settings.py>`.
 
 
-Asi de esta forma puede replicar una práctica real de un proyecto para realizar operaciones
-en una base de datos ``PostgreSQL``, aplicando buenas prácticas de código funcional.
+Asi de esta forma puede replicar una practica real de un proyecto para realizar operaciones
+en una base de datos ``MySQL``, aplicando buenas prácticas de código funcional.
 
 
 ----
@@ -880,7 +841,7 @@ en una base de datos ``PostgreSQL``, aplicando buenas prácticas de código func
 
 .. seealso::
 
-    Consulte la sección de :ref:`lecturas suplementarias <lecturas_extras_leccion6>`
+    Consulte la sección de :ref:`lecturas suplementarias <lecturas_extras_leccion2>`
     del entrenamiento para ampliar su conocimiento en esta temática.
 
 
@@ -892,10 +853,8 @@ en una base de datos ``PostgreSQL``, aplicando buenas prácticas de código func
   .. disqus::
 
 
-.. _`PostgreSQL`: https://www.postgresql.org/
-.. _`psycopg`: https://www.psycopg.org/docs/
-.. _`psycopg2`: https://pypi.org/project/psycopg2/
-.. _`libpq`: https://www.postgresql.org/docs/current/libpq.html
+.. _`MySQL`: https://es.wikipedia.org/wiki/MySQL
+.. _`PyMySQL`: https://pymysql.readthedocs.io/en/latest/
 .. _`dotenv`: https://dev.to/emma_donery/python-dotenv-keep-your-secrets-safe-4ocn
 .. _`establecer variables de entorno`: https://docs.docker.com/compose/how-tos/environment-variables/set-environment-variables/
 .. _`Docker`: https://www.docker.com/

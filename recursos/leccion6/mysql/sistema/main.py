@@ -1,4 +1,4 @@
-"""Programa para realizar operaciones a base de datos PostgreSQL"""
+"""Programa para realizar operaciones a base de datos MySQL"""
 
 import logging
 from settings import (
@@ -16,14 +16,21 @@ from settings import (
     UPDATE_SQL_SCRIPTS,
     DELETE_SQL_SCRIPTS,
 )
-from psycopg2 import connect
-from psycopg2.errors import Error, DatabaseError, OperationalError, ProgrammingError
+from pymysql.constants.ER import DBACCESS_DENIED_ERROR, BAD_DB_ERROR
+from pymysql import (
+    Error,
+    OperationalError,
+    ProgrammingError,
+    IntegrityError,
+    connect,
+    err,
+)
 
 logging.basicConfig(level=logging.INFO)
 
 
 def crear_conexion(servidor, puerto, usuario, contrasena, bd):
-    """Crear conexión con un servidor PostgreSQL
+    """Crear conexión con un servidor MySQL
 
     Args:
         servidor (str): IP o dirección DNS de conexión al servidor de la base de datos.
@@ -33,14 +40,14 @@ def crear_conexion(servidor, puerto, usuario, contrasena, bd):
         bd (str): Nombre de la base de datos a cual conectar.
 
     Returns:
-        conexion_bd (Connection): Representación de un socket con un servidor PostgreSQL
+        conexion_bd (Connection): Representación de un socket con un servidor MySQL
     """
     conexion_bd = None
     credenciales = {
-        "user": usuario,
-        "password": contrasena,
         "host": servidor,
         "port": puerto,
+        "user": usuario,
+        "password": contrasena,
         "database": bd,
     }
     try:
@@ -55,12 +62,15 @@ def crear_conexion(servidor, puerto, usuario, contrasena, bd):
         logging.info(
             f"✅ ¡Conexión a la base de datos '{credenciales['database']}' fue exitosa!\n"
         )
-    except OperationalError as e:
-        logging.error(
-            f"❌ ERROR: Se produjo n error de operación de la base de datos: {e}"
-        )
-    except DatabaseError as e:
-        logging.error(f"❌ ERROR: Se produjo lo siguiente: {e}")
+    except Error as err:
+        if err.args[0] == DBACCESS_DENIED_ERROR:
+            logging.error(
+                "\x1b[1;31mERROR: ¡Algo está mal con su nombre de usuario o contraseña!"
+            )
+        elif err.args[0] == BAD_DB_ERROR:
+            logging.error("\x1b[1;31m❌ ERROR: ¡La base de datos no existe!")
+        else:
+            logging.error(f"\x1b[1;31m❌ ERROR: Se produjo lo siguiente: '{err}'")
     return conexion_bd
 
 
@@ -68,18 +78,17 @@ def crear_base_datos(conexion_bd, create_database_sql, bd):
     """Creación la base de datos
 
     Args:
-        conexion_bd (Connection): Representación de un socket con un servidor PostgreSQL
+        conexion_bd (Connection): Representación de un socket con un servidor MySQL
         create_database_sql (str): Script CREATE DATABASE SQL para crear la base de datos
         bd (str): Nombre de la base de datos a crear.
     """
+    conexion_bd.autocommit = True
     # Crear un objeto cursor para ejecutar script SQL
     cursor = conexion_bd.cursor()
     try:
-        # Crear una base de datos en el servidor PostgreSQL
-        cursor.execute(create_database_sql)
+        # Crear una base de datos en el servidor MySQL
+        cursor.execute(create_database_sql, bd)
         logging.info(f"✅ ¡Creación exitosa de la base de datos '{bd}'!\n")
-    except SyntaxError as e:
-        logging.error("❌ ERROR: ¡SQL Invalida: '{e}'!")
     except ProgrammingError as e:
         logging.error(f"❌ ERROR: ¡Se produjo una falla de programación: '{e}'!")
     except OperationalError as e:
@@ -91,7 +100,7 @@ def crear_tablas(conexion_bd, create_table_sql):
     """Creación de tabla(s) dentro de la base de datos
 
     Args:
-        conexion_bd (Connection): Representación conexión a la base de datos PostgreSQL
+        conexion_bd (Connection): Representación conexión a la base de datos MySQL
         create_table_sql (str): Script CREATE TABLE SQL para crear tabla(s)
     """
     try:
@@ -101,12 +110,9 @@ def crear_tablas(conexion_bd, create_table_sql):
         cursor.execute(create_table_sql)
         # Hacer persistentes los cambios en la base de datos
         conexion_bd.commit()
-        if cursor.rowcount == -1:
-            logging.info(f"✅ ¡Las tabla(s) ya existen en la base de datos!\n")
-        else:
-            logging.info(
-                f"✅ ¡Fueron creado(s) {cursor.rowcount} tabla(s) correctamente en la base de datos!\n"
-            )
+        logging.info(
+            f"✅ ¡Fueron creado(s) {cursor.rowcount} tabla(s) correctamente en la base de datos!\n"
+        )
         # Cerrar el cursor
         cursor.close()
     except Error as error:
@@ -119,7 +125,7 @@ def insertar_registro(conexion_bd, insert_values, insert_sql):
     """Función para la inserción de registro de la tabla
 
     Args:
-        conexion_bd (Connection): Representación conexión a la base de datos PostgreSQL
+        conexion_bd (Connection): Representación conexión a la base de datos MySQL
         insert_values (list): Lista de filas a ingresar
         insert_sql (str): Script INSERT SQL a usar al ingresar datos
     """
@@ -142,6 +148,8 @@ def insertar_registro(conexion_bd, insert_values, insert_sql):
         )
         # Cerrar el cursor
         cursor.close()
+    except IntegrityError as error:
+        logging.error(f"❌ ERROR: ¡Registro duplicado por clave primaria!: {error}")
     except Error as error:
         logging.error(
             f"❌ ERROR: ¡Fallo la inserción de registro(s) en la tabla!: {error}"
@@ -152,7 +160,7 @@ def consultar_registro(conexion_bd, select_sql):
     """Función para la consulta de registro(s) de la tabla
 
     Args:
-        conexion_bd (Connection): Representación conexión a la base de datos PostgreSQL
+        conexion_bd (Connection): Representación conexión a la base de datos MySQL
         select_sql (str): Script SELECT SQL a usar al consultar datos
     """
     try:
@@ -182,7 +190,7 @@ def actualizar_registro(conexion_bd, update_values, update_sql):
     """Función para la actualización de registro de la tabla
 
     Args:
-        conexion_bd (Connection): Representación conexión a la base de datos PostgreSQL
+        conexion_bd (Connection): Representación conexión a la base de datos MySQL
         update_values (list): Lista de filas a actualizar
         update_sql (str): Script UPDATE SQL a usar al actualizar datos
     """
@@ -208,7 +216,7 @@ def eliminar_registro(conexion_bd, delete_sql):
     """Función para la eliminación de registro de la tabla
 
     Args:
-        conexion_bd (Connection): Representación conexión a la base de datos PostgreSQL
+        conexion_bd (Connection): Representación conexión a la base de datos MySQL
         delete_sql (str): Script DELETE SQL a usar al eliminar datos
     """
     try:
@@ -223,15 +231,17 @@ def eliminar_registro(conexion_bd, delete_sql):
         cursor.close()
     except Error as error:
         logging.error(
-            f"❌ ERROR: ¡Fallo la eliminación de registro(s) en la tabla!: {error}\n"
+            f"❌ ERROR: ¡Fallo la eliminación de registro(s) en la tabla!: {error}"
         )
 
 
 if __name__ == "__main__":
     conexion = None
     try:
-        # Crear conexión al servidor PostgreSQL
+        # Crear conexión al servidor MySQL
         conexion = crear_conexion(HOST, PORT, USER, PASSW, DB)
+        # Crear la base de datos
+        # crear_base_datos(conexion, CREATE_DATABASE_SQL, DB)
         # Crear la tabla dentro de la base de datos
         crear_tablas(conexion, CREATE_TABLE_SQL)
         insertar_registro(conexion, INSERT_MULTIPLE_COLUMNS, INSERT_SQL_SCRIPTS)

@@ -1,3 +1,0 @@
-# Install the packages from PyPi repository.
-psycopg2==2.9.5
-python-dotenv==0.21.0
