@@ -142,6 +142,36 @@ el siguiente comando correspondiente a tu sistema operativo:
 Si muestra el número de la versión instalada de ``SQLAlchemy``, tiene
 correctamente instalada la librería. Con esto, ya tiene todo listo para continuar.
 
+
+----
+
+
+Estructura de archivos
+^^^^^^^^^^^^^^^^^^^^^^
+
+Para crear la estructura de archivos del proyecto ``SQLAlchemy`` debe ejecutar los siguientes comandos:
+
+Crear el directorio ``~/proyectos/sqlalchemy/sistema`` con el siguiente comando:
+
+.. code-block:: console
+
+    mkdir -p ~/proyectos/sqlalchemy/sistema && cd $_
+
+
+El comando anterior crea la siguiente estructura de directorios:
+
+.. code-block:: console
+    :class: no-copy
+
+    proyectos/
+    └── sqlalchemy/
+        └── sistema/
+
+Si tiene la estructura de archivo previa, entonces puede continuar con la siguiente sección.
+
+
+----
+
 .. _python_sqlalchemy_engine:
 
 Crear el Engine
@@ -155,7 +185,7 @@ El motor se usa principalmente para manejar dos elementos: los pools de conexion
 y el dialecto a utilizar.
 
 Vamos a crear un ``engine``. Para ello, añade un nuevo módulo Python llamado
-:file:`settings.py` al directorio ``productos`` con el siguiente contenido:
+:file:`settings.py` al directorio ``sistema`` con el siguiente contenido:
 
 .. code-block:: python
     :linenos:
@@ -164,7 +194,7 @@ Vamos a crear un ``engine``. Para ello, añade un nuevo módulo Python llamado
     from sqlalchemy import create_engine
 
     DB_PATH = os.path.dirname(os.path.abspath(__file__)) + os.sep
-    DB_FILE = "productos.sqlite3"
+    DB_FILE = "sistema.db"
 
     # Configurar conexiones entre SQLAlchemy y SQLite3 DB API
     engine = create_engine(f"sqlite:///{DB_PATH}{DB_FILE}")
@@ -234,7 +264,7 @@ Va a crear una sesión en el proyecto. Abre el archivo :file:`settings.py` y añ
     from sqlalchemy.orm import sessionmaker
 
     DB_PATH = os.path.dirname(os.path.abspath(__file__)) + os.sep
-    DB_FILE = "productos.sqlite3"
+    DB_FILE = "sistema.db"
 
     engine = create_engine(f"sqlite:///{DB_PATH}{DB_FILE}")
 
@@ -274,7 +304,7 @@ el que te muestro a continuación:
     from sqlalchemy.ext.declarative import declarative_base
 
     DB_PATH = os.path.dirname(os.path.abspath(__file__)) + os.sep
-    DB_FILE = "productos.sqlite3"
+    DB_FILE = "sistema.db"
 
     # Configurar conexiones entre SQLAlchemy y SQLite3 DB API
     engine = create_engine(f"sqlite:///{DB_PATH}{DB_FILE}")
@@ -292,7 +322,7 @@ precisamente, en cada uno de los modelos.
 
 A continuación, le presento como debe quedar el archivo :file:`settings.py`:
 
-.. literalinclude:: ../../recursos/leccion7/sqlalchemy/productos/settings.py
+.. literalinclude:: ../../recursos/leccion7/sqlalchemy/sistema/settings.py
     :language: python
     :linenos:
     :lines: 1-24
@@ -301,7 +331,7 @@ Por tanto, lo siguiente que debe hacer es crear el modelo ``Productos``. Crea un
 nuevo archivo en el directorio ``productos`` llamado :file:`models.py` y
 añade el código que te muestro a continuación:
 
-.. literalinclude:: ../../recursos/leccion7/sqlalchemy/productos/models.py
+.. literalinclude:: ../../recursos/leccion7/sqlalchemy/sistema/models.py
     :language: python
     :linenos:
     :lines: 1-34
@@ -406,7 +436,7 @@ Ejecuta ahora el programa con el siguiente comando:
           ¡Creación exitosa de la tabla productos!
 
 
-Se ha creado la tabla ``productos`` en la base de datos ``productos.sqlite3``. Verás que aparece un
+Se ha creado la tabla ``productos`` en la base de datos ``sistema.db``. Verás que aparece un
 archivo con dicho nombre en el directorio ``productos``.
 
 
@@ -620,19 +650,20 @@ Práctica - Caso real
 --------------------
 
 A continuación se presenta una práctica más real de implementar el uso de proyectos
-con ``SQLAlchemy``, a continuación la estructura de proyecto llamado ``productos``:
+con ``SQLAlchemy``, a continuación la estructura de proyecto llamado ``sistema``:
 
 .. code-block:: console
     :class: no-copy
 
-    productos/
-    ├── .env.example
-    ├── __init__.py
-    ├── main.py
-    ├── models.py
-    ├── productos.sqlite3
-    ├── requirements.txt
-    └── settings.py
+    proyectos/
+    └── sqlalchemy/
+        └── sistema/
+            ├── .env.example
+            ├── __init__.py
+            ├── main.py
+            ├── models.py
+            ├── requirements.txt
+            └── settings.py
 
 A continuación se presenta y explica el uso de cada archivo para este proyecto:
 
@@ -640,7 +671,7 @@ A continuación se presenta y explica el uso de cada archivo para este proyecto:
 
 Archivo plantilla `dotenv`_ del paquete adicional `python-dotenv`_.
 
-.. literalinclude:: ../../recursos/leccion7/sqlalchemy/productos/.env.example
+.. literalinclude:: ../../recursos/leccion7/sqlalchemy/sistema/.env.example
     :language: text
     :linenos:
     :lines: 1-2
@@ -649,7 +680,7 @@ Archivo plantilla `dotenv`_ del paquete adicional `python-dotenv`_.
 
 Módulo de configuraciones del programa.
 
-.. literalinclude:: ../../recursos/leccion7/sqlalchemy/productos/settings.py
+.. literalinclude:: ../../recursos/leccion7/sqlalchemy/sistema/settings.py
     :language: python
     :linenos:
     :lines: 1-24
@@ -658,7 +689,7 @@ Módulo de configuraciones del programa.
 
 Módulo de principal del programa.
 
-.. literalinclude:: ../../recursos/leccion7/sqlalchemy/productos/main.py
+.. literalinclude:: ../../recursos/leccion7/sqlalchemy/sistema/main.py
     :language: python
     :linenos:
     :lines: 1-183
@@ -667,14 +698,14 @@ Módulo de principal del programa.
 
 Módulo de :ref:`modelos <python_sqlalchemy_modelos>` de :ref:`SQLAlchemy <python_sqlalchemy>`.
 
-.. literalinclude:: ../../recursos/leccion7/sqlalchemy/productos/models.py
+.. literalinclude:: ../../recursos/leccion7/sqlalchemy/sistema/models.py
     :language: python
     :linenos:
     :lines: 1-34
 
-*Archivo* :file:`productos.sqlite3`
+*Archivo* :file:`sistema.db`
 
-Archivo de base de datos de :ref:`SQLite <python_modulo_sqlite3>` llamado :file:`productos.sqlite3`
+Archivo de base de datos de :ref:`SQLite <python_modulo_sqlite3>` llamado :file:`sistema.db`
 la cual no se incluye ya que cada vez que se inicia el programa :file:`main.py` se elimina y crea
 nuevamente, para cuidar la creación de los datos iniciales.
 
@@ -682,7 +713,7 @@ nuevamente, para cuidar la creación de los datos iniciales.
 
 Archivo de `requirements.txt`_ de la herramienta de gestión de paquetes `pip`_.
 
-.. literalinclude:: ../../recursos/leccion7/sqlalchemy/productos/requirements.txt
+.. literalinclude:: ../../recursos/leccion7/sqlalchemy/sistema/requirements.txt
     :language: python
     :linenos:
     :lines: 1-3
@@ -783,7 +814,30 @@ sistema operativo:
 
           INFO:root:✅ ¡Eliminación exitosa del producto 'Arroz'!
 
-          INFO:root:✅ ¡La conexión SQLite a la base de datos 'productos.sqlite3' fue cerrada!
+          INFO:root:✅ ¡La conexión SQLite a la base de datos 'sistema.db' fue cerrada!
+
+      La ejecucion anterior generar la siguiente estructura:
+
+      .. code-block:: console
+          :class: no-copy
+
+          proyectos/
+          └── sqlalchemy/
+              └── sistema/
+                  ├── __init__.py
+                  ├── .env
+                  ├── .env.example
+                  ├── main.py
+                  ├── models.py
+                  ├── requirements.txt
+                  ├── settings.py
+                  └── sistema.db
+
+      *Archivo* :file:`sistema.db`
+
+      Archivo de base de datos de :ref:`SQLite <python_modulo_sqlite3>` llamado :file:`sistema.db`
+      la cual no se incluye ya que cada vez que se inicia el programa :file:`main.py` se elimina y crea
+      nuevamente, para cuidar la creación de los datos iniciales.
 
    .. group-tab:: Windows
 
@@ -883,7 +937,30 @@ sistema operativo:
 
           INFO:root:✅ ¡Eliminación exitosa del producto 'Arroz'!
 
-          INFO:root:✅ ¡La conexión SQLite a la base de datos 'productos.sqlite3' fue cerrada!
+          INFO:root:✅ ¡La conexión SQLite a la base de datos 'sistema.db' fue cerrada!
+
+      La ejecucion anterior generar la siguiente estructura:
+
+      .. code-block:: console
+          :class: no-copy
+
+          proyectos/
+          └── sqlalchemy/
+              └── sistema/
+                  ├── __init__.py
+                  ├── .env
+                  ├── .env.example
+                  ├── main.py
+                  ├── models.py
+                  ├── requirements.txt
+                  ├── settings.py
+                  └── sistema.db
+
+      *Archivo* :file:`sistema.db`
+
+      Archivo de base de datos de :ref:`SQLite <python_modulo_sqlite3>` llamado :file:`sistema.db`
+      la cual no se incluye ya que cada vez que se inicia el programa :file:`main.py` se elimina y crea
+      nuevamente, para cuidar la creación de los datos iniciales.
 
 
 Asi de esta forma puede ingresar, consultar, actualizar y eliminar registro en una

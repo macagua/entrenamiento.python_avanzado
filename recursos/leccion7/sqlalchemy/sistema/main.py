@@ -88,7 +88,7 @@ def consultar_nombre_unico():
     print("\n✅ ¡Consulta del único producto!")
     # SELECT * FROM productos WHERE categoria == "Lácteos"
     producto = session.query(Productos).filter_by(categoria="Líquidos").one()
-    if len(producto) == 0:
+    if not producto:
         logging.error(
             "❌ ERROR: ¡No hay ningún Producto de la categoria 'Líquidos' en la base de datos!"
         )
