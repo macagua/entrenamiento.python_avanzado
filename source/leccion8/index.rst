@@ -316,11 +316,11 @@ en proyectos con ``SQLAlchemy``, a continuación la estructura de proyecto llama
 
     sistema/
     ├── .env.example
-    ├── db.py
     ├── __init__.py
     ├── main.py
     ├── models.py
     ├── requirements.txt
+    ├── settings.py
     └── sistema.db
 
 A continuación se presenta y explica el uso de cada archivo para este proyecto:
@@ -332,16 +332,16 @@ Archivo plantilla `dotenv`_ del paquete adicional `python-dotenv`_.
 .. literalinclude:: ../../recursos/leccion8/sqlacodegen/sistema/.env.example
     :language: text
     :linenos:
-    :lines: 1-9
+    :lines: 1-10
 
-*Archivo* :file:`db.py`
+*Archivo* :file:`settings.py`
 
 Módulo de configuraciones del programa.
 
-.. literalinclude:: ../../recursos/leccion8/sqlacodegen/sistema/db.py
+.. literalinclude:: ../../recursos/leccion8/sqlacodegen/sistema/settings.py
     :language: python
     :linenos:
-    :lines: 1-54
+    :lines: 1-55
 
 *Archivo* :file:`models.py`
 
@@ -359,7 +359,7 @@ Módulo principal del programa.
 .. literalinclude:: ../../recursos/leccion8/sqlacodegen/sistema/main.py
     :language: python
     :linenos:
-    :lines: 1-31
+    :lines: 1-118
 
 *Archivo* :file:`requirements.txt`
 
@@ -368,7 +368,7 @@ Archivo de `requirements.txt`_ de la herramienta de gestión de paquetes `pip`_.
 .. literalinclude:: ../../recursos/leccion8/sqlacodegen/sistema/requirements.txt
     :language: python
     :linenos:
-    :lines: 1-6
+    :lines: 1-7
 
 *Archivo* :file:`sistema.db`
 
@@ -420,40 +420,46 @@ sistema operativo:
       .. code-block:: console
           :class: no-copy
 
-          📜 Lista de Estados:
+          ✅ Lista de 10 Estados
+          📜 Estado: Amazonas
+          📜 Estado: Anzoátegui
+          📜 Estado: Apure
+          📜 Estado: Aragua
+          📜 Estado: Barinas
+          📜 Estado: Bolívar
+          📜 Estado: Carabobo
+          📜 Estado: Cojedes
+          📜 Estado: Delta Amacuro
+          📜 Estado: Falcón
+          INFO:root:✅ ¡Consulta de los '10' estados!
 
-          Estado: Amazonas
-          Estado: Anzoátegui
-          Estado: Apure
-          Estado: Aragua
-          Estado: Barinas
-          Estado: Bolívar
-          Estado: Carabobo
-          Estado: Cojedes
-          Estado: Delta Amacuro
-          Estado: Falcón
-          Estado: Guárico
-          Estado: Lara
-          Estado: Mérida
-          ...
+          ✅ Lista de 10 Ciudades
+          📜 Ciudad: Maroa, Estado: Amazonas.
+          📜 Ciudad: Puerto Ayacucho, Estado: Amazonas.
+          📜 Ciudad: San Fernando de Atabapo, Estado: Amazonas.
+          📜 Ciudad: Anaco, Estado: Anzoátegui.
+          📜 Ciudad: Aragua de Barcelona, Estado: Anzoátegui.
+          📜 Ciudad: Barcelona, Estado: Anzoátegui.
+          📜 Ciudad: Boca de Uchire, Estado: Anzoátegui.
+          📜 Ciudad: Cantaura, Estado: Anzoátegui.
+          📜 Ciudad: Clarines, Estado: Anzoátegui.
+          📜 Ciudad: El Chaparro, Estado: Anzoátegui.
+          INFO:root:✅ ¡Consulta de las '10' ciudades!
 
-          📜 Lista de Ciudades:
+          ✅ Lista de Clientes
+          📜 Cliente: Leonardo Caballero
+          📜 Cliente: Ana Poleo
+          📜 Cliente: Manuel Matos
+          📜 Cliente: Liliana Andradez
+          INFO:root:✅ ¡Consulta de los '4' clientes!
 
-          Ciudad: Maroa, Estado: Amazonas.
-          Ciudad: Puerto Ayacucho, Estado: Amazonas.
-          Ciudad: San Fernando de Atabapo, Estado: Amazonas.
-          Ciudad: Anaco, Estado: Anzoátegui.
-          Ciudad: Aragua de Barcelona, Estado: Anzoátegui.
-          Ciudad: Barcelona, Estado: Anzoátegui.
-          Ciudad: Boca de Uchire, Estado: Anzoátegui.
-          Ciudad: Cantaura, Estado: Anzoátegui.
-          Ciudad: Clarines, Estado: Anzoátegui.
-          Ciudad: El Chaparro, Estado: Anzoátegui.
-          Ciudad: El Pao Anzoátegui, Estado: Anzoátegui.
-          Ciudad: El Tigre, Estado: Anzoátegui.
-          Ciudad: El Tigrito, Estado: Anzoátegui.
-          Ciudad: Guanape, Estado: Anzoátegui.
-          ...
+          ✅ Lista de Productos
+          ERROR:root:❌ ¡No hay ningún 'producto' en la base de datos!
+
+          ✅ Lista de Pedidos
+          ERROR:root:❌ ¡No hay ningún 'pedido' en la base de datos!
+
+          INFO:root:✅ ¡La conexión SQLite a la base de datos 'sistema.db' fue cerrada!
 
    .. group-tab:: Windows
 
@@ -498,40 +504,46 @@ sistema operativo:
       .. code-block:: console
           :class: no-copy
 
-          📜 Lista de Estados:
+          ✅ Lista de 10 Estados
+          📜 Estado: Amazonas
+          📜 Estado: Anzoátegui
+          📜 Estado: Apure
+          📜 Estado: Aragua
+          📜 Estado: Barinas
+          📜 Estado: Bolívar
+          📜 Estado: Carabobo
+          📜 Estado: Cojedes
+          📜 Estado: Delta Amacuro
+          📜 Estado: Falcón
+          INFO:root:✅ ¡Consulta de los '10' estados!
 
-          Estado: Amazonas
-          Estado: Anzoátegui
-          Estado: Apure
-          Estado: Aragua
-          Estado: Barinas
-          Estado: Bolívar
-          Estado: Carabobo
-          Estado: Cojedes
-          Estado: Delta Amacuro
-          Estado: Falcón
-          Estado: Guárico
-          Estado: Lara
-          Estado: Mérida
-          ...
+          ✅ Lista de 10 Ciudades
+          📜 Ciudad: Maroa, Estado: Amazonas.
+          📜 Ciudad: Puerto Ayacucho, Estado: Amazonas.
+          📜 Ciudad: San Fernando de Atabapo, Estado: Amazonas.
+          📜 Ciudad: Anaco, Estado: Anzoátegui.
+          📜 Ciudad: Aragua de Barcelona, Estado: Anzoátegui.
+          📜 Ciudad: Barcelona, Estado: Anzoátegui.
+          📜 Ciudad: Boca de Uchire, Estado: Anzoátegui.
+          📜 Ciudad: Cantaura, Estado: Anzoátegui.
+          📜 Ciudad: Clarines, Estado: Anzoátegui.
+          📜 Ciudad: El Chaparro, Estado: Anzoátegui.
+          INFO:root:✅ ¡Consulta de las '10' ciudades!
 
-          📜 Lista de Ciudades:
+          ✅ Lista de Clientes
+          📜 Cliente: Leonardo Caballero
+          📜 Cliente: Ana Poleo
+          📜 Cliente: Manuel Matos
+          📜 Cliente: Liliana Andradez
+          INFO:root:✅ ¡Consulta de los '4' clientes!
 
-          Ciudad: Maroa, Estado: Amazonas.
-          Ciudad: Puerto Ayacucho, Estado: Amazonas.
-          Ciudad: San Fernando de Atabapo, Estado: Amazonas.
-          Ciudad: Anaco, Estado: Anzoátegui.
-          Ciudad: Aragua de Barcelona, Estado: Anzoátegui.
-          Ciudad: Barcelona, Estado: Anzoátegui.
-          Ciudad: Boca de Uchire, Estado: Anzoátegui.
-          Ciudad: Cantaura, Estado: Anzoátegui.
-          Ciudad: Clarines, Estado: Anzoátegui.
-          Ciudad: El Chaparro, Estado: Anzoátegui.
-          Ciudad: El Pao Anzoátegui, Estado: Anzoátegui.
-          Ciudad: El Tigre, Estado: Anzoátegui.
-          Ciudad: El Tigrito, Estado: Anzoátegui.
-          Ciudad: Guanape, Estado: Anzoátegui.
-          ...
+          ✅ Lista de Productos
+          ERROR:root:❌ ¡No hay ningún 'producto' en la base de datos!
+
+          ✅ Lista de Pedidos
+          ERROR:root:❌ ¡No hay ningún 'pedido' en la base de datos!
+
+          INFO:root:✅ ¡La conexión SQLite a la base de datos 'sistema.db' fue cerrada!
 
 
 Asi de esta forma puede usar ``sqlacodegen`` para generar modelos ``SQLAlchemy`` desde
