@@ -3,7 +3,6 @@
 import logging
 
 from sqlalchemy import insert, select, update, delete, exc
-from sqlite3 import Error
 from settings import DB_FILE, Base, engine, session
 from models import Productos
 
@@ -40,7 +39,7 @@ def consultar_data():
     consulta = select(Productos)
     for producto in session.scalars(consulta):
         print(f"📜 {producto.nombre} {str(producto.precio)}")
-    logging.info(f"✅ ¡Consulta exitosa del 'nombre' y 'precio' de todos los productos!")
+    logging.info("✅ ¡Consulta exitosa del 'nombre' y 'precio' de todos los productos!")
 
 
 def consultar_id_data(producto_id):
@@ -62,7 +61,7 @@ def consultar_categoria_precio():
     for lacteo in lacteos:
         print(f"📜 {lacteo}")
     logging.info(
-        f"✅ ¡Consulta exitosa de los productos 'lacteos' con precio mayor a '3.0'!"
+        "✅ ¡Consulta exitosa de los productos 'lacteos' con precio mayor a '3.0'!"
     )
 
 
@@ -72,7 +71,7 @@ def consultar_nombre_tupla():
     lacteos = session.query(Productos).filter(Productos.categoria == "Lácteos")
     for lacteo in lacteos:
         print(f"📜 {lacteo.id}, {lacteo.nombre}, {lacteo.categoria}")
-    logging.info(f"✅ ¡Consulta exitosa de todos los productos 'lacteos'!")
+    logging.info("✅ ¡Consulta exitosa de todos los productos 'lacteos'!")
 
 
 def consultar_nombre_primero():
@@ -87,14 +86,16 @@ def consultar_nombre_primero():
 
 def consultar_nombre_unico():
     print("\n✅ ¡Consulta del único producto!")
-    try:
-        # SELECT * FROM productos WHERE categoria == "Lácteos"
-        producto = session.query(Productos).filter_by(categoria="Líquidos").one()
-        print(f"📜 {producto}")
-        logging.info(f"✅ ¡Consulta exitosa del único producto!")
-    except exc.NoResultFound as err:
+    # SELECT * FROM productos WHERE categoria == "Lácteos"
+    producto = session.query(Productos).filter_by(categoria="Líquidos").one()
+    if len(producto) == 0:
         logging.error(
-            f"❌ ERROR: ¡No hay ningún Producto con ese criterio en la base de datos!"
+            "❌ ERROR: ¡No hay ningún Producto de la categoria 'Líquidos' en la base de datos!"
+        )
+    else:
+        print(f"📜 {producto}")
+        logging.info(
+            "✅ ¡Consulta exitosa del único producto con la categoria 'Líquidos'!"
         )
 
 
@@ -105,7 +106,7 @@ def consultar_nombres_data(nombres):
     for producto in session.scalars(consulta):
         print(f"📜 {producto}")
     logging.info(
-        f"✅ ¡Consulta exitosa de producto(s) cuyo(s) nombres coincidan con 'Agua' y 'Arroz'!"
+        "✅ ¡Consulta exitosa de producto(s) cuyo(s) nombres coincidan con 'Agua' y 'Arroz'!"
     )
 
 
@@ -168,7 +169,7 @@ if __name__ == "__main__":
         actualizar_data(1)
         actualizar_otra_data(2, 3.33)
         eliminar_data(1)
-    except Error as e:
+    except exc.SQLAlchemyError as e:
         logging.error(
             f"❌ ERROR: ¡Se produjo un falla al establecer la conexión a la base de datos '{DB_FILE}': '{e}'!"
         )

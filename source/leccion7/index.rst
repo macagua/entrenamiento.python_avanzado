@@ -661,7 +661,7 @@ Módulo de principal del programa.
 .. literalinclude:: ../../recursos/leccion7/sqlalchemy/productos/main.py
     :language: python
     :linenos:
-    :lines: 1-182
+    :lines: 1-183
 
 *Archivo* :file:`models.py`
 
