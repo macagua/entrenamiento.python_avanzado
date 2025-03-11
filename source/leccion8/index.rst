@@ -43,7 +43,7 @@ a continuación se presentan el correspondiente comando de tu sistema operativo:
 
       .. code-block:: console
 
-          pip3 install sqlacodegen==3.0.0
+          pip3 install sqlacodegen
 ..
   pip3 install git+https://github.com/agronholm/sqlacodegen.git@3.0.0rc1#egg=sqlacodegen
 
@@ -51,7 +51,7 @@ a continuación se presentan el correspondiente comando de tu sistema operativo:
 
       .. code-block:: console
 
-          pip3 install sqlacodegen==3.0.0
+          pip3 install sqlacodegen
 
 
 Puede probar si la instalación se realizo correctamente, ejecutando el siguiente
