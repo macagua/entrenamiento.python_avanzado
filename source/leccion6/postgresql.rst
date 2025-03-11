@@ -258,7 +258,7 @@ Si requiere insertar registro en una tabla, a continuación tiene un ejemplo:
 .. literalinclude:: ../../recursos/leccion6/postgresql/crud/postgresql_record_insert.py
     :language: python
     :linenos:
-    :lines: 1-93
+    :lines: 1-95
 
 
 .. important::

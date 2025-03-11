@@ -89,7 +89,7 @@ def insertar_registro(conexion_bd, insert_values, insert_sql):
         )
         # Insertar un nuevo registro en la tabla
         cursor.execute(
-            INSERT_SQL_SCRIPTS, (4, "Liliana", "Andradez", "4001", "+58-414-6782473")
+            INSERT_SQL_SCRIPTS, (4, "Liliana", "Andradez", "3105", "+58-414-6782473")
         )
         # Hacer persistentes los cambios en la base de datos
         conexion_bd.commit()
