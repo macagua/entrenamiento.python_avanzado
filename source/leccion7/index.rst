@@ -113,13 +113,13 @@ a continuación se presentan el correspondiente comando de tu sistema operativo:
 
       .. code-block:: console
 
-          pip3 install SQLAlchemy==1.4.36
+          pip3 install SQLAlchemy
 
    .. group-tab:: Windows
 
       .. code-block:: console
 
-          pip3 install SQLAlchemy==1.4.36
+          pip3 install SQLAlchemy
 
 
 Puede probar si la instalación se realizo correctamente, ejecutando
