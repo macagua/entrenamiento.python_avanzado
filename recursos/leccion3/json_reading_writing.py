@@ -9,9 +9,9 @@ logging.basicConfig(level=logging.INFO)
 # Ruta del archivo
 RUTA = os.path.join(os.path.dirname(os.path.abspath(__file__)))
 # Nombre de archivo JSON
-ARCHIVO_JSON = "json_reading_writing.json"
+ARCHIVO_JSON = "clientes.json"
 # Data a escribir
-DATA = {
+clientes_data = {
     "clientes": [
         {
             "nombre": "Leonardo",
@@ -37,15 +37,15 @@ DATA = {
 
 try:
     # Abriendo archivo para escribir un tipo diccionario
-    with open(os.path.join(RUTA, ARCHIVO_JSON), "w") as json_nuevo:
-        json.dump(DATA, json_nuevo)
+    with open(os.path.join(RUTA, ARCHIVO_JSON), mode="w", encoding="utf-8") as json_nuevo:
+        json.dump(clientes_data, json_nuevo)
         # Cerrar el archivo después de leerlo
         json_nuevo.close()
         logging.info(
             f"✅ Se escribió un tipo diccionario dentro de un archivo JSON '{ARCHIVO_JSON}'.\n"
         )
     # Abrir el archivo en modo lectura
-    with open(os.path.join(RUTA, ARCHIVO_JSON), encoding="utf-8") as json_leido:
+    with open(os.path.join(RUTA, ARCHIVO_JSON), mode="r", encoding="utf-8") as json_leido:
         # Leyendo desde archivo JSON
         data = json.load(json_leido)
         logging.info(f"✅ Se leyó el archivo JSON '{ARCHIVO_JSON}'.\n")
