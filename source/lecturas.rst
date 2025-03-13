@@ -116,8 +116,8 @@ Lección 5 - Interfaz DB-API
 .. _lecturas_extras_leccion6:
 
 
-Lección 6 - Librerías de DBs
-----------------------------
+Lección 6 - Módulos de DBs
+--------------------------
 
 Módulo sqlite3
 ^^^^^^^^^^^^^^
