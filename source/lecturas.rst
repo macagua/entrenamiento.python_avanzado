@@ -58,11 +58,18 @@ Librería ZODB
 
 .. _lecturas_extras_leccion3:
 
-
 Lección 3 - Serialización en la web
 -----------------------------------
 
+- `Serialización/deserialización de objetos y transmisión de datos con JSON: una revisión de la literatura <https://www.scielo.sa.cr/pdf/tem/v29n1/0379-3982-tem-29-01-118.pdf>`_.
+
+- `Introducción a JSON <https://www.json.org/json-es.html>`_.
+
 - `json - Codificador y decodificador JSON <https://docs.python.org/es/3.11/library/json.html>`_.
+
+- `Working With JSON Data in Python <https://realpython.com/python-json/>`_.
+
+- `Python leer archivo JSON - Cómo cargar JSON desde un archivo y procesar dumps <https://www.freecodecamp.org/espanol/news/python-leer-archivo-json-como-cargar-json-desde-un-archivo-y-procesar-dumps/>`_.
 
 - `json - JavaScript Object Notation <https://pymotw.com/3/json/index.html#module-json>`_.
 
