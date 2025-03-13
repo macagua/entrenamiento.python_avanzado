@@ -1,4 +1,4 @@
-"""Programa para leer y escribir un archivo JSON"""
+"""Programa para escribir y leer un archivo JSON"""
 
 import json
 import logging
@@ -36,16 +36,18 @@ clientes_data = {
 
 
 try:
-    # Abriendo archivo para escribir un tipo diccionario
-    with open(os.path.join(RUTA, ARCHIVO_JSON), mode="w", encoding="utf-8") as json_nuevo:
+    # Abriendo archivo para escribir un tipo diccionario 'clientes_data'
+    with open(
+        os.path.join(RUTA, ARCHIVO_JSON), mode="w", encoding="utf-8"
+    ) as json_nuevo:
         json.dump(clientes_data, json_nuevo)
-        # Cerrar el archivo después de leerlo
+        # Cerrar el archivo después de escribirlo
         json_nuevo.close()
         logging.info(
             f"✅ Se escribió un tipo diccionario dentro de un archivo JSON '{ARCHIVO_JSON}'.\n"
         )
     # Abrir el archivo en modo lectura
-    with open(os.path.join(RUTA, ARCHIVO_JSON), mode="r", encoding="utf-8") as json_leido:
+    with open(os.path.join(RUTA, ARCHIVO_JSON), encoding="utf-8") as json_leido:
         # Leyendo desde archivo JSON
         data = json.load(json_leido)
         logging.info(f"✅ Se leyó el archivo JSON '{ARCHIVO_JSON}'.\n")
