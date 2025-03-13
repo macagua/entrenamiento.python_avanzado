@@ -43,14 +43,11 @@ try:
         json.dump(clientes_data, json_nuevo)
         # Cerrar el archivo después de escribirlo
         json_nuevo.close()
-        logging.info(
-            f"✅ Se escribió un tipo diccionario dentro de un archivo JSON '{ARCHIVO_JSON}'.\n"
-        )
+        logging.info(f"✅ Se escribió el archivo JSON '{ARCHIVO_JSON}'.\n")
     # Abrir el archivo en modo lectura
     with open(os.path.join(RUTA, ARCHIVO_JSON), encoding="utf-8") as json_leido:
         # Leyendo desde archivo JSON
         data = json.load(json_leido)
-        logging.info(f"✅ Se leyó el archivo JSON '{ARCHIVO_JSON}'.\n")
         for cliente in data["clientes"]:
             print(f"📜 Nombre:", cliente["nombre"])
             print(f"📜 Apellido:", cliente["apellido"])
@@ -59,7 +56,7 @@ try:
             print(f"📜 Datos detallados: {cliente}\n")
         # Cerrar el archivo después de leerlo
         json_leido.close()
-        logging.info(f"✅ Se cerro el archivo JSON '{ARCHIVO_JSON}'.")
+        logging.info(f"✅ Se leyó el archivo JSON '{ARCHIVO_JSON}'.")
 except FileNotFoundError as e:
     print(f"❌ Error: No se encontró el archivo: {e}")
 except Exception as e:

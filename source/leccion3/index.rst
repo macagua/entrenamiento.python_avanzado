@@ -209,7 +209,6 @@ Codificación
     :linenos:
 
     import json
-    import os
 
     # Data a escribir
     clientes_data = {
@@ -223,17 +222,11 @@ Codificación
         ]
     }
     # Abriendo archivo para escribir un tipo diccionario 'clientes_data'
-    with open(
-        os.path.join(os.path.join(os.path.dirname(os.path.abspath("."))), "clientes.json"),
-        mode="w",
-        encoding="utf-8",
-    ) as json_nuevo:
+    with open("clientes.json", mode="w", encoding="utf-8") as json_nuevo:
         json.dump(clientes_data, json_nuevo)
         # Cerrar el archivo después de escribirlo
         json_nuevo.close()
-        print(
-            "✅ Se escribió un tipo diccionario dentro de un archivo JSON 'clientes.json'."
-        )
+        print("✅ Se escribió el archivo JSON 'clientes.json'.")
 
 
 .. todo::
@@ -251,16 +244,11 @@ Decodificación
     :linenos:
 
     import json
-    import os
 
     # Abrir el archivo en modo lectura
-    with open(
-        os.path.join(os.path.join(os.path.dirname(os.path.abspath("."))), "clientes.json"),
-        encoding="utf-8",
-    ) as json_leido:
+    with open("clientes.json", encoding="utf-8") as json_leido:
         # Leyendo desde archivo JSON
         data = json.load(json_leido)
-        print("✅ Se leyó el archivo JSON 'clientes.json'.\n")
         for cliente in data["clientes"]:
             print(f"📜 Nombre:", cliente["nombre"])
             print(f"📜 Apellido:", cliente["apellido"])
@@ -269,6 +257,7 @@ Decodificación
             print(f"📜 Datos detallados: {cliente}\n")
         # Cerrar el archivo después de leerlo
         json_leido.close()
+        print("✅ Se leyó el archivo JSON 'clientes.json'.")
 
 
 .. todo::
@@ -283,6 +272,56 @@ Práctica - Caso real
 A continuación se presenta una práctica más real de implementar el uso de proyectos
 con el módulo ``json`` para leer y escribir un archivo JSON basado en un tipo :ref:`diccionario <python_dict>`:
 
+
+Estructura de archivos
+^^^^^^^^^^^^^^^^^^^^^^
+
+Para crear la estructura de archivos del proyecto ``JSON`` debe ejecutar los siguientes comandos:
+
+.. tabs::
+
+   .. group-tab:: Linux
+
+      Crear y acceder al directorio ``json`` en un solo comando, ejecutando el siguiente comando:
+
+      .. code-block:: console
+
+          mkdir -p ~/proyectos/json && cd $_
+
+      El comando anterior crea la siguiente estructura de directorios:
+
+      .. code-block:: console
+          :class: no-copy
+
+          proyectos/
+          └── json/
+
+      Si tiene la estructura de archivo previa, entonces puede continuar con la siguiente sección.
+
+   .. group-tab:: Windows
+
+      Debe crear el directorio ``json``, ejecutando el siguiente comando:
+
+      .. code-block:: console
+
+          md .\proyectos\json
+
+      Debe acceder al directorio , ejecutando el siguiente comando:
+
+      .. code-block:: console
+
+          cd .\proyectos\json
+
+      El comando anterior crea la siguiente estructura de directorios:
+
+      .. code-block:: console
+          :class: no-copy
+
+          proyectos/
+          └── json/
+
+      Si tiene la estructura de archivo previa, entonces puede continuar con la siguiente sección.
+
 A continuación se presenta y explica el uso de cada archivo para este proyecto:
 
 *Archivo* :file:`json_reading_writing.py`
@@ -292,7 +331,7 @@ Módulo de principal del programa.
 .. literalinclude:: ../../recursos/leccion3/json_reading_writing.py
     :language: python
     :linenos:
-    :lines: 1-66
+    :lines: 1-63
 
 
 .. important::
@@ -323,9 +362,7 @@ Módulo de principal del programa.
 
     .. code-block:: console
 
-        INFO:root:✅ Se escribió un tipo diccionario dentro de un archivo JSON 'clientes.json'.
-
-        INFO:root:✅ Se leyó el archivo JSON 'clientes.json'.
+        INFO:root:✅ Se escribió el archivo JSON 'clientes.json'.
 
         📜 Nombre: Leonardo
         📜 Apellido: Caballero
@@ -345,7 +382,7 @@ Módulo de principal del programa.
         📜 Teléfono: +58-414-2360943
         📜 Datos detallados: {'nombre': 'Manuel', 'apellido': 'Matos', 'codigo_postal': '4001', 'telefono': '+58-414-2360943'}
 
-        INFO:root:✅ Se cerro el archivo JSON 'clientes.json'.
+        INFO:root:✅ Se leyó el archivo JSON 'clientes.json'.
 
     La ejecucion anterior generar la siguiente estructura:
 
