@@ -1,7 +1,7 @@
 .. _python_leccion6:
 
-Librerías de DBs
-================
+Módulos de DBs
+==============
 
 En esta lección se busca introducir al uso de Base de datos relacional
 con programación en Python, sus características, modos de instalación,

@@ -1,6 +1,3 @@
-.. -*- coding: utf-8 -*-
-
-
 .. _lecturas_extras_entrenamiento:
 
 Lecturas suplementarias del entrenamiento
@@ -36,8 +33,11 @@ Lección 1 - Persistencia de datos
 Lección 2 - Serialización de objetos
 ------------------------------------
 
-Librería pickle
-^^^^^^^^^^^^^^^
+- `¿Qué es la serialización o marshalling? <https://codingornot.com/que-es-la-serializacion-o-marshalling>`_.
+
+
+Módulo pickle
+^^^^^^^^^^^^^
 
 - `pickle - Serialización de objetos Python <https://docs.python.org/es/3.11/library/pickle.html>`_.
 
@@ -49,20 +49,29 @@ Librería pickle
 Librería ZODB
 ^^^^^^^^^^^^^
 
-- `ZODB - a native object database for Python — ZODB documentation <https://zodb.org/en/latest/>`_.
+- `ZODB - a native object database for Python <https://zodb.org/en/latest/>`_.
 
 - `ZODB, a Python object-oriented database - PyPI <https://pypi.org/project/ZODB/>`_.
+
+- `ZODB · Python object-oriented database <https://github.com/zopefoundation/ZODB>`_.
 
 - `ZODB browser - PyPI <https://pypi.org/project/zodbbrowser/>`_.
 
 
 .. _lecturas_extras_leccion3:
 
-
 Lección 3 - Serialización en la web
 -----------------------------------
 
+- `Serialización/deserialización de objetos y transmisión de datos con JSON: una revisión de la literatura <https://www.scielo.sa.cr/pdf/tem/v29n1/0379-3982-tem-29-01-118.pdf>`_.
+
+- `Introducción a JSON <https://www.json.org/json-es.html>`_.
+
 - `json - Codificador y decodificador JSON <https://docs.python.org/es/3.11/library/json.html>`_.
+
+- `Working With JSON Data in Python <https://realpython.com/python-json/>`_.
+
+- `Python leer archivo JSON - Cómo cargar JSON desde un archivo y procesar dumps <https://www.freecodecamp.org/espanol/news/python-leer-archivo-json-como-cargar-json-desde-un-archivo-y-procesar-dumps/>`_.
 
 - `json - JavaScript Object Notation <https://pymotw.com/3/json/index.html#module-json>`_.
 
@@ -104,11 +113,11 @@ Lección 5 - Interfaz DB-API
 .. _lecturas_extras_leccion6:
 
 
-Lección 6 - Librerías de DBs
-----------------------------
+Lección 6 - Módulos de DBs
+--------------------------
 
-Librería sqlite3
-^^^^^^^^^^^^^^^^
+Módulo sqlite3
+^^^^^^^^^^^^^^
 
 - `sqlite3 — DB-API 2.0 interfaz para bases de datos SQLite <https://docs.python.org/es/3.11/library/sqlite3.html>`_.
 
@@ -119,12 +128,20 @@ Librería sqlite3
 - `How To Use the sqlite3 Module in Python 3 <https://www.digitalocean.com/community/tutorials/how-to-use-the-sqlite3-module-in-python-3>`_.
 
 
-Librería psycopg
-^^^^^^^^^^^^^^^^
+Módulo psycopg
+^^^^^^^^^^^^^^
 
 - `Psycopg - PostgreSQL database adapter for Python — Psycopg 2.9.9 documentation <https://www.psycopg.org/docs/index.html>`_.
 
 - `psycopg - PostgreSQL database adapter for Python - PyPI <https://pypi.org/project/psycopg/>`_.
+
+
+Módulo PyMySQL
+^^^^^^^^^^^^^^
+
+- `PyMySQL - PostgreSQL database adapter for Python - PyPI <https://pymysql.readthedocs.io/en/latest/>`_.
+
+- `MySQL <https://es.wikipedia.org/wiki/MySQL>`_.
 
 
 .. _lecturas_extras_leccion7:
