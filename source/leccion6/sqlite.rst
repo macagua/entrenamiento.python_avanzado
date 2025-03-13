@@ -28,7 +28,7 @@ datos más grande como :ref:`PostgreSQL <python_pkg_postgresql>` u `Oracle <http
 Instalación
 -----------
 
-La librería ``sqlite3`` esta incluida en librería estándar de Python, puede probar la
+El módulo ``sqlite3`` esta incluida en :ref:`librería estándar de Python <python_libreria_estandar>`, puede probar la
 instalación existe, ejecutando el siguiente comando:
 
 .. tabs::
@@ -45,7 +45,8 @@ instalación existe, ejecutando el siguiente comando:
 
           python3 -c "import sqlite3 ; print(sqlite3.__package__)"
 
-Si muestra el nombre del paquete  ``sqlite3``, tiene instalado la librería.
+Si muestra el nombre del módulo ``sqlite3``, tiene correctamente instalado el módulo.
+Con esto, ya tiene todo listo para continuar.
 
 Adicionalmente puedes instalar administradores de base de datos SQLite nativos para sistemas
 operativos Linux y Windows, a continuación se presentan alternativas:
@@ -94,7 +95,7 @@ los modos de instalación:
           Use ".open FILENAME" to reopen on a persistent database.
           sqlite>
 
-      Si muestra la consola SQLite ``sqlite>``, tiene correctamente instalada el administrador
+      Si muestra la consola SQLite ``sqlite>``, tiene correctamente instalado el administrador
       de base de datos nativa ``sqlite3`` por línea de comando.
 
       .. note::
@@ -258,8 +259,8 @@ los modos de instalación:
 
           DB Browser for SQLite en Linux
 
-      Si muestra la interfaz gráfica de ``sqlitebrowser``, tiene correctamente instalada el administrador
-      de base de datos nativo de ``sqlite3``.
+      Si muestra la interfaz gráfica de ``sqlitebrowser``, tiene correctamente instalado el administrador
+      de base de datos gráfico nativo de ``sqlite3``.
 
    .. group-tab:: Windows
 
@@ -344,9 +345,9 @@ para una base de datos ``SQLite``:
 
 El ejemplo anterior se describe a continuación:
 
-- En la línea 1, se importa la librería ``os`` de la librería estándar Python.
+- En la línea 1, se importa el módulo ``os`` de la :ref:`librería estándar de Python <python_libreria_estandar>`.
 
-- En la línea 2, se importa la librería ``sqlite3`` de la librería estándar Python.
+- En la línea 2, se importa el módulo ``sqlite3`` de la :ref:`librería estándar de Python <python_libreria_estandar>`.
 
 - En la línea 4, se define en la constante ``DB_PATH`` la ruta absoluta usada para guardar la base de datos.
 

@@ -117,8 +117,8 @@ Lección 5 - Interfaz DB-API
 Lección 6 - Librerías de DBs
 ----------------------------
 
-Librería sqlite3
-^^^^^^^^^^^^^^^^
+Módulo sqlite3
+^^^^^^^^^^^^^^
 
 - `sqlite3 — DB-API 2.0 interfaz para bases de datos SQLite <https://docs.python.org/es/3.11/library/sqlite3.html>`_.
 
