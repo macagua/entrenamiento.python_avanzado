@@ -1,6 +1,3 @@
-.. -*- coding: utf-8 -*-
-
-
 .. _lecturas_extras_entrenamiento:
 
 Lecturas suplementarias del entrenamiento
@@ -39,8 +36,8 @@ Lección 2 - Serialización de objetos
 - `¿Qué es la serialización o marshalling? <https://codingornot.com/que-es-la-serializacion-o-marshalling>`_.
 
 
-Librería pickle
-^^^^^^^^^^^^^^^
+Módulo pickle
+^^^^^^^^^^^^^
 
 - `pickle - Serialización de objetos Python <https://docs.python.org/es/3.11/library/pickle.html>`_.
 
