@@ -52,9 +52,11 @@ Librería pickle
 Librería ZODB
 ^^^^^^^^^^^^^
 
-- `ZODB - a native object database for Python — ZODB documentation <https://zodb.org/en/latest/>`_.
+- `ZODB - a native object database for Python <https://zodb.org/en/latest/>`_.
 
 - `ZODB, a Python object-oriented database - PyPI <https://pypi.org/project/ZODB/>`_.
+
+- `ZODB · Python object-oriented database <https://github.com/zopefoundation/ZODB>`_.
 
 - `ZODB browser - PyPI <https://pypi.org/project/zodbbrowser/>`_.
 

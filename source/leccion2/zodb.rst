@@ -202,9 +202,9 @@ veremos más adelante en este documento, abre muchas posibilidades.
 Instalación
 -----------
 
-Para conectarte a una ``ZODB`` necesita el paquete `ZODB`_. Esto
-significa que debe instalar ``ZODB`` ejecutando el siguiente comando, el cual
-a continuación se presentan el correspondiente comando de tu sistema operativo:
+Para conectarte hacia una ``ZODB`` necesita la librería `ZODB`_. Esto significa que debe instalar
+``ZODB`` ejecutando el siguiente comando correspondiente a cada sistema operativo, el cual se
+presentan a continuación:
 
 .. tabs::
 
@@ -239,7 +239,7 @@ el siguiente comando correspondiente a tu sistema operativo:
 
 
 Si muestra el nombre del paquete ``ZODB`` en la terminal, tiene
-correctamente instalada la paquete. Con esto, ya tiene todo listo para continuar.
+correctamente instalada la librería. Con esto, ya tiene todo listo para continuar.
 
 Adicionalmente puedes instalar un cliente de base de datos ZODB, a continuación se
 presentan alternativas:
@@ -305,8 +305,8 @@ el siguiente comando:
             --debug           enable debug logging
             --rw              open the database read-write (default: read-only)
 
-      Si tiene disponibles el comando :command:`zodbbrowser`, tiene correctamente instalada el cliente
-      de base de datos nativa ``ZODB`` por línea de comando.
+      Si tiene disponibles el comando :command:`zodbbrowser`, tiene correctamente instalado el cliente
+      de base de datos gráfico nativo de ``ZODB``.
 
       .. note::
 
@@ -339,8 +339,8 @@ el siguiente comando:
             --debug           enable debug logging
             --rw              open the database read-write (default: read-only)
 
-      Si tiene disponibles el comando :command:`zodbbrowser`, tiene correctamente instalada el cliente
-      de base de datos nativa ``ZODB`` por línea de comando.
+      Si tiene disponibles el comando :command:`zodbbrowser`, tiene correctamente instalado el cliente
+      de base de datos gráfico nativo de ``ZODB``.
 
       .. note::
 
@@ -383,8 +383,8 @@ a continuación:
 
     ZODB browser
 
-Si muestra la interfaz gráfica de ``zodbbrowser``, tiene correctamente instalada el cliente
-de base de datos ``ZODB``.
+Si muestra la interfaz gráfica de ``zodbbrowser``, tiene correctamente instalado el cliente
+de base de datos gráfico nativo de ``ZODB``.
 
 
 ----
@@ -426,9 +426,9 @@ para una base de datos ``ZODB``:
 
 El ejemplo anterior se describe a continuación:
 
-- En la línea 1, se importa la librería ``os`` de la librería estándar Python.
+- En la línea 1, se importa el módulo ``os`` de la :ref:`librería estándar de Python <python_libreria_estandar>`.
 
-- En la línea 2, se importa la librería ``ZODB`` de la librería estándar Python.
+- En la línea 2, se importa el módulo ``ZODB``.
 
 - En la línea 4, se define en la constante ``DB_PATH`` la ruta absoluta usada para guardar la base de datos.
 
