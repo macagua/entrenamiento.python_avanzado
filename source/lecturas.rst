@@ -36,6 +36,9 @@ Lección 1 - Persistencia de datos
 Lección 2 - Serialización de objetos
 ------------------------------------
 
+- `¿Qué es la serialización o marshalling? <https://codingornot.com/que-es-la-serializacion-o-marshalling>`_.
+
+
 Librería pickle
 ^^^^^^^^^^^^^^^
 
