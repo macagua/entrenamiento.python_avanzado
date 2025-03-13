@@ -48,7 +48,7 @@ instalación existe, ejecutando el siguiente comando:
 Si muestra el nombre del módulo ``sqlite3``, tiene correctamente instalado el módulo.
 Con esto, ya tiene todo listo para continuar.
 
-Adicionalmente puedes instalar administradores de base de datos SQLite nativos para sistemas
+Adicionalmente puedes instalar administradores de base de datos ``SQLite`` nativos para sistemas
 operativos Linux y Windows, a continuación se presentan alternativas:
 
 
@@ -292,21 +292,53 @@ Estructura de archivos
 
 Para crear la estructura de archivos del proyecto ``SQLite`` debe ejecutar los siguientes comandos:
 
-Crear el directorio ``~/proyectos/sqlite/crud`` con el siguiente comando:
+Crear el directorio ``crud`` con el siguiente comando:
 
-.. code-block:: console
+.. tabs::
 
-    mkdir -p ~/proyectos/sqlite/crud && cd $_
+   .. group-tab:: Linux
 
+      Crear y acceder al directorio en un solo comando, ejecutando el siguiente comando:
 
-El comando anterior crea la siguiente estructura de directorios:
+      .. code-block:: console
 
-.. code-block:: console
-    :class: no-copy
+          mkdir -p ~/proyectos/sqlite/crud && cd $_
 
-    proyectos/
-    └── sqlite/
-        └── crud/
+      El comando anterior crea la siguiente estructura de directorios:
+
+      .. code-block:: console
+          :class: no-copy
+
+          proyectos/
+          └── sqlite/
+              └── crud/
+
+   .. group-tab:: Windows
+
+      Para realiar esta practica debe crear la estructura de archivos del proyecto, ejecute el
+      siguiente comando:
+
+      Debe crear el directorio ``crud``, ejecutando el siguiente comando:
+
+      .. code-block:: console
+
+          md .\proyectos\sqlite\crud
+
+      Debe acceder al directorio , ejecutando el siguiente comando:
+
+      .. code-block:: console
+
+          cd .\proyectos\sqlite\crud
+
+      El comando anterior crea la siguiente estructura de directorios:
+
+      .. code-block:: console
+          :class: no-copy
+
+          proyectos/
+          └── sqlite/
+              └── crud/
+
 
 Si tiene la estructura de archivo previa, entonces puede continuar con la siguiente sección.
 
@@ -319,8 +351,8 @@ Si tiene la estructura de archivo previa, entonces puede continuar con la siguie
 Cadenas de conexión
 -------------------
 
-Para definir el método ``connect`` debe definir las cadenas de conexión con
-``SQLite`` como se describe a continuación:
+Para definir el método ``connect`` debe definir las cadenas de conexión con ``SQLite``
+como se describe a continuación:
 
 ``DB_PATH``
     Ruta absoluta o relativa del archivo de base de datos ``SQLite``.
