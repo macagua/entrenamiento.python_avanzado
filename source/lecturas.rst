@@ -174,3 +174,22 @@ Lección 8 - Autogenerar modelos SQLAlchemy
 - `Como generar modelos de base de datos con SQLAlchemy en Python <https://raulfranco.es/como-generar-modelos-de-base-de-datos-con-sqlalchemy-en-python/>`_.
 
 - `How to run sqlacodegen? <https://stackoverflow.com/questions/28788186/how-to-run-sqlacodegen>`_.
+
+
+.. _lecturas_extras_leccion9:
+
+
+Lección 9 - Pruebas de Software
+-------------------------------
+
+- `Pruebas de software <https://es.wikipedia.org/wiki/Pruebas_de_software>`_.
+
+- `Prueba unitaria <https://es.wikipedia.org/wiki/Prueba_unitaria>`_.
+
+- `Prueba de integración <https://es.wikipedia.org/wiki/Prueba_de_integración>`_.
+
+- `Pruebas de rendimiento del software <https://es.wikipedia.org/wiki/Pruebas_de_rendimiento_del_software>`_.
+
+- `¿Qué es una prueba de software? <https://www.ibm.com/mx-es/topics/software-testing>`_.
+
+- `¿Qué son las pruebas continuas? <https://www.ibm.com/mx-es/think/topics/continuous-testing>`_.
