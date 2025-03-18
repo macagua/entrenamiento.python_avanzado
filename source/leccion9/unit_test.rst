@@ -3,7 +3,7 @@
 Pruebas unitarias
 =================
 
-Son una técnica de depuración que se enfoca en validar el funcionamiento de unidades individuales de código, como 
+Son una técnica de depuración que se enfoca en validar el funcionamiento de unidades individuales de código, como
 funciones o métodos, de forma aislada. Su objetivo es asegurarse de que cada componente del software cumpla con su
 propósito específico, sin depender de otros módulos.
 
@@ -157,7 +157,7 @@ Módulo de funciones operativas del programa.
 .. literalinclude:: ../../recursos/leccion9/unit_test/operations.py
     :language: python
     :linenos:
-    :lines: 1-6
+    :lines: 1-8
 
 *Archivo* :file:`test_operations.py`
 
@@ -186,7 +186,7 @@ siguiente estructura de directorio y acceda al mismo donde se encuentra el progr
             └── test_operations.py
 
 
-Si tiene la estructura de archivo previa, entonces puede continuar los procesos de  ejecución del
+Si tiene la estructura de archivo previa, entonces puede continuar los procesos de ejecución del
 código fuente.
 
 
