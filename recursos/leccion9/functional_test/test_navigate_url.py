@@ -9,7 +9,7 @@ browser = webdriver.Chrome()
 browser.get("https://pypi.org/project/selenium/4.29.0/")
 
 # Check if the title of the page is proper
-if(browser.title=="selenium · PyPI"):
+if browser.title == "selenium · PyPI":
     print("✅ Successed Test: selenium · PyPI page launched successfully")
 else:
     print("❌ Failed Test: selenium · PyPI page Title is incorrect")

@@ -201,7 +201,7 @@ siguiente estructura de directorio y acceda al mismo donde se encuentra el progr
             └── test_find_element.py
 
 
-Si tiene la estructura de archivo previa, entonces puede continuar los procesos de  ejecución del
+Si tiene la estructura de archivo previa, entonces puede continuar los procesos de ejecución del
 código fuente.
 
 

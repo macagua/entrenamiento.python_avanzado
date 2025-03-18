@@ -13,7 +13,7 @@ browser.get("https://pypi.org/project/selenium/4.29.0/")
 package_name = browser.find_element("xpath", '//*[@id="content"]/div[1]/div/div[1]/h1')
 
 # Check if the title of the page is proper
-if(package_name.text):
+if package_name.text:
     # Verify an element on the page
     assert "selenium 4.29.0" in package_name.text
     print("✅ Successed Test: selenium 4.29.0 version found")
