@@ -35,6 +35,8 @@ Lección 2 - Serialización de objetos
 
 - `¿Qué es la serialización o marshalling? <https://codingornot.com/que-es-la-serializacion-o-marshalling>`_.
 
+- `Python: Serialización de objetos <http://mundogeek.net/archivos/2008/05/20/python-serializacion-de-objetos/>`_.
+
 
 Módulo pickle
 ^^^^^^^^^^^^^
