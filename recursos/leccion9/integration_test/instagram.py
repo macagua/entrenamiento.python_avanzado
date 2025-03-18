@@ -1,5 +1,6 @@
 """Instagram API component"""
 
+
 def greetings():
     """The Instagram API greeting function
 

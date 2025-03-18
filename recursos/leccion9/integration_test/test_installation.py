@@ -5,7 +5,6 @@ from installation import instagram_integration, whatsapp_integration
 
 
 class InstallationTest(unittest.TestCase):
-
     def test_instagram_integration(self):
         result = instagram_integration()
         self.assertEqual(result, "Hi, from Instagram API")
@@ -22,5 +21,6 @@ class InstallationTest(unittest.TestCase):
         result = whatsapp_integration()
         self.assertNotEqual(result, "Hi, from WhatsApp API")
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     unittest.main()

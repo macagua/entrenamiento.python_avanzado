@@ -139,6 +139,15 @@ Módulo de funciones para el componente API de Instagram.
     :linenos:
     :lines: 1-9
 
+*Archivo* :file:`whatsapp.py`
+
+Módulo de funciones para el componente API de WhatsApp.
+
+.. literalinclude:: ../../recursos/leccion9/integration_test/whatsapp.py
+    :language: python
+    :linenos:
+    :lines: 1-9
+
 *Archivo* :file:`installation.py`
 
 Módulo de integración de componentes de redes sociales.
@@ -146,7 +155,7 @@ Módulo de integración de componentes de redes sociales.
 .. literalinclude:: ../../recursos/leccion9/integration_test/installation.py
     :language: python
     :linenos:
-    :lines: 1-27
+    :lines: 1-31
 
 *Archivo* :file:`test_installation.py`
 
@@ -156,15 +165,6 @@ Módulo de pruebas unitarias para la integración de componentes de redes social
     :language: python
     :linenos:
     :lines: 1-26
-
-*Archivo* :file:`whatsapp.py`
-
-Módulo de funciones para el componente API de WhatsApp.
-
-.. literalinclude:: ../../recursos/leccion9/integration_test/whatsapp.py
-    :language: python
-    :linenos:
-    :lines: 1-9
 
 
 ----
@@ -186,7 +186,7 @@ siguiente estructura de directorio y acceda al mismo donde se encuentra el progr
             └── whatsapp.py
 
 
-Si tiene la estructura de archivo previa, entonces puede continuar los procesos de  ejecución del
+Si tiene la estructura de archivo previa, entonces puede continuar los procesos de ejecución del
 código fuente.
 
 

@@ -1,5 +1,6 @@
 """WhatsApp API component"""
 
+
 def greetings():
     """The WhatsApp API greeting function
 
