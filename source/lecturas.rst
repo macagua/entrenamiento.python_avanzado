@@ -193,3 +193,17 @@ Lección 9 - Pruebas de Software
 - `¿Qué es una prueba de software? <https://www.ibm.com/mx-es/topics/software-testing>`_.
 
 - `¿Qué son las pruebas continuas? <https://www.ibm.com/mx-es/think/topics/continuous-testing>`_.
+
+
+Herramienta coverage
+^^^^^^^^^^^^^^^^^^^^
+
+- `coverage - PyPI <https://pypi.org/project/coverage/>`_.
+
+- `Coverage.py documentation <https://coverage.readthedocs.io/en/>`_.
+
+- `The code coverage tool for Python <https://github.com/nedbat/coveragepy>`_.
+
+- `Coverage.py, una herramienta para medir la cobertura de códigos en Python <https://medium.com/@alexisgimbaez/coverage-py-una-herramienta-para-medir-la-cobertura-de-c%C3%B3digos-en-python-8e6b30b05ef7>`_.
+
+- `Code Coverage: Understanding and Measuring Code Coverage with coverage.py <https://learnscripting.org/code-coverage-understanding-and-measuring-code-coverage-with-coverage-py/>`_.
