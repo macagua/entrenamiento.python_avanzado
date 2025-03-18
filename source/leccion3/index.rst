@@ -334,6 +334,9 @@ Módulo de principal del programa.
     :lines: 1-63
 
 
+----
+
+
 .. important::
     Usted puede descargar el código usado en esta sección haciendo clic en el
     siguiente enlace:
@@ -409,6 +412,9 @@ Así de esta forma puede leer y escribir registros en un archivo JSON usando el 
 
     Consulte la sección de :ref:`lecturas suplementarias <lecturas_extras_leccion3>`
     del entrenamiento para ampliar su conocimiento en esta temática.
+
+
+----
 
 
 .. raw:: html
