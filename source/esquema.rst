@@ -127,3 +127,18 @@ Lección 8 - Autogenerar modelos ORM
 **Práctica:**
     Ejemplo de la herramienta ``sqlacodegen`` para generar el código de modelos ``SQLAlchemy``
     y explorar el resultado en un módulo y paquete en el sistema de archivos.
+
+
+.. _esquema_entrenamiento_leccion9:
+
+
+Lección 9 - Pruebas de Software
+-------------------------------
+
+**Descripción:**
+    Comprender que es y el uso de las pruebas de software, como escribirlo y ejecutar pruebas
+    unitaria, de integración y de sistema..
+
+**Práctica:**
+    Ejemplo de uso del módulo ``unittest`` para pruebas unitaria y pruebas de integración,
+    para las pruebas de sistema se utiliza el módulo externo ``selenium``.

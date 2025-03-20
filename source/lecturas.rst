@@ -35,6 +35,8 @@ Lección 2 - Serialización de objetos
 
 - `¿Qué es la serialización o marshalling? <https://codingornot.com/que-es-la-serializacion-o-marshalling>`_.
 
+- `Python: Serialización de objetos <http://mundogeek.net/archivos/2008/05/20/python-serializacion-de-objetos/>`_.
+
 
 Módulo pickle
 ^^^^^^^^^^^^^
@@ -174,3 +176,36 @@ Lección 8 - Autogenerar modelos SQLAlchemy
 - `Como generar modelos de base de datos con SQLAlchemy en Python <https://raulfranco.es/como-generar-modelos-de-base-de-datos-con-sqlalchemy-en-python/>`_.
 
 - `How to run sqlacodegen? <https://stackoverflow.com/questions/28788186/how-to-run-sqlacodegen>`_.
+
+
+.. _lecturas_extras_leccion9:
+
+
+Lección 9 - Pruebas de Software
+-------------------------------
+
+- `Pruebas de software <https://es.wikipedia.org/wiki/Pruebas_de_software>`_.
+
+- `Prueba unitaria <https://es.wikipedia.org/wiki/Prueba_unitaria>`_.
+
+- `Prueba de integración <https://es.wikipedia.org/wiki/Prueba_de_integración>`_.
+
+- `Pruebas de rendimiento del software <https://es.wikipedia.org/wiki/Pruebas_de_rendimiento_del_software>`_.
+
+- `¿Qué es una prueba de software? <https://www.ibm.com/mx-es/topics/software-testing>`_.
+
+- `¿Qué son las pruebas continuas? <https://www.ibm.com/mx-es/think/topics/continuous-testing>`_.
+
+
+Herramienta coverage
+^^^^^^^^^^^^^^^^^^^^
+
+- `coverage - PyPI <https://pypi.org/project/coverage/>`_.
+
+- `Coverage.py documentation <https://coverage.readthedocs.io/en/>`_.
+
+- `The code coverage tool for Python <https://github.com/nedbat/coveragepy>`_.
+
+- `Coverage.py, una herramienta para medir la cobertura de códigos en Python <https://medium.com/@alexisgimbaez/coverage-py-una-herramienta-para-medir-la-cobertura-de-c%C3%B3digos-en-python-8e6b30b05ef7>`_.
+
+- `Code Coverage: Understanding and Measuring Code Coverage with coverage.py <https://learnscripting.org/code-coverage-understanding-and-measuring-code-coverage-with-coverage-py/>`_.

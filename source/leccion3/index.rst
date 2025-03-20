@@ -334,6 +334,9 @@ Módulo de principal del programa.
     :lines: 1-63
 
 
+----
+
+
 .. important::
     Usted puede descargar el código usado en esta sección haciendo clic en el
     siguiente enlace:
@@ -400,7 +403,7 @@ Módulo de principal del programa.
     la cual no se incluye ya que cada vez que se inicia el programa :file:`json_reading_writing.py` se sustituye y crea
     nuevamente, para cuidar la creación de los datos iniciales.
 
-Asi de esta forma puede leer y escribir registros en un archivo JSON usando la librería ``json``.
+Así de esta forma puede leer y escribir registros en un archivo JSON usando el módulo ``json``.
 
 ----
 
@@ -409,6 +412,9 @@ Asi de esta forma puede leer y escribir registros en un archivo JSON usando la l
 
     Consulte la sección de :ref:`lecturas suplementarias <lecturas_extras_leccion3>`
     del entrenamiento para ampliar su conocimiento en esta temática.
+
+
+----
 
 
 .. raw:: html
