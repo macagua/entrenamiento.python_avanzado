@@ -251,7 +251,7 @@ sistema operativo:
 
           ✅ Successed Test: selenium 4.29.0 version found
 
-      Si la ejecucion anterior muestra el mensaje anterior, quiere decir que la prueba unitaria fue exitosa.
+      Si la ejecución anterior muestra el mensaje anterior, quiere decir que la prueba unitaria fue exitosa.
 
    .. group-tab:: Windows
 
@@ -290,7 +290,7 @@ sistema operativo:
 
           ✅ Successed Test: selenium 4.29.0 version found
 
-      Si la ejecucion anterior muestra el mensaje anterior, quiere decir que la prueba unitaria fue exitosa.
+      Si la ejecución anterior muestra el mensaje anterior, quiere decir que la prueba unitaria fue exitosa.
 
 
 Así de esta forma puede replicar una práctica real de un proyecto para realizar *pruebas funcionales*

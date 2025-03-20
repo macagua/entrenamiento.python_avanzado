@@ -245,7 +245,7 @@ sistema operativo:
 
           OK
 
-      Si la ejecucion anterior muestra el mensaje anterior, quiere decir que la prueba unitaria fue exitosa.
+      Si la ejecución anterior muestra el mensaje anterior, quiere decir que la prueba unitaria fue exitosa.
 
    .. group-tab:: Windows
 
@@ -293,7 +293,7 @@ sistema operativo:
 
           OK
 
-      Si la ejecucion anterior muestra el mensaje anterior, quiere decir que la prueba unitaria fue exitosa.
+      Si la ejecución anterior muestra el mensaje anterior, quiere decir que la prueba unitaria fue exitosa.
 
 
 Así de esta forma puede replicar una práctica real de un proyecto para realizar pruebas unitareas
