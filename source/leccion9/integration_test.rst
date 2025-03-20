@@ -137,7 +137,7 @@ Módulo de funciones para el componente API de Instagram.
 .. literalinclude:: ../../recursos/leccion9/integration_test/instagram.py
     :language: python
     :linenos:
-    :lines: 1-9
+    :lines: 1-10
 
 *Archivo* :file:`whatsapp.py`
 
@@ -146,7 +146,7 @@ Módulo de funciones para el componente API de WhatsApp.
 .. literalinclude:: ../../recursos/leccion9/integration_test/whatsapp.py
     :language: python
     :linenos:
-    :lines: 1-9
+    :lines: 1-10
 
 *Archivo* :file:`installation.py`
 
