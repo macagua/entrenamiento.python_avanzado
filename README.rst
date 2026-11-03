@@ -41,12 +41,11 @@ los siguientes comando:
 
 ::
 
-  $ sudo apt update
-  $ sudo apt install -y python3-dev python3-pip python-setuptools git
+  $ sudo apt update && sudo apt upgrade -y
+  $ sudo apt install -y python3-dev python3-pip python3-setuptools git
   $ sudo apt install -y texlive texlive-base texlive-latex-base texlive-extra-utils \
                         texlive-font-utils texlive-fonts-recommended texlive-latex-extra \
                         texlive-latex-recommended texlive-lang-spanish dvi2ps dvipng latexmk
-  $ sudo pip3 install virtualenv
 
 
 Descargar repositorio
@@ -66,14 +65,26 @@ comando:
 ::
 
   $ cd ~/entrenamiento.python_avanzado
-  $ virtualenv --python /usr/bin/python3 venv
+  $ python3 -m venv ./venv
   $ source ./venv/bin/activate
 
 Luego instale dependencias del paquete ``Sphinx``, ejecutando el siguiente comando:
 
 ::
 
-  (venv)$ pip3 install -r requirements-dev.txt
+  (venv)$ pip install -r requirements-dev.txt
+
+Ademas instale los hooks del paquete ``pre-commit``, ejecutando el siguiente comando:
+
+::
+
+  (venv)$ pre-commit install-hooks
+
+Ejecute las validaciones de los hooks del paquete ``pre-commit``, ejecutando el siguiente comando:
+
+::
+
+  (venv)$ pre-commit run
 
 
 Recursos del entrenamiento
@@ -139,8 +150,8 @@ Creative Commons, 444 Castro Street, Suite 900, Mountain View, California,
 94041, EE.UU.
 
 Una copia de esta licencia en formato de texto se incluye en este paquete dentro del
-directorio ``docs`` tanto en el idioma Ingles (LICENSE.rst) como el idioma Español
-(LICENSE.es.rst).
+directorio ``docs`` tanto en el idioma Ingles (``LICENSE.rst``) como el idioma Español
+(``LICENSE.es.rst``).
 
 .. _`Leonardo J. Caballero G.`: https://www.linkedin.com/in/leonardojcaballerog
 .. _`Python 3`: https://docs.python.org/es/3.11/
