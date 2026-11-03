@@ -1,13 +1,10 @@
-.. -*- coding: utf-8 -*-
-
-
 .. _esquema_entrenamiento:
 
 Esquema del entrenamiento
 =========================
 
-Este entrenamiento toma 8 lecciones. Cada lección contiene material de lectura y
-ejercicios que usted tendrá que escribir en el interprete Python. Cada lección
+Este entrenamiento toma 8 lecciones. Cada lección contiene material de lectura
+y ejercicios que usted tendrá que escribir en el interprete Python. Cada lección
 aprendida están asociadas entre si mismas.
 
 
