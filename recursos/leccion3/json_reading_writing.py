@@ -49,10 +49,10 @@ try:
         # Leyendo desde archivo JSON
         data = json.load(json_leido)
         for cliente in data["clientes"]:
-            print(f"📜 Nombre:", cliente["nombre"])
-            print(f"📜 Apellido:", cliente["apellido"])
-            print(f"📜 Código postal:", cliente["codigo_postal"])
-            print(f"📜 Teléfono:", cliente["telefono"])
+            print(f"📜 Nombre:, {cliente['nombre']}")
+            print(f"📜 Apellido:, {cliente['apellido']}")
+            print(f"📜 Código postal:, {cliente['codigo_postal']}")
+            print(f"📜 Teléfono:, {cliente['telefono']}")
             print(f"📜 Datos detallados: {cliente}\n")
         # Cerrar el archivo después de leerlo
         json_leido.close()

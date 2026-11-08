@@ -14,34 +14,71 @@ y :ref:`pickle <python_modulo_pickle>`. Este le permite codificar objetos de Pyt
 Además proporciona una API similar al módulo :ref:`pickle <python_modulo_pickle>` para convertir objetos de
 Python en memoria a una representación serializada conocida como **JavaScript Object Notation (JSON)**.
 
-.. todo::
-    TODO terminar de escribir esta sección.
-
-
 .. _python_modulo_json_codificar:
 
 Codificación
 ^^^^^^^^^^^^
 
+La codificación *(Serialización)* convierte objetos de Python (como
+:ref:`diccionarios <python_dict>` y :ref:`listas <python_list>`)
+en texto estructurado en :ref:`formato JSON <python_json>`.
 
-..
-    .. code-block:: python
-        :linenos:
+- ``json.dumps()``: Convierte un objeto Python y devuelve una cadena
+  de texto.
 
-        import json
+- ``json.dump()``: Convierte un objeto Python y lo escribe directamente
+  en un archivo.
 
-        hello_world = {"greeting": "Hello, world!"}
+Parámetros de Formato Clave:
 
-        print(hello_world["greeting"])
+- ``indent``: Permite tabular la salida con espacios para que sea legible
+  por humanos (pretty print).
 
-        print(type(hello_world))
+- ``ensure_ascii=False``: Permite conservar caracteres especiales (como
+  tildes o eñes) en texto plano en lugar de convertirlos a códigos de
+  escape ASCII (\u00e1).
 
-        json.dumps(hello_world)
+- ``sort_keys=True``: Ordena alfabéticamente las claves del :ref:`diccionario <python_dict>`
+  resultante.
 
-        type(json.dumps(hello_world))
+Ejemplo práctico de ``json.dumps()``:
 
-        str(hello_world)
+.. code-block:: python
 
+    import json
+
+    configuracion = {
+        "servidor": "localhost",
+        "puerto": 5432,
+        "depuracion": True,
+        "modulos": ["auth", "base_datos"],
+    }
+
+    # Codificamos a una cadena JSON legible con indentación y soporte para acentos
+    json_bonito = json.dumps(configuracion, indent=4, ensure_ascii=False, sort_keys=True)
+
+    print(json_bonito)
+
+Salida generada:
+
+.. code-block:: json
+
+    {
+        "depuracion": true,
+        "modulos": [
+            "auth",
+            "base_datos"
+        ],
+        "puerto": 5432,
+        "servidor": "localhost"
+    }
+
+De esta forma, puede codificar objetos de Python a texto en formato
+:ref:`JSON <python_json>` usando el módulo :mod:`json`.
+
+----
+
+Ejemplo práctico de ``json.dump()``:
 
 .. code-block:: python
     :linenos:
@@ -67,39 +104,137 @@ Codificación
         print("✅ Se escribió el archivo JSON 'clientes.json'.")
 
 
-.. todo::
-    TODO terminar de escribir esta sección.
+De esta forma, puede escribir registros en un archivo :ref:`JSON <python_json>`
+usando el módulo :mod:`json`.
 
+----
 
 .. _python_modulo_json_decodificar:
 
 Decodificación
 ^^^^^^^^^^^^^^
 
+La deserialización *(Deserialización)* consiste en transformar texto o archivos
+en :ref:`formato JSON <python_json>` a estructuras de datos nativas de Python
+(principalmente :ref:`diccionarios <python_dict>` y :ref:`listas <python_list>`).
 
+- ``json.loads()``: Carga :ref:`JSON <python_json>` desde un ``string`` o
+  :ref:`cadena de caracteres <python_str>`.
+
+- ``json.load()``: Carga :ref:`JSON <python_json>` desde un :ref:`archivo <python_cls_file>`
+  o ``stream`` abierto.
+
+Ejemplo práctico de ``json.loads()``:
 
 .. code-block:: python
     :linenos:
 
     import json
 
-    # Abrir el archivo en modo lectura
-    with open("clientes.json", encoding="utf-8") as json_leido:
-        # Leyendo desde archivo JSON
-        data = json.load(json_leido)
-        for cliente in data["clientes"]:
-            print(f"📜 Nombre:", cliente["nombre"])
-            print(f"📜 Apellido:", cliente["apellido"])
-            print(f"📜 Código postal:", cliente["codigo_postal"])
-            print(f"📜 Teléfono:", cliente["telefono"])
-            print(f"📜 Datos detallados: {cliente}\n")
-        # Cerrar el archivo después de leerlo
-        json_leido.close()
-        print("✅ Se leyó el archivo JSON 'clientes.json'.")
+    # Cadena de texto con formato JSON (nótese el uso de comillas dobles)
+    datos_json = (
+        '{"nombre": "Ana", "edad": 30, "activo": true, "skills": ["Python", "FastAPI"]}'
+    )
+
+    # Decodificamos la cadena a un diccionario de Python
+    usuario = json.loads(datos_json)
+
+    print(type(usuario))  # Salida: <class 'dict'>
+    print(usuario["nombre"])  # Salida: Ana
+    print(usuario["skills"][0])  # Salida: Python
 
 
-.. todo::
-    TODO terminar de escribir esta sección.
+De esta forma, puede decodificar texto en formato :ref:`JSON <python_json>`
+a estructuras de datos nativas de Python usando el módulo :mod:`json`.
+
+
+----
+
+
+Ejemplo práctico de ``json.load()``:
+
+.. literalinclude:: ../../recursos/leccion3/json_reading.py
+    :language: python
+    :linenos:
+    :lines: 1-21
+
+
+De esta forma, puede leer registros desde un archivo :ref:`JSON <python_json>`
+usando el módulo :mod:`json`.
+
+
+----
+
+
+Trabajo con archivos
+^^^^^^^^^^^^^^^^^^^^
+
+En aplicaciones reales, los datos :ref:`JSON <python_json>` suelen
+almacenarse en archivos de configuración o persistencia, usando los
+metodos ``json.load`` y ``json.dump``.
+
+.. literalinclude:: ../../recursos/leccion3/json_file.py
+    :language: python
+    :linenos:
+    :lines: 1-20
+
+
+De esta forma, puede trabajar con archivos :ref:`JSON <python_json>` para guardar y
+cargar configuraciones o datos persistentes usando el módulo :mod:`json`.
+
+
+----
+
+
+Manejo de errores y Tipos no serializables
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Manipular datos :ref:`JSON <python_json>` puede generar errores si el contenido
+no es válido o si se intenta serializar tipos de datos que no son compatibles
+con el formato :ref:`JSON <python_json>`.
+
+A continuación se presentan algunas consideraciones importantes:
+
+Gestión de errores de decodificación
+`````````````````````````````````````
+
+Si intentas procesar un :ref:`JSON <python_json>` mal formado (por ejemplo,
+con comas finales sobrantes o comillas simples), Python lanzará una
+:ref:`excepción <python_errores>` del tipo ``json.JSONDecodeError``.
+
+.. literalinclude:: ../../recursos/leccion3/json_decode_error.py
+    :language: python
+    :linenos:
+    :lines: 1-10
+
+
+De esta forma, puede manejar errores de decodificación al procesar datos en formato
+:ref:`JSON <python_json>` usando el módulo :mod:`json`.
+
+
+----
+
+
+Serialización de tipos complejos
+`````````````````````````````````
+
+Por defecto, tipos como  :ref:`datetime.datetime <python_modulo_datetime>` o
+instancias de clases personalizadas no son serializables directamente por
+``json.dumps()``, lo que genera una excepción :ref:`TypeError <python_exception_typeerror>`.
+
+Para solucionarlo, puedes pasar una función personalizada al parámetro default:
+
+.. literalinclude:: ../../recursos/leccion3/json_encoder_datetime.py
+    :language: python
+    :linenos:
+    :lines: 1-28
+
+
+De esta forma, puede serializar tipos complejos como el módulo :ref:`datetime <python_modulo_datetime>`
+usando una función personalizada con el módulo :mod:`json`.
+
+
+----
 
 
 .. _python_modulo_json_scaffolding:
@@ -108,13 +243,14 @@ Práctica - Caso real
 ^^^^^^^^^^^^^^^^^^^^
 
 A continuación se presenta una práctica más real de implementar el uso de proyectos
-con el módulo :mod:`json` para leer y escribir un archivo JSON basado en un tipo :ref:`diccionario <python_dict>`:
+con el módulo :mod:`json` para leer y escribir un archivo :ref:`JSON <python_json>`
+basado en un tipo :ref:`diccionario <python_dict>`:
 
 
 Estructura de archivos
-^^^^^^^^^^^^^^^^^^^^^^
+```````````````````````
 
-Para crear la estructura de archivos del proyecto ``JSON`` debe ejecutar los siguientes comandos:
+Para crear la estructura de archivos del proyecto debe ejecutar los siguientes comandos:
 
 .. tabs::
 
@@ -241,7 +377,64 @@ Módulo de principal del programa.
     la cual no se incluye ya que cada vez que se inicia el programa :file:`json_reading_writing.py` se sustituye y crea
     nuevamente, para cuidar la creación de los datos iniciales.
 
-Así de esta forma puede leer y escribir registros en un archivo JSON usando el módulo :mod:`json`.
+Así de esta forma puede leer y escribir registros en un archivo :ref:`JSON <python_json>`,
+usando el módulo :mod:`json`.
+
+
+----
+
+
+.. important::
+    Usted puede descargar el código usado en esta sección haciendo clic en los
+    siguientes enlaces:
+
+    - :download:`json_decode_error.py <../../recursos/leccion2/json_decode_error.py>`.
+
+    - :download:`json_encoder_datetime.py <../../recursos/leccion2/json_encoder_datetime.py>`
+
+    - :download:`json_file.py <../../recursos/leccion2/json_file.py>`
+
+    - :download:`json_reading.py <../../recursos/leccion2/json_reading.py>`
+
+    - :download:`json_reading.py <../../recursos/leccion2/json_reading.py>`.
+
+
+.. tip::
+    Para ejecutar el código :file:`json_decode_error.py`, :file:`json_encoder_datetime.py`,
+    :file:`json_file.py`, :file:`json_reading.py`, y :file:`json_reading.py`, abra una
+    consola de comando, acceda al directorio donde se encuentra los programas:
+
+    ::
+
+        leccion2/
+        ├── json_decode_error.py
+        ├── json_encoder_datetime.py
+        ├── json_file.py
+        └── json_reading.py
+
+    Si tiene la estructura de archivo previa, entonces ejecute el siguiente comando:
+
+    .. code-block:: console
+
+        python3 json_decode_error.py
+
+    Si tiene la estructura de archivo previa, entonces ejecute el siguiente comando:
+
+    .. code-block:: console
+
+        python3 json_encoder_datetime.py
+
+    Si tiene la estructura de archivo previa, entonces ejecute el siguiente comando:
+
+    .. code-block:: console
+
+        python3 json_file.py
+
+    Si tiene la estructura de archivo previa, entonces ejecute el siguiente comando:
+
+    .. code-block:: console
+
+        python3 json_reading.py
 
 
 ----
@@ -258,8 +451,3 @@ Así de esta forma puede leer y escribir registros en un archivo JSON usando el 
 
 ..
     .. disqus::
-
-.. _`Standard ECMA-262 3rd Edition - Diciembre 1999`: https://ecma-international.org/wp-content/uploads/ECMA-262_3rd_edition_december_1999.pdf
-.. _`JavaScript`: https://es.wikipedia.org/wiki/JavaScript
-.. _`formato JSON`: https://es.wikipedia.org/wiki/JSON
-.. _`API REST`: https://es.wikipedia.org/wiki/Transferencia_de_Estado_Representacional
