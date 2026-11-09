@@ -16,7 +16,9 @@ def consulta_estados():
     # SELECT TOP 10 * FROM estados;
     todos_estados = session.query(Estados).limit(10).all()
     if len(todos_estados) == 0:
-        logging.error("❌ ¡No hay ningún 'estado' con ese criterio en la base de datos!")
+        logging.error(
+            "❌ ¡No hay ningún 'estado' con ese criterio en la base de datos!"
+        )
     else:
         row_count = 0
         for cada_estado in todos_estados:
