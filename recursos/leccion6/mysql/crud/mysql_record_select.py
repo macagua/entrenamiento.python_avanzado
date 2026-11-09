@@ -29,7 +29,9 @@ def consultar_registro(select_sql):
         )
         # Crear un objeto cursor para ejecutar las consultas
         cursor = conexion.cursor()
-        logging.info(f"✅ ¡Conectado a la base de datos '{credenciales['database']}'!\n")
+        logging.info(
+            f"✅ ¡Conectado a la base de datos '{credenciales['database']}'!\n"
+        )
         # Realizar consulta la tabla clientes
         cursor.execute(select_sql)
         # Recuperar los registros de la consulta

@@ -37,7 +37,9 @@ def actualizar_registro(update_sql, update_values):
         )
         # Crear un cursor para la base de datos
         cursor = conexion.cursor()
-        logging.info(f"✅ ¡Conectado a la base de datos '{credenciales['database']}'!\n")
+        logging.info(
+            f"✅ ¡Conectado a la base de datos '{credenciales['database']}'!\n"
+        )
         # Actualizar nuevos registros en la tabla
         cursor.executemany(update_sql, update_values)
         # Guardar los cambios en la base de datos

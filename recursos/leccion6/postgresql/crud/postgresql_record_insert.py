@@ -52,7 +52,9 @@ def insertar_registro(create_table_sql, insert_sql, insert_values):
         )
         # Crear un objeto cursor para la base de datos
         cursor = conexion.cursor()
-        logging.info(f"✅ ¡Conectado a la base de datos '{credenciales['database']}'!\n")
+        logging.info(
+            f"✅ ¡Conectado a la base de datos '{credenciales['database']}'!\n"
+        )
         # Crear la tabla productos si no existe
         cursor.execute(create_table_sql)
         # Confirmar la creación de la tabla
