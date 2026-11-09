@@ -24,7 +24,7 @@
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
 
 project_namecode = "entrenamiento.python_avanzado"
-project_short_name = "Programación en Python - Nivel avanzado"
+project_short_name = "programación en Python - Nivel avanzado"
 project = project_short_name[0].capitalize() + project_short_name[1:38]
 project_name = project_namecode.replace(".", "")
 project_details = f"Entrenamiento de {project_short_name}"
