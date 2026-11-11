@@ -388,15 +388,15 @@ usando el módulo :mod:`json`.
     Usted puede descargar el código usado en esta sección haciendo clic en los
     siguientes enlaces:
 
-    - :download:`json_decode_error.py <../../recursos/leccion2/json_decode_error.py>`.
+    - :download:`json_decode_error.py <../../recursos/leccion3/json_decode_error.py>`.
 
-    - :download:`json_encoder_datetime.py <../../recursos/leccion2/json_encoder_datetime.py>`
+    - :download:`json_encoder_datetime.py <../../recursos/leccion3/json_encoder_datetime.py>`
 
-    - :download:`json_file.py <../../recursos/leccion2/json_file.py>`
+    - :download:`json_file.py <../../recursos/leccion3/json_file.py>`
 
-    - :download:`json_reading.py <../../recursos/leccion2/json_reading.py>`
+    - :download:`json_reading.py <../../recursos/leccion3/json_reading.py>`
 
-    - :download:`json_reading.py <../../recursos/leccion2/json_reading.py>`.
+    - :download:`json_reading.py <../../recursos/leccion3/json_reading.py>`.
 
 
 .. tip::
@@ -442,7 +442,7 @@ usando el módulo :mod:`json`.
 
 .. seealso::
 
-    Consulte la sección de :ref:`lecturas suplementarias <lectura_extras_leccion10_json>`
+    Consulte la sección de :ref:`lecturas suplementarias <lecturas_extras_leccion3>`
     del entrenamiento para ampliar su conocimiento en esta temática.
 
 
