@@ -79,8 +79,29 @@ Con esto, ya tiene todo listo para continuar.
 
 ----
 
+
+.. _python_test_pytest_assertions:
+
+Assertions
+----------
+
 .. todo::
     TODO Terminar de escribir esta sección.
+
+
+----
+
+
+.. _python_test_pytest_fixtures:
+
+Fixtures
+--------
+
+.. todo::
+    TODO Terminar de escribir esta sección.
+
+
+----
 
 
 .. _python_test_pytest_scaffolding:
@@ -88,7 +109,7 @@ Con esto, ya tiene todo listo para continuar.
 Práctica - Caso real
 --------------------
 
-A continuación, se presenta la estructura de proyecto llamado ``unitarias_pytest`` de 
+A continuación, se presenta la estructura de proyecto llamado ``unitarias_pytest`` de
 una práctica más real de implementar el uso de proyectos con ``PyTest``:
 
 

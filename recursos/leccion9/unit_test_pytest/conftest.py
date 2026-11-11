@@ -8,7 +8,7 @@ def pytest_addoption(parser):
 
     Args:
         parser (object): The parser object used to add command line options to pytest.
-    """    
+    """
     parser.addoption(
         "--cmdopt", action="store", default="type1", help="my option: type1 or type2"
     )

@@ -40,7 +40,7 @@ Existen varias herramientas populares para realizar pruebas unitarias:
 | `unittest`_ | Licencia MIT  | :ref:`librería estándar <python_libreria_estandar>` | Pruebas unitarias      | Coleccción rápida de pruebas y ejecución     |
 |             |               | de Python.                                          |                        | flexible de las mismas.                      |
 +-------------+---------------+-----------------------------------------------------+------------------------+----------------------------------------------+
-| `PyTest`_   | Licencia MIT  | Autónomo, permite suites de prueba compactas.       | Pruebas unitarias      | Clase especial y sencilla para facilitar las |
+|  |PyTest|   | Licencia MIT  | Autónomo, permite suites de prueba compactas.       | Pruebas unitarias      | Clase especial y sencilla para facilitar las |
 |             |               |                                                     |                        | pruebas.                                     |
 +-------------+---------------+-----------------------------------------------------+------------------------+----------------------------------------------+
 | `Robot`_    | Licencia ASF  | Librerías de pruebas genéricas de Python.           | Pruebas de aceptación  | Enfoque de pruebas basado en palabras clave. |
@@ -51,6 +51,10 @@ Existen varias herramientas populares para realizar pruebas unitarias:
 | `Testify`_  | Licencia ASF  | Lleva las características de ``unittest`` y         | Extensión de           | Mejora del descubrimiento de pruebas.        |
 |             |               | ``nose2`` con características adicionales y plugins.| ``unittest``           |                                              |
 +-------------+---------------+-----------------------------------------------------+------------------------+----------------------------------------------+
+
+
+.. |PyTest| replace:: :ref:`PyTest <python_test_pytest>`
+
 
 En este articulo se explicará como utilizar el módulo ``unittest``, que es la :ref:`librería estándar <python_libreria_estandar>` de Python para realizar
 pruebas unitarias.
