@@ -196,6 +196,14 @@ Lección 9 - Pruebas de Software
 - `¿Qué son las pruebas continuas? <https://www.ibm.com/mx-es/think/topics/continuous-testing>`_.
 
 
+Pruebas unitarias con pytest
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+- `Pruebas unitarias en Python con pytest <https://es.w3docs.com/learn-python/python-pytest>`_.
+
+- `Tutorial de Pytest: Testers de Python <https://qapractices.com/es/documentation/pytest-tutorial-python/>`_.
+
+
 Herramienta coverage
 ^^^^^^^^^^^^^^^^^^^^
 

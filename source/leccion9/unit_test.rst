@@ -93,8 +93,8 @@ Con esto, ya tiene todo listo para continuar.
 Práctica - Caso real
 --------------------
 
-A continuación se presenta una práctica más real de implementar el uso de proyectos
-con ``unittest``, a continuación la estructura de proyecto llamado ``unitarias``:
+A continuación se presenta la estructura de proyecto llamado ``unitarias`` de una práctica
+más real de implementar el uso de proyectos con ``unittest``:
 
 
 Estructura de archivos
