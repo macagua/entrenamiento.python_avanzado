@@ -56,7 +56,7 @@ Existen varias herramientas populares para realizar pruebas unitarias:
 .. |PyTest| replace:: :ref:`PyTest <python_test_pytest>`
 
 
-En este articulo se explicará como utilizar el módulo ``unittest``, que es la :ref:`librería estándar <python_libreria_estandar>` de Python para realizar
+En este articulo se explicará como utilizar el módulo :mod:`unittest`, que es la :ref:`librería estándar <python_libreria_estandar>` de Python para realizar
 pruebas unitarias.
 
 
@@ -68,7 +68,7 @@ pruebas unitarias.
 Instalación
 -----------
 
-El módulo ``unittest`` esta incluida en :ref:`librería estándar de Python <python_libreria_estandar>`, puede probar la
+El módulo :mod:`unittest` esta incluida en :ref:`librería estándar de Python <python_libreria_estandar>`, puede probar la
 instalación existe, ejecutando el siguiente comando:
 
 .. tabs::
@@ -85,7 +85,7 @@ instalación existe, ejecutando el siguiente comando:
 
           python3 -c "import unittest ; print(unittest.__package__)"
 
-Si muestra el nombre del módulo ``unittest``, tiene correctamente instalado el módulo.
+Si muestra el nombre del módulo :mod:`unittest`, tiene correctamente instalado el módulo.
 Con esto, ya tiene todo listo para continuar.
 
 
